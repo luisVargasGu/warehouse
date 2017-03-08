@@ -1,0 +1,3 @@
+Step 1:
+
+Created the needed classes following our design implementation. Subject to change. 
