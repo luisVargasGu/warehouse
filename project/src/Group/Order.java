@@ -17,16 +17,16 @@ public class Order {
 		return SKUFront;
 	}
 
-	public void setSKUFront(int sKUFront) {
-		SKUFront = sKUFront;
+	public void setSKUFront(int SKUFront) {
+		this.SKUFront = SKUFront;
 	}
 
 	public int getSKUBack() {
 		return SKUBack;
 	}
 
-	public void setSKUBack(int sKUBack) {
-		SKUBack = sKUBack;
+	public void setSKUBack(int SKUBack) {
+		this.SKUBack = SKUBack;
 	}
 
 	
