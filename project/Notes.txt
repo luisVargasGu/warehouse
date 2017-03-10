@@ -1,3 +1,7 @@
 Step 1:
 
 Created the needed classes following our design implementation. Subject to change. 
+
+Step 2:
+
+Created the constructor and getAmount()-which returns the number of fascia in that lane in the Warehouse. The constructor will read from the traversal table, so that we can record the amount of fascia in each lane found in the Warehouse.  
