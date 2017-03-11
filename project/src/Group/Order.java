@@ -7,6 +7,12 @@ public class Order {
 	private int SKUFront;
 	private int SKUBack;
 	
+	/**
+     * Initializes a new order.
+     * 
+     * @param   color:String - the color of that facisa
+     * @param   maker:String - the model of that facisa
+     */
 	public Order(String color, String maker){
 		colour = color;
 		model = maker;

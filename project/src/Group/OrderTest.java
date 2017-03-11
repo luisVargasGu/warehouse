@@ -2,8 +2,6 @@ package Group;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class OrderTest {
@@ -14,5 +12,6 @@ public class OrderTest {
 		assertEquals(o1.colour, "red");
 		assertEquals(o1.model, "XL");
 	}
+
 
 }
