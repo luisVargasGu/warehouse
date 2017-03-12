@@ -9,10 +9,11 @@ public class Main {
 	 public static void main(String[] args){
 		// Buffered Read is a java system used to read in files
 		// try statement because sometimes file can't be found 
-		String fileName = "/Users/AnnaZelisko/Documents/group_0406/project/16orders.txt";
+		String fileWithOrders = "/Users/AnnaZelisko/Documents/group_0406/project/16orders.txt";
+		String fileSKUs = "/Users/AnnaZelisko/Documents/group_0406/project/translation.csv";
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			BufferedReader br = new BufferedReader(new FileReader(fileWithOrders));
 			//local variables to help us track and control each read in line
 			String line;
 			// this is to help figure and break down the read in line
@@ -26,7 +27,7 @@ public class Main {
 				
 				// if its an order request, I used matches because if there is a space or miss type dont wanna risk == failing
 				if (lineParts[0].matches("Order")){				
-					new Order(lineParts[2], lineParts[1]);					
+					new Order(lineParts[2], lineParts[1], fileSKUs);					
 				}
 				// if its an picker request
 				else if (lineParts[0].matches("Picker")){

@@ -17,3 +17,7 @@ Completed Documentation for WarehouseTesting.java. Completed QueueOfOrders.java 
 Step 5:
 
 Completed Truck/TruckTesting and Supply/SupplyTesting. Started the Main structure and PickingRequest.java. Tried to pass Orders from Order.java to PickingRequest.java. Have started testing.
+
+Step 6:
+
+Extended class SKUReader to  PickingRequest, which is extended to QueuueOfOrders, which is extended to Order. Modified the parameters of these classes so that SKUReader can receive a file path. Also added in the files, as variables, we need to read in to Main aka translation.csv and transversal.cv. Re-ran testing for the classes that have been extended all the way to SKUReader. Testing has all passed and been successful. Completed PickingRequest.java, however I have yet to start the testing for this class.

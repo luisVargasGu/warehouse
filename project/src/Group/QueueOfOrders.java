@@ -13,7 +13,8 @@ public class QueueOfOrders extends PickingRequest{
     /**
      * Initializes an empty queue of order.
      */
-    public QueueOfOrders() {
+    public QueueOfOrders(String filePath) {
+    	super(filePath);
     	//start of our linked list queue
     	arrayz = new ArrayList<Order>();
     }

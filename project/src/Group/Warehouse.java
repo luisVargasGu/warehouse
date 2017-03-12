@@ -39,7 +39,6 @@ public class Warehouse {
 			Integer[] value = {Integer.parseInt(lineParts[1]), Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3]) }; 
 			List<Integer> warehouseKeys = Arrays.asList(value);
 			
-			
 			if (lineParts[0].matches("A")){
 				// we set the splitting to Strings (first variable read in is a string)
 				warehouseZoneA.put(warehouseKeys, Integer.parseInt(lineParts[4]));

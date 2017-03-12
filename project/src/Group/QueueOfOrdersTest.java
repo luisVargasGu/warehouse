@@ -9,10 +9,11 @@ import org.junit.Test;
 public class QueueOfOrdersTest {
 
 	private QueueOfOrders o1;
+	String fileSKUs = "/Users/AnnaZelisko/Documents/group_0406/project/translation.csv";
 
 	@Before
 	public void setUp() throws Exception {
-		o1 = new QueueOfOrders();
+		o1 = new QueueOfOrders(fileSKUs);
 	}
 
 	@Test
@@ -23,7 +24,7 @@ public class QueueOfOrdersTest {
 	
 	@Test
 	public void testEnque() {
-		Order orderz = new Order("red","XL");
+		Order orderz = new Order("red","XL", fileSKUs);
 		o1.enqueue(orderz);
 		assertFalse(o1.isEmpty());
 		assertTrue(o1.size() == 1);
@@ -32,9 +33,9 @@ public class QueueOfOrdersTest {
 	}
 	@Test
 	public void testtoString() {
-		Order orderz = new Order("red","XL");
+		Order orderz = new Order("red","XL", fileSKUs);
 		o1.enqueue(orderz);
-		Order orderz1 = new Order("green","XL");
+		Order orderz1 = new Order("green","XL", fileSKUs);
 		o1.enqueue(orderz1);
 		assertFalse(o1.isEmpty());
 		assertTrue(o1.size() == 2);
@@ -44,13 +45,13 @@ public class QueueOfOrdersTest {
 	
 	@Test
 	public void testDequeue() {
-		Order orderz = new Order("red","XL");
+		Order orderz = new Order("red","XL", fileSKUs);
 		o1.enqueue(orderz);
-		Order orderz1 = new Order("blue","XL");
+		Order orderz1 = new Order("blue","XL", fileSKUs);
 		o1.enqueue(orderz1);
-		Order orderz2 = new Order("green","XL");
+		Order orderz2 = new Order("green","XL", fileSKUs);
 		o1.enqueue(orderz2);
-		Order orderz3 = new Order("black","XL");
+		Order orderz3 = new Order("black","XL", fileSKUs);
 		o1.enqueue(orderz3);
 		assertFalse(o1.isEmpty());
 		assertTrue(o1.size() == 4);
@@ -59,11 +60,11 @@ public class QueueOfOrdersTest {
 	
 	@Test
 	public void testDequeueFail() {
-		Order orderz = new Order("red","XL");
+		Order orderz = new Order("red","XL", fileSKUs);
 		o1.enqueue(orderz);
-		Order orderz1 = new Order("blue","XL");
+		Order orderz1 = new Order("blue","XL", fileSKUs);
 		o1.enqueue(orderz1);
-		Order orderz2 = new Order("green","XL");
+		Order orderz2 = new Order("green","XL", fileSKUs);
 		o1.enqueue(orderz2);
 		assertFalse(o1.isEmpty());
 		assertTrue(o1.size() == 3);

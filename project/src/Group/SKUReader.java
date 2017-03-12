@@ -32,6 +32,9 @@ public class SKUReader {
 		// for each line we enter the information in to pairs of lists.
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			//removes the title
+			br.readLine();
+			
 			while (((line = br.readLine()) != null)) {
 				lineparts = line.split(",");
 				// local variables for the model info and the front/back Sku
@@ -43,11 +46,11 @@ public class SKUReader {
 				modelInfo.add(lineparts[1]);
 				skuInfo.add(Integer.parseInt(lineparts[2]));
 				skuInfo.add(Integer.parseInt(lineparts[3]));
+				
 
 				// putting the key/value pairs into the maps
 				this.getTranslationTableSku().put(modelInfo, skuInfo);
 				this.getTranslationTableModel().put(skuInfo, modelInfo);
-
 			}
 			br.close();
 		} catch (IOException e) {

@@ -1,6 +1,6 @@
 package Group;
 
-public class Order {
+public class Order extends QueueOfOrders{
 	
 	String colour;
 	String model;
@@ -13,10 +13,11 @@ public class Order {
      * @param   color:String - the color of that facisa
      * @param   maker:String - the model of that facisa
      */
-	public Order(String color, String maker){
+	public Order(String color, String maker, String filePath){
+		super(filePath);
 		colour = color;
 		model = maker;
-		//add order to order queue aka this.add()
+		enqueue(this);
 	}
 
 	public int getSKUFront() {
