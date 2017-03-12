@@ -13,3 +13,7 @@ Completed WarehouseTesting.java, which has the testing for Warehouse.java. Also 
 Step 4:
 
 Completed Documentation for WarehouseTesting.java. Completed QueueOfOrders.java were we have the queue as a array list, this may be subjected to change. Also finished  QueueOfOrdersTesting.java, which contains the testing for QueueOfOrders.java. I have also started The constructor and the addOrders() method which is packages 4 orders into one picking Request.
+
+Step 5:
+
+Completed Truck/TruckTesting and Supply/SupplyTesting. Started the Main structure and PickingRequest.java. Tried to pass Orders from Order.java to PickingRequest.java. Have started testing.

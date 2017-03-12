@@ -35,5 +35,4 @@ public class Order {
 		this.SKUBack = SKUBack;
 	}
 
-	
 }

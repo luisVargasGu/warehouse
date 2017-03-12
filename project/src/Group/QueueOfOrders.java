@@ -43,6 +43,7 @@ public class QueueOfOrders extends PickingRequest{
      */
     public void enqueue(Order item) {
     	arrayz.add(item);
+    	dequeue();
         size++;
     }
 

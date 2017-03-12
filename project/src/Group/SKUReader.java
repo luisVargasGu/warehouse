@@ -77,7 +77,7 @@ public class SKUReader {
 	 * @return
 	 * @throws ClassCastException
 	 */
-	public List<Integer> getSKU(ArrayList<String> model) throws ClassCastException {
+	public List<Integer> getSKU(List<Order> model) throws ClassCastException {
 		try {
 			if (this.getTranslationTableSku().containsKey(model)) {
 				return this.getTranslationTableSku().get(model);
