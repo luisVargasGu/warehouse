@@ -1,5 +1,6 @@
 package Group;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -78,16 +79,16 @@ public class SKUReader {
 	 * 
 	 * @param modelInfo
 	 * @return
-	 * @throws ClassCastException
+	 * @throws NullPointerException
 	 */
-	public List<Integer> getSKU(List<Order> model) throws ClassCastException {
+	public List<Integer> getSKU(List<String> model) throws NullPointerException {
 		try {
 			if (this.getTranslationTableSku().containsKey(model)) {
 				return this.getTranslationTableSku().get(model);
 			} else {
-				throw new ClassCastException();
+				throw new NullPointerException();
 			}
-		} catch (ClassCastException e) {
+		} catch (NullPointerException e) {
 			System.out.println("That key does not exist");
 			return null;
 		}
@@ -99,16 +100,16 @@ public class SKUReader {
 	 * 
 	 * @param skuInfo
 	 * @return
-	 * @throws ClassCastException
+	 * @throws NullPointerException
 	 */
-	public List<String> getModelInfo(ArrayList<Integer> sku) throws ClassCastException {
+	public List<String> getModelInfo(ArrayList<Integer> sku) throws NullPointerException {
 		try {
 			if (this.getTranslationTableModel().containsKey(sku)) {
 				return this.getTranslationTableModel().get(sku);
 			} else {
-				throw new ClassCastException();
+				throw new NullPointerException();
 			}
-		} catch (ClassCastException e) {
+		} catch (NullPointerException e) {
 			System.out.println("that key does not exist");
 			return null;
 		}

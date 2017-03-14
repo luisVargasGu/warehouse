@@ -24,10 +24,13 @@ public class Supply {
 	public void checkSupply(){
 		boolean supplyNotDamaged = true;
 		for (int i = 0; i <= 40; i++){
-			//system runs damage report, if something was wrong supplyNotDamaged =False
+			//system runs damage report, if something was wrong supplyNotDamaged = False
 		}
 		if (supplyNotDamaged){
 			System.out.println("Supply not damaged, has been put away in the warehouse reserve room");
+		}
+		else{
+			System.out.println("Supply damaged, its gonna be thrown out");
 		}
 		
 	}

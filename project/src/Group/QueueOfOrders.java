@@ -1,22 +1,20 @@
 package Group;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class QueueOfOrders extends PickingRequest{
+public class QueueOfOrders {
 	
 	//array elements that will allow us to control our queue
-    private List<Order> arrayz;    
-    private int size = 0;               
+    private LinkedList<Order> arrayz;              
     
     /**
      * Initializes an empty queue of order.
      */
-    public QueueOfOrders(String filePath) {
-    	super(filePath);
+    public QueueOfOrders() {
     	//start of our linked list queue
-    	arrayz = new ArrayList<Order>();
+    	arrayz = new LinkedList<Order>();
     }
 
     /**
@@ -44,8 +42,6 @@ public class QueueOfOrders extends PickingRequest{
      */
     public void enqueue(Order item) {
     	arrayz.add(item);
-    	dequeue();
-        size++;
     }
 
     /**
@@ -55,7 +51,7 @@ public class QueueOfOrders extends PickingRequest{
      * @throws IndexOutOfBoundsException if this queue is has less than 4 elements 
      * as our for loop is set for <= 3
      */
-    public void dequeue() {
+    public ArrayList<Order> dequeue() {
     	try{
     		//if our queue is empty how can we remove anything
     		if(isEmpty()){
@@ -65,26 +61,23 @@ public class QueueOfOrders extends PickingRequest{
     			throw new IndexOutOfBoundsException();
     		}
     		else{
-    			//we need to create a Picking Request 
-    			List<Order> pickingOrders = new ArrayList<Order>();
+//    			//we need to create a Picking Request 
+    			ArrayList<Order> pickingOrders = new ArrayList<Order>();
     			//add all our orders
     			for (int i = 0; i <= 3; i++){
-    				pickingOrders.add(arrayz.get(i));
-    				pickingOrders.remove(arrayz.get(i));
+    				pickingOrders.add(arrayz.peek());
+    				arrayz.remove();
     			}
-    			
-    			// add our orders to the picking list order
-    			addNewpickingRequest(pickingOrders);
-
-    	        //decrease the size by 4
-    	        size = size-4;
+    			return pickingOrders;
     		}
     	}
     	catch(NoSuchElementException e){
     		System.out.println("No Orders have been given yet.");
+    		return null;
     	}
     	catch(IndexOutOfBoundsException e){
     		System.out.println("Not Orders to complete your request.");
+    		return null;
     	}
     }
     
@@ -100,7 +93,7 @@ public class QueueOfOrders extends PickingRequest{
        // loop through our array of orders
    		for(int i = 0; i < arrayz.size(); i++){
    			//add the order details
-   			s.append("colour:"+ arrayz.get(i).colour +" model:" + arrayz.get(i).model);
+   			s.append("colour:"+ arrayz.get(i).getColour() +" model:" + arrayz.get(i).getModel());
    	        s.append(' ');
    		}
 	   	return s.toString();
