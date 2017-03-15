@@ -1,11 +1,9 @@
 package Group;
 
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
 
@@ -42,7 +40,7 @@ public class Main {
 				lineParts = line.split(" ");
 
 				// if its an order request, I used matches because if there is a
-				// space or miss type dont wanna risk == failing
+				// space or miss type don't want to risk failing
 				if (lineParts[0].matches("Order")) {
 					ArrayList<String> modelInfo = new ArrayList<String>();
 					modelInfo.add(lineParts[2]);
@@ -58,7 +56,10 @@ public class Main {
 						// loop through the worker queue to see if worker exists
 						for (int i = 0; i < workerQueue.size(); i++) {
 							if (workerQueue.getArrayz().get(i).getId() == lineParts[0]) {
-
+								Worker tiredWorker = workerQueue.getWorker(lineParts[1]);
+								ArrayList<Order> pickingRequest = orderQueue.dequeue();
+								PickingRequest workForWorker = new PickingRequest(pickingRequest);
+								tiredWorker.givePickingRequest(workForWorker);
 							} else {
 								// then create a new worker and add them to the
 								// queue
