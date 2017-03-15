@@ -18,7 +18,7 @@ public class Main {
 		String fileToWriteToOrders = "/Users/AnnaZelisko/Desktop/group_0406/project/orders.csv";
 		// Orders that have been loaded into the truck
 		String fileToWriteToFinal = "/Users/AnnaZelisko/Desktop/group_0406/project/final.csv";
-		// Warehouse final, informing us the number of facsia
+		// Warehouse final, informing us the number of fascia
 		// creates SKu Reader and Warehouse instances that will be referred to
 		// through out main
 		SKUReader SKUFile = new SKUReader(fileWithSKUs);
@@ -27,6 +27,7 @@ public class Main {
 		QueueOfWorkers workerQueue = new QueueOfWorkers();
 		Loading loader = new Loading();
 		Sequencing sequencer = new Sequencing();
+		Truck truck1 = new Truck();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileWithSteps));
@@ -35,7 +36,7 @@ public class Main {
 			// this is to help figure and break down the read in line
 			String[] lineParts;
 
-			// line read in isnt empty
+			// line read in isn't empty
 			while ((line = br.readLine()) != null) {
 				// we split into the string array based on spaces
 				lineParts = line.split(" ");
@@ -57,7 +58,7 @@ public class Main {
 						// loop through the worker queue to see if worker exists
 						for (int i = 0; i < workerQueue.size(); i++) {
 							if (workerQueue.getArrayz().get(i).getId() == lineParts[0]) {
-								
+
 							} else {
 								// then create a new worker and add them to the
 								// queue
@@ -68,43 +69,42 @@ public class Main {
 								workerQueue.enqueue(w1);
 							}
 						}
-					}else if (lineParts[lineParts.length-1].matches("Marshaling")){
-						if(workerQueue.getArrayz().get(0).finishedWork()){
-							Worker goodworker = workerQueue.dequeue();
+					} else if (lineParts[lineParts.length - 1].matches("Marshaling")) {
+						if (workerQueue.getArrayz().get(0).finishedWork()) {
+							Worker goodWorker = workerQueue.getArrayz().get(0);
+							sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
+						} else {
+							// terminate the program with message "worker wasn't
+							// finished job"
 						}
+					} else if (lineParts[2].matches("pick")) {
+						workerQueue.getArrayz().element().pickUpOrder();
 					}
 
 				}
 				// if its an picker request
 				else if (lineParts[0].matches("Sequencer")) {
-					// if (SquencerWorked){
-					//
-					// }
+					sequencer.setId(lineParts[1]);
+					sequencer.sequence();
+					if (sequencer.isSequenced()) {
+						Worker goodWorker = workerQueue.dequeue();
+						goodWorker.dropOffWork();
+						workerQueue.enqueue(goodWorker);
+					} else {
+						// Print message asking the worker to re-pick the orders
+					}
 				}
 				// if its an loader request
 				else if (lineParts[0].matches("Loader")) {
-					// assume that u have the array of front and rear fascia
-					// that is returned from Sequencer
-					ArrayList<Integer> frontFascia = new ArrayList<Integer>();// will
-																				// need
-																				// to
-																				// be
-																				// replaced
-																				// with
-																				// local
-																				// variables
-					ArrayList<Integer> backFascia = new ArrayList<Integer>();
-					// will need to  be replaced  with local  variables
-					Loading l1 = new Loading();
-					Truck truck1 = new Truck();
-					for (int i = 0; i <= 3; i++) {
-						// this list will act as our key
-						Integer[] value = { frontFascia.get(i), backFascia.get(i) };
-						ArrayList<Integer> sku = (ArrayList<Integer>) Arrays.asList(value);
-						ArrayList<String> modelInfo = (ArrayList<String>) SKUFile.getModelInfo(sku);
-						l1.outputOrdersLoaded();
+					loader.setId(lineParts[1]);
+					if (sequencer.isSequenced()) {
+						loader.loadOrders(sequencer.getPickingrequest(), sequencer.getFrontFasciaPallet(),
+								sequencer.getBackFasciaPallet());
+						truck1.addOrdersToTruck();
+					} else {
+						// show message saying "The pallets could not be loaded
+						// into the truck"
 					}
-					truck1.addOrdersToTruck();
 				}
 				// if its an replenisher request
 				else if (lineParts[0].matches("Replenisher")) {
@@ -112,6 +112,9 @@ public class Main {
 				}
 
 			}
+			// Output all the files that are needed
+			WarehouseFile.saveToFile(fileToWriteToFinal);
+			loader.outputOrdersLoaded(fileToWriteToOrders);
 			br.close();
 		}
 		// catch any exception

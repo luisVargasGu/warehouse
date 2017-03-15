@@ -22,7 +22,7 @@ public class WarehousePicking {
 
 	}
 
-	public static List<String> optimize(List<Integer> skus) {
+	public static ArrayList<String> optimize(List<Integer> skus) {
 		ArrayList<String> result = new ArrayList<>();
 		for (Integer sku : skus) {
 			StringBuilder location = new StringBuilder();

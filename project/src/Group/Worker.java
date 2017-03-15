@@ -69,6 +69,7 @@ public class Worker {
 		for (int i = 0; i < this.getWork().getOrders().size(); i++) {
 			locations.add(this.getWork().getOrders().get(0).getSKUFront());
 			locations.add(this.getWork().getOrders().get(0).getSKUBack());
+		this.setlocation(WarehousePicking.optimize(locations));
 		}
 	}
 	public void pickUpOrder() {

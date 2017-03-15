@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Loading {
 	// Attributes
+	private String id;
 	private ArrayList<Order> ordersLoaded;
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<ArrayList<Integer>> totalBack = new ArrayList<ArrayList<Integer>>();
-	private String fileToWriteTo = "/Users/AnnaZelisko/Desktop/group_0406/project/TestingFiles/order.csv";
 
 	// Constructor
 	public Loading() {
@@ -23,6 +23,14 @@ public class Loading {
 
 	public ArrayList<ArrayList<Integer>> getTotalBack() {
 		return totalBack;
+	}
+
+	public ArrayList<Order> getOrdersLoaded() {
+		return ordersLoaded;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	// Methods
@@ -44,7 +52,7 @@ public class Loading {
 	 * @param modelInfo
 	 * @throws IOException
 	 */
-	public void outputOrdersLoaded() throws IOException {
+	public void outputOrdersLoaded(String fileToWriteTo) throws IOException {
 		// Delimiter used in CSV file
 		final String COMMA_DELIMITER = ",";
 		final String NEW_LINE_SEPARATOR = "\n";
