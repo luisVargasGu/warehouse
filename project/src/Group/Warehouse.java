@@ -87,7 +87,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns the number of fasica in that column/lane of the Warehouse
+	 * Returns the number of fascia in that column/lane of the Warehouse
 	 * 
 	 * @param zone:String
 	 *            - the zone in the Warehouse
