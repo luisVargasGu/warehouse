@@ -9,20 +9,15 @@ public class Sequencing {
 	private String id;
 	private ArrayList<Integer> skus;
 	private PickingRequest pickingrequest;
-	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>(4);
-	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>(4);
+	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>();
+	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>();
+	
 
 	// Constructor
 	/**
 	 * Create new sequencing.
 	 */
 	public Sequencing() {
-		for (int i = 0; i < 10; i++) {
-			  frontFasciaPallet.add(null);
-			}
-		for (int i = 0; i < 10; i++) {
-			  backFasciaPallet.add(null);
-			}
 	}
 
 	// Getters and Setters
@@ -134,29 +129,51 @@ public class Sequencing {
 	 */
 	public void sequence() {
 		// try catch in case something fails
+		System.out.println();
 		try {
 			System.out.println(this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
+			
 			for (Order order : this.getPickingrequest().getOrders()) {
 				for (int i = 0; i < 8; i++) {
+					System.out.println("");
+					System.out.println(this.getPickingrequest().getOrders());
+					System.out.println(order);
+					System.out.println("");
+					System.out.println(order.getSKUBack());
+					System.out.println(this.getSkus().get(i));
+					
+					System.out.println(order.containsBackSKU(this.getSkus().get(i)));
+					System.out.println(order.containsFrontSKU(this.getSkus().get(i)));
+					
 					if (order.containsBackSKU(this.getSkus().get(i))) {
-						this.getBackFasciaPallet().set(this.getPickingrequest().getOrders().indexOf(order),
+						System.out.println("made it inside back");
+						System.out.println(this.getPickingrequest().getOrders().indexOf(order));
+						
+						this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 								this.getSkus().get(i));
+						System.out.println("back"+ this.getBackFasciaPallet());
 					}
-					if (order.containsFrontSKU(this.getSkus().get(i))) {
-						this.getFrontFasciaPallet().set(this.getPickingrequest().getOrders().indexOf(order),
+					else if (order.containsFrontSKU(this.getSkus().get(i))) {
+						System.out.println("made it inside front");
+						System.out.println(this.getPickingrequest().getOrders().indexOf(order));
+						System.out.println(this.getSkus().get(i));
+						this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 								this.getSkus().get(i));
+						System.out.println("front"+ this.getFrontFasciaPallet());
 					}
 				}
 			}
+			System.out.println("back"+ this.getBackFasciaPallet());
+			System.out.println("front"+ this.getFrontFasciaPallet());
 			if (this.isSequenced() == false) {
 				throw new IOException();
 			}
 
-		} catch (
-
-		IOException e) {
+		} catch (IOException e) {
 			System.out.println("The picking request could not be sequenced, due to missing or incorect fascia");
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("Not enoguh indexs.");
 		}
 
 	}
