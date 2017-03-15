@@ -4,7 +4,6 @@ import org.junit.Test;
 
 public class TruckTest {
 
-
 	@Test
 	public void testTruckConstructor() {
 		Truck t1 = new Truck();

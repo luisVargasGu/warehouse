@@ -21,3 +21,9 @@ Completed Truck/TruckTesting and Supply/SupplyTesting. Started the Main structur
 Step 6:
 
 Extended class SKUReader to  PickingRequest, which is extended to QueuueOfOrders, which is extended to Order. Modified the parameters of these classes so that SKUReader can receive a file path. Also added in the files, as variables, we need to read in to Main aka translation.csv and transversal.cv. Re-ran testing for the classes that have been extended all the way to SKUReader. Testing has all passed and been successful. Completed PickingRequest.java, however I have yet to start the testing for this class.
+
+Step 7:
+March 13 me and Donald meet after class to use the extra provided time to discuss our current code design hoping to make it more efficient and modular. Together we worked through the Java classes Main, Worker, QueueOfWorker and Warehouse modifying methods to allow faster turn time. After that we split up I worked on Loading and Supply, as a result I modified Main. Donald worked on Sequencing, PickingRequest and connected these modified parts with the new Loading and Supply classes. We agreed that we would no push anything as we had created a branch before and didn't want the same reoccurrence, as a result we agreed that when I completed my classes I would send them to Donald. Donald would unite everything then push to the repository.
+
+Step 8: 
+We worked on testing our classes.

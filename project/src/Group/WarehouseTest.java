@@ -38,12 +38,6 @@ public class WarehouseTest {
 	}
 	
 	@Test
-	public void Test2WarehouseConstructorFileException(){
-		Warehouse ware2 = new Warehouse("/Users/AnnaZelisko/Documents/workspace/CSC207Workspace/group_0406/project/TestingFiles/Warehouse.csv");	
-		assertTrue(ware2.tracing);
-	}
-	
-	@Test
 	public void Test3FasicaAmount(){
 		Warehouse ware3 = new Warehouse("/Users/AnnaZelisko/Documents/group_0406/project/traversal_table.csv");	
 		int amount1 = ware3.getAmountInZone("A", 0, 0, 0);

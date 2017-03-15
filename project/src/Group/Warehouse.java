@@ -13,7 +13,6 @@ public class Warehouse {
 	// the key: level as these id are unique 1-48 values: aisle, rack, amount
 	private Map<List<Integer>, Integer> warehouseZoneA = new HashMap<List<Integer>, Integer>();
 	private Map<List<Integer>, Integer> warehouseZoneB = new HashMap<List<Integer>, Integer>();
-	boolean tracing = false;
 
 	/**
 	 * Initializes a new Warehouse
@@ -72,11 +71,9 @@ public class Warehouse {
 			// catch any exception
 		} catch (FileNotFoundException e) {
 			System.out.println("File doesn't exsist");
-			tracing = true;
 
 		} catch (IOException e) {
 			System.out.println("Trouble read provided file.");
-			tracing = true;
 		}
 	}
 
@@ -251,8 +248,4 @@ public class Warehouse {
 		}
 
 	}
-
-	// public static void main(String[] args) throws IOException {
-	//
-	//
 }

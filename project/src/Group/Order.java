@@ -10,7 +10,7 @@ public class Order {
 	private String model;
 	private Integer SKUFront;
 	private Integer SKUBack;
-
+	
 	/**
 	 * Initializes a new order.
 	 * 
@@ -21,13 +21,17 @@ public class Order {
 	 */
 	public Order(ArrayList<String> modelInfo, ArrayList<Integer> skuInfo) {
 		orderNum = n;
-		model = modelInfo.get(0);
-		colour = modelInfo.get(1);
+		model = modelInfo.get(1);
+		colour = modelInfo.get(0);
 		SKUFront = skuInfo.get(0);
 		SKUBack = skuInfo.get(1);
 		n++;
 	}
-
+	//for testing 
+	public void setOrderNum(int num) {
+		this.orderNum = num;
+	}
+	
 	public Integer getOrderNum() {
 		return orderNum;
 	}

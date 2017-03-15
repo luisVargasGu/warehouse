@@ -2,80 +2,86 @@ package Group;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class QueueOfOrdersTest {
 
-	private QueueOfOrders o1;
+	private QueueOfOrders queue1;
 	String fileSKUs = "/Users/AnnaZelisko/Documents/group_0406/project/translation.csv";
-
+	ArrayList<String> modelInfo;
+	ArrayList<Integer> skuInfo;
+	Order order1;
+	Order order2;
+	Order order3;
+	Order order4;
+	
 	@Before
 	public void setUp() throws Exception {
-		o1 = new QueueOfOrders(fileSKUs);
+		modelInfo = new ArrayList<String>();
+		modelInfo.add("Blue");
+		modelInfo.add("SES");
+		skuInfo = new ArrayList<Integer>();
+		skuInfo.add(5);
+		skuInfo.add(6);
+		order1 = new Order(modelInfo, skuInfo);
+		order2 = new Order(modelInfo, skuInfo);
+		order3 = new Order(modelInfo, skuInfo);
+		order4 = new Order(modelInfo, skuInfo);
+		queue1 = new QueueOfOrders();
 	}
 
 	@Test
-	public void testconstructor() {
-		assertTrue(o1.isEmpty());
-		assertTrue(o1.size() == 0);
+	public void test1Constructor() {
+		assertTrue(queue1.isEmpty());
+		assertTrue(queue1.size() == 0);
 	}
 	
 	@Test
-	public void testEnque() {
-		Order orderz = new Order("red","XL", fileSKUs);
-		o1.enqueue(orderz);
-		assertFalse(o1.isEmpty());
-		assertTrue(o1.size() == 1);
-		assertEquals("colour:red model:XL ", o1.toString());
+	public void test2Enque() {
+		queue1.enqueue(order1);
+		assertFalse(queue1.isEmpty());
+		assertTrue(queue1.size() == 1);
+		assertEquals("colour:Blue model:SES ", queue1.toString());
 
 	}
 	@Test
-	public void testtoString() {
-		Order orderz = new Order("red","XL", fileSKUs);
-		o1.enqueue(orderz);
-		Order orderz1 = new Order("green","XL", fileSKUs);
-		o1.enqueue(orderz1);
-		assertFalse(o1.isEmpty());
-		assertTrue(o1.size() == 2);
-		assertEquals("colour:red model:XL colour:green model:XL ", o1.toString());
-
+	public void test3toString() {
+		queue1.enqueue(order1);
+		queue1.enqueue(order2);
+		assertFalse(queue1.isEmpty());
+		assertTrue(queue1.size() == 2);
+		assertEquals("colour:Blue model:SES colour:Blue model:SES ", queue1.toString());
 	}
 	
 	@Test
-	public void testDequeue() {
-		Order orderz = new Order("red","XL", fileSKUs);
-		o1.enqueue(orderz);
-		Order orderz1 = new Order("blue","XL", fileSKUs);
-		o1.enqueue(orderz1);
-		Order orderz2 = new Order("green","XL", fileSKUs);
-		o1.enqueue(orderz2);
-		Order orderz3 = new Order("black","XL", fileSKUs);
-		o1.enqueue(orderz3);
-		assertFalse(o1.isEmpty());
-		assertTrue(o1.size() == 4);
-		o1.dequeue();
+	public void test4Dequeue() {
+		queue1.enqueue(order1);
+		queue1.enqueue(order2);
+		queue1.enqueue(order3);
+		queue1.enqueue(order4);
+		assertFalse(queue1.isEmpty());
+		assertTrue(queue1.size() == 4);
+		queue1.dequeue();
 	}
 	
 	@Test
-	public void testDequeueFail() {
-		Order orderz = new Order("red","XL", fileSKUs);
-		o1.enqueue(orderz);
-		Order orderz1 = new Order("blue","XL", fileSKUs);
-		o1.enqueue(orderz1);
-		Order orderz2 = new Order("green","XL", fileSKUs);
-		o1.enqueue(orderz2);
-		assertFalse(o1.isEmpty());
-		assertTrue(o1.size() == 3);
-		o1.dequeue();
+	public void test5DequeueFail() {
+		queue1.enqueue(order1);
+		queue1.enqueue(order2);
+		queue1.enqueue(order3);
+		assertFalse(queue1.isEmpty());
+		assertTrue(queue1.size() == 3);
+		queue1.dequeue();
 	}
 
 	@Test
-	public void testDequeueFail2() {
-		assertTrue(o1.isEmpty());
-		assertTrue(o1.size() == 0);
-		o1.dequeue();
+	public void test6DequeueFail2() {
+		assertTrue(queue1.isEmpty());
+		assertTrue(queue1.size() == 0);
+		queue1.dequeue();
 	}
 	
 }
