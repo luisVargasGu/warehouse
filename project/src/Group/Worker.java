@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Worker {
 	private String id;
 	private PickingRequest work;
-	private ArrayList<String> location;
-	private ArrayList<Integer> finishedwork;
+	private ArrayList<String> location = new ArrayList<>();
+	private ArrayList<Integer> finishedwork = new ArrayList<>();
 
 	// getters and setters
 	/**
@@ -79,19 +79,23 @@ public class Worker {
 	/**
 	 * Create a new worker.
 	 * 
-	 * @param id: String
-	 *            the workers name aka id
+	 * @param id:
+	 *            String the workers name aka id
 	 */
 	public Worker(String id) {
 		this.id = id;
+//		ArrayList<String> empty1 = new ArrayList<>();
+//		ArrayList<Integer> empty2 = new ArrayList<>();
+//		this.setlocation(empty1);
+//		this.setFinishedwork(empty2);
 	}
 
 	// methods
 	/**
 	 * Gives a picking request to a new worker.
 	 * 
-	 * @param picks: PickingRequest
-	 *            a new picking request for the worker
+	 * @param picks:
+	 *            PickingRequest a new picking request for the worker
 	 */
 	public void givePickingRequest(PickingRequest picks) {
 		this.setWork(picks);
@@ -99,8 +103,8 @@ public class Worker {
 		for (int i = 0; i < this.getWork().getOrders().size(); i++) {
 			locations.add(this.getWork().getOrders().get(0).getSKUFront());
 			locations.add(this.getWork().getOrders().get(0).getSKUBack());
-			this.setlocation(WarehousePicking.optimize(locations));
 		}
+		this.setlocation(WarehousePicking.optimize(locations));
 	}
 
 	/**
@@ -108,7 +112,7 @@ public class Worker {
 	 */
 	public void pickUpOrder() {
 		String fascia = this.getlocation().remove(0);
-		System.out.println(this.getId() + ",please go to zone" + fascia.charAt(0) + " " + fascia.charAt(1) + " "
+		System.out.println(this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
 				+ fascia.charAt(2) + " " + fascia.charAt(3));
 		Integer skuFascia = Integer.parseInt(fascia.substring(3, fascia.length() - 1));
 		this.getFinishedwork().add(skuFascia);
@@ -118,8 +122,7 @@ public class Worker {
 	/**
 	 * Checks if all 8 orders have been picked up.
 	 * 
-	 * @return Boolean
-	 *            true if all orders gathered.
+	 * @return Boolean true if all orders gathered.
 	 */
 	public boolean finishedWork() {
 		if ((this.getFinishedwork().size() == 8) && (this.getlocation().size() == 0)) {
@@ -130,13 +133,15 @@ public class Worker {
 	}
 
 	/**
-	 *  Worker is confirmed to have dropped off the work.
+	 * Worker is confirmed to have dropped off the work.
 	 */
 	public void dropOffWork() {
 		if (this.finishedWork()) {
-			this.setlocation(null);
+			ArrayList<String> empty1 = new ArrayList<>();
+			ArrayList<Integer> empty2 = new ArrayList<>();
+			this.setlocation(empty1);
+			this.setFinishedwork(empty2);
 			this.setWork(null);
-			this.setFinishedwork(null);
 		}
 	}
 }

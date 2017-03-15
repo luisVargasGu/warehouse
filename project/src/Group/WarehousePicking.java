@@ -18,9 +18,6 @@ public class WarehousePicking {
 	 *            the list of SKUs to retrieve.
 	 * @return the List of locations.
 	 */
-	public WarehousePicking() {
-
-	}
 
 	public static ArrayList<String> optimize(List<Integer> skus) {
 		ArrayList<String> result = new ArrayList<>();

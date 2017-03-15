@@ -10,12 +10,12 @@ public class Main {
 	public static void main(String[] args) {
 		// Buffered Read is a java system used to read in files
 		// try statement because sometimes file can't be found
-		String fileWithSteps = "/Users/AnnaZelisko/Documents/group_0406/project/16orders.txt";
-		String fileWithSKUs = "/Users/AnnaZelisko/Documents/group_0406/project/translation.csv";
-		String fileWithWarehouseInfo = "/Users/AnnaZelisko/Documents/group_0406/project/traversal_table.csv";
-		String fileToWriteToOrders = "/Users/AnnaZelisko/Desktop/group_0406/project/orders.csv";
+		String fileWithSteps = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/16orders.txt";
+		String fileWithSKUs = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/translation.csv";
+		String fileWithWarehouseInfo = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/TestingFiles/initial.csv";
+		String fileToWriteToOrders = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/TestingFiles/orders.csv";
 		// Orders that have been loaded into the truck
-		String fileToWriteToFinal = "/Users/AnnaZelisko/Desktop/group_0406/project/final.csv";
+		String fileToWriteToFinal = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/TestingFiles/final.csv";
 		// Warehouse final, informing us the number of fascia
 		// creates SKu Reader and Warehouse instances that will be referred to
 		// through out main
@@ -51,68 +51,57 @@ public class Main {
 
 				}
 				// if its an picker request
-				else if (lineParts[0].matches("Picker")) {
-					if (lineParts[2].matches("ready")) {
-						// loop through the worker queue to see if worker exists
-						for (int i = 0; i < workerQueue.size(); i++) {
-							if (workerQueue.getArrayz().get(i).getId() == lineParts[0]) {
-								Worker tiredWorker = workerQueue.getWorker(lineParts[1]);
-								ArrayList<Order> pickingRequest = orderQueue.dequeue();
-								PickingRequest workForWorker = new PickingRequest(pickingRequest);
-								tiredWorker.givePickingRequest(workForWorker);
-							} else {
-								// then create a new worker and add them to the
-								// queue
-								Worker w1 = new Worker(lineParts[1]);
-								ArrayList<Order> pickingRequest = orderQueue.dequeue();
-								PickingRequest workForWorker = new PickingRequest(pickingRequest);
-								w1.givePickingRequest(workForWorker);
-								workerQueue.enqueue(w1);
-							}
-						}
-					} else if (lineParts[lineParts.length - 1].matches("Marshaling")) {
-						if (workerQueue.getArrayz().get(0).finishedWork()) {
-							Worker goodWorker = workerQueue.getArrayz().get(0);
-							sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
-						} else {
-							// terminate the program with message "worker wasn't
-							// finished job"
-						}
-					} else if (lineParts[2].matches("pick")) {
-						workerQueue.getArrayz().element().pickUpOrder();
-					}
+				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("ready"))) {
+					Worker w1 = new Worker(lineParts[1]);
+					ArrayList<Order> pickingRequest = orderQueue.dequeue();
+					PickingRequest workForWorker = new PickingRequest(pickingRequest);
+					w1.givePickingRequest(workForWorker);
+					workerQueue.enqueue(w1);
 
 				}
-				// if its an picker request
-				else if (lineParts[0].matches("Sequencer")) {
-					sequencer.setId(lineParts[1]);
-					sequencer.sequence();
-					if (sequencer.isSequenced()) {
+
+				if ((lineParts[0].matches("Picker")) && (lineParts[lineParts.length - 1].matches("Marshaling"))) {
+					if (workerQueue.getArrayz().get(0).finishedWork()) {
 						Worker goodWorker = workerQueue.dequeue();
-						goodWorker.dropOffWork();
-						workerQueue.enqueue(goodWorker);
-					} else {
-						// Print message asking the worker to re-pick the orders
+						sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
 					}
 				}
+				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {
+					workerQueue.getWorker(lineParts[1]).pickUpOrder();
+
+				}
+
+				// if its an picker request
+				if (lineParts[0].matches("Sequencer")) {
+					sequencer.setId(lineParts[1]);
+					sequencer.sequence();
+					// if (sequencer.isSequenced()) {
+					// Worker goodWorker = workerQueue.dequeue();
+					// workerQueue.enqueue(goodWorker);
+					// } else {
+					// // Print message asking the worker to re-pick the
+					// // orders
+					// }
+				}
 				// if its an loader request
-				else if (lineParts[0].matches("Loader")) {
+				if (lineParts[0].matches("Loader")) {
 					loader.setId(lineParts[1]);
 					if (sequencer.isSequenced()) {
 						loader.loadOrders(sequencer.getPickingrequest(), sequencer.getFrontFasciaPallet(),
 								sequencer.getBackFasciaPallet());
 						truck1.addOrdersToTruck();
 					} else {
-						// show message saying "The pallets could not be loaded
+						// show message saying "The pallets could not be
+						// loaded
 						// into the truck"
 					}
 				}
 				// if its an replenisher request
-				else if (lineParts[0].matches("Replenisher")) {
+				if (lineParts[0].matches("Replenisher")) {
 
 				}
-
 			}
+
 			// Output all the files that are needed
 			WarehouseFile.saveToFile(fileToWriteToFinal);
 			loader.outputOrdersLoaded(fileToWriteToOrders);
@@ -124,5 +113,4 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-
 }

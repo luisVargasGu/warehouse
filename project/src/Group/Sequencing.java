@@ -9,15 +9,20 @@ public class Sequencing {
 	private String id;
 	private ArrayList<Integer> skus;
 	private PickingRequest pickingrequest;
-	private ArrayList<Integer> frontFasciaPallet;
-	private ArrayList<Integer> backFasciaPallet;
+	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>(4);
+	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>(4);
 
 	// Constructor
 	/**
 	 * Create new sequencing.
 	 */
 	public Sequencing() {
-
+		for (int i = 0; i < 10; i++) {
+			  frontFasciaPallet.add(null);
+			}
+		for (int i = 0; i < 10; i++) {
+			  backFasciaPallet.add(null);
+			}
 	}
 
 	// Getters and Setters
@@ -88,7 +93,7 @@ public class Sequencing {
 	}
 
 	/**
-	 * eturn the front back pallet for this sequencing process
+	 * return the front back pallet for this sequencing process
 	 * 
 	 * @return ArrayList<Integer> - all the back fasica
 	 */
@@ -100,11 +105,11 @@ public class Sequencing {
 	/**
 	 * Giving work to the sequencing process.
 	 *
-	 * @param pickingRequest: PickingRequest
-	 *            - assigned picking request to the process
+	 * @param pickingRequest:
+	 *            PickingRequest - assigned picking request to the process
 	 * 
-	 * @param skus: ArrayList<Integer>
-	 * 			 - assigned skus to the process
+	 * @param skus:
+	 *            ArrayList<Integer> - assigned skus to the process
 	 */
 	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
 		this.skus = skus;
@@ -113,8 +118,8 @@ public class Sequencing {
 
 	/**
 	 * Checks if process has completed sequencing.
-	 * @return Boolean 
-	 * 			- true if process complete, false if not
+	 * 
+	 * @return Boolean - true if process complete, false if not
 	 */
 	public boolean isSequenced() {
 		if ((this.getFrontFasciaPallet().size() == 4) && (this.getBackFasciaPallet().size() == 4)) {
@@ -130,18 +135,27 @@ public class Sequencing {
 	public void sequence() {
 		// try catch in case something fails
 		try {
-			for (int i = 0; i <= 8; i++) {
-				for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
-					if (this.getPickingrequest().getOrders().get(j).containsBackSKU(this.getSkus().get(i))) {
-						this.getBackFasciaPallet().add(j, this.getSkus().get(i));
-					} else if (this.getPickingrequest().getOrders().get(j).containsFrontSKU(this.getSkus().get(i))) {
-						this.getFrontFasciaPallet().add(j, this.getSkus().get(i));
-					} else {
-						throw new IOException();
+			System.out.println(this.getId() + " is sequencing" + " picking request "
+					+ (this.getPickingrequest().getId()).toString());
+			for (Order order : this.getPickingrequest().getOrders()) {
+				for (int i = 0; i < 8; i++) {
+					if (order.containsBackSKU(this.getSkus().get(i))) {
+						this.getBackFasciaPallet().set(this.getPickingrequest().getOrders().indexOf(order),
+								this.getSkus().get(i));
+					}
+					if (order.containsFrontSKU(this.getSkus().get(i))) {
+						this.getFrontFasciaPallet().set(this.getPickingrequest().getOrders().indexOf(order),
+								this.getSkus().get(i));
 					}
 				}
 			}
-		} catch (IOException e) {
+			if (this.isSequenced() == false) {
+				throw new IOException();
+			}
+
+		} catch (
+
+		IOException e) {
 			System.out.println("The picking request could not be sequenced, due to missing or incorect fascia");
 		}
 

@@ -1,13 +1,13 @@
 package Group;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class QueueOfWorkers {
 	// array elements that will allow us to control our queue
-	private LinkedList<Worker> arrayz;
+	private ArrayList<Worker> arrayz;
 
-	public LinkedList<Worker> getArrayz() {
+	public ArrayList<Worker> getArrayz() {
 		return arrayz;
 	}
 
@@ -16,7 +16,7 @@ public class QueueOfWorkers {
 	 */
 	public QueueOfWorkers() {
 		// start of our linked list queue
-		arrayz = new LinkedList<Worker>();
+		arrayz = new ArrayList<Worker>();
 	}
 
 	/**
@@ -59,14 +59,21 @@ public class QueueOfWorkers {
 			if (isEmpty()) {
 				throw new NoSuchElementException();
 			} else {
-				Worker worker1 = arrayz.peek();
-				arrayz.remove();
+				Worker worker1 = arrayz.remove(0);
 				return worker1;
 			}
 		} catch (NoSuchElementException e) {
 			System.out.println("No Workers have been given yet.");
 			return null;
 		}
+	}
+	
+	public boolean searchWorker(String name){
+		for(Worker worker: this.getArrayz()){
+			if(worker.getId() == name){
+				return true;
+			}
+		}return false;
 	}
 
 	/**
@@ -77,8 +84,10 @@ public class QueueOfWorkers {
      */
 	public Worker getWorker(String name) throws NoSuchElementException {
 		for (Worker worker : this.arrayz) {
-			if (worker.getId() == name) {
+			if (worker.getId().matches(name)) {
 				return (worker);
+			}else{
+				continue;
 			}
 		}
 		NoSuchElementException e = new NoSuchElementException();
