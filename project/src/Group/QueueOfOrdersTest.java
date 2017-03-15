@@ -9,8 +9,7 @@ import org.junit.Test;
 
 public class QueueOfOrdersTest {
 
-	private QueueOfOrders queue1;
-	String fileSKUs = "/Users/AnnaZelisko/Documents/group_0406/project/translation.csv";
+	QueueOfOrders queue1;
 	ArrayList<String> modelInfo;
 	ArrayList<Integer> skuInfo;
 	Order order1;

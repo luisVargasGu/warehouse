@@ -3,7 +3,8 @@ package Group;
 import java.awt.List;
 
 public class Supply {
-	List newSupply; 
+	private List newSupply;
+	private boolean supplyNotDamaged = true;
 	
 	/**
      * Controls a new supply.
@@ -12,17 +13,16 @@ public class Supply {
      * @param   maker:String - the model of that facisa
      */
 	public Supply(String color, String model, String position){
-		newSupply = new List();
+		setNewSupply(new List());
 		System.out.println("A new supply has arrived to the Warehouse:"+ color+", "+ model+", "+position);
-		checkSupply();
 	}
 	
-	
+
 	/**
      * Checks the new supply for damage.
      */
 	public void checkSupply(){
-		boolean supplyNotDamaged = true;
+		
 		for (int i = 0; i <= 40; i++){
 			//system runs damage report, if something was wrong supplyNotDamaged = False
 		}
@@ -33,6 +33,19 @@ public class Supply {
 			System.out.println("Supply damaged, its gonna be thrown out");
 		}
 		
+	}
+
+	//getters and setters
+	public List getNewSupply() {
+		return newSupply;
+	}
+
+	public void setNewSupply(List newSupply) {
+		this.newSupply = newSupply;
+	}
+	
+	public void setSupplyNotDamaged(Boolean status) {
+		this.supplyNotDamaged = status;
 	}
 
 }

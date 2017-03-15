@@ -61,7 +61,7 @@ public class QueueOfOrders {
     			throw new IndexOutOfBoundsException();
     		}
     		else{
-//    			//we need to create a Picking Request 
+    			//we need to create a Picking Request 
     			ArrayList<Order> pickingOrders = new ArrayList<Order>();
     			//add all our orders
     			for (int i = 0; i <= 3; i++){

@@ -4,7 +4,7 @@ package Group;
 import java.util.ArrayList;
 
 public class PickingRequest{
-	private static Integer n;
+	private static Integer n = 0;
 	//attributes
 	private Integer id;
 	private ArrayList<Order> orders;

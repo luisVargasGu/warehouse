@@ -88,14 +88,8 @@ public class Main {
 																				// with
 																				// local
 																				// variables
-					ArrayList<Integer> backFascia = new ArrayList<Integer>();// will
-																				// need
-																				// to
-																				// be
-																				// replaced
-																				// with
-																				// local
-																				// variables
+					ArrayList<Integer> backFascia = new ArrayList<Integer>();
+					// will need to  be replaced  with local  variables
 					Loading l1 = new Loading(frontFascia, backFascia);
 					Truck truck1 = new Truck();
 					for (int i = 0; i <= 3; i++) {
