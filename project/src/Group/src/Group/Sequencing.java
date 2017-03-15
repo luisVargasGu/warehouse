@@ -11,7 +11,6 @@ public class Sequencing {
 	private PickingRequest pickingrequest;
 	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>();
 	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>();
-	
 
 	// Constructor
 	/**
@@ -133,39 +132,21 @@ public class Sequencing {
 		try {
 			System.out.println(this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
-			
+
 			for (Order order : this.getPickingrequest().getOrders()) {
 				for (int i = 0; i < 8; i++) {
-					System.out.println("");
-					System.out.println(this.getPickingrequest().getOrders());
-					System.out.println(order);
-					System.out.println("");
-					System.out.println(order.getSKUBack());
-					System.out.println(this.getSkus().get(i));
-					
-					System.out.println(order.containsBackSKU(this.getSkus().get(i)));
-					System.out.println(order.containsFrontSKU(this.getSkus().get(i)));
-					
 					if (order.containsBackSKU(this.getSkus().get(i))) {
-						System.out.println("made it inside back");
-						System.out.println(this.getPickingrequest().getOrders().indexOf(order));
-						
+
 						this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 								this.getSkus().get(i));
-						System.out.println("back"+ this.getBackFasciaPallet());
-					}
-					else if (order.containsFrontSKU(this.getSkus().get(i))) {
-						System.out.println("made it inside front");
-						System.out.println(this.getPickingrequest().getOrders().indexOf(order));
-						System.out.println(this.getSkus().get(i));
+
+					} else if (order.containsFrontSKU(this.getSkus().get(i))) {
 						this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 								this.getSkus().get(i));
-						System.out.println("front"+ this.getFrontFasciaPallet());
+
 					}
 				}
 			}
-			System.out.println("back"+ this.getBackFasciaPallet());
-			System.out.println("front"+ this.getFrontFasciaPallet());
 			if (this.isSequenced() == false) {
 				throw new IOException();
 			}
