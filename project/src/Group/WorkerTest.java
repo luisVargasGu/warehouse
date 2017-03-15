@@ -45,5 +45,13 @@ public class WorkerTest {
 		worker.setlocation(location);
 		assertEquals(worker.getlocation(), location);
 	}
+	
+	@Test
+	public void test4FinishedWork() {
+		ArrayList<String> location = new ArrayList<String>();
+		location.add("New York");
+		worker.setlocation(location);
+		assertEquals(worker.getlocation(), location);
+	}
 
 }
