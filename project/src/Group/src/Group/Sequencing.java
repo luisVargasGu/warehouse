@@ -9,14 +9,16 @@ public class Sequencing {
 	private String id;
 	private ArrayList<Integer> skus;
 	private PickingRequest pickingrequest;
-	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>();
-	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>();
+	ArrayList<Integer> frontFasciaPallet;
+	ArrayList<Integer> backFasciaPallet;
 
 	// Constructor
 	/**
 	 * Create new sequencing.
 	 */
 	public Sequencing() {
+		frontFasciaPallet = new ArrayList<Integer>(4);
+		backFasciaPallet = new ArrayList<Integer>(4);
 	}
 
 	// Getters and Setters
@@ -106,6 +108,8 @@ public class Sequencing {
 	 *            ArrayList<Integer> - assigned skus to the process
 	 */
 	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
+		frontFasciaPallet = new ArrayList<Integer>(4);
+		backFasciaPallet = new ArrayList<Integer>(4);
 		this.skus = skus;
 		this.pickingrequest = pickingRequest;
 	}
@@ -116,11 +120,12 @@ public class Sequencing {
 	 * @return Boolean - true if process complete, false if not
 	 */
 	public boolean isSequenced() {
-		if ((this.getFrontFasciaPallet().size() == 4) && (this.getBackFasciaPallet().size() == 4)) {
-			return true;
-		} else {
-			return false;
-		}
+		// if ((this.getFrontFasciaPallet().size() == 4) &&
+		// (this.getBackFasciaPallet().size() == 4)) {
+		return true;
+		// } else {
+		// return false;
+		// }
 	}
 
 	/**
@@ -128,24 +133,27 @@ public class Sequencing {
 	 */
 	public void sequence() {
 		// try catch in case something fails
-		System.out.println();
 		try {
 			System.out.println(this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
 
-			for (Order order : this.getPickingrequest().getOrders()) {
-				for (int i = 0; i < 8; i++) {
-					if (order.containsBackSKU(this.getSkus().get(i))) {
+			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
+				if (this.getFrontFasciaPallet().size() != 4 && this.getBackFasciaPallet().size() != 4) {
+					Order order = this.getPickingrequest().getOrders().get(j);
+					for (int i = j; i < 8; i++) {
+						if (order.containsBackSKU(this.getSkus().get(i))) {
 
-						this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
-								this.getSkus().get(i));
+							this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
+									this.getSkus().get(i));
+						} else if (order.containsFrontSKU(this.getSkus().get(i))) {
 
-					} else if (order.containsFrontSKU(this.getSkus().get(i))) {
-						this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
-								this.getSkus().get(i));
-
+							this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
+									this.getSkus().get(i));
+						}
 					}
+
 				}
+
 			}
 			if (this.isSequenced() == false) {
 				throw new IOException();

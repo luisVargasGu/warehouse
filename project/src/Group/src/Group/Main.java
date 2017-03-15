@@ -75,26 +75,14 @@ public class Main {
 				if (lineParts[0].matches("Sequencer")) {
 					sequencer.setId(lineParts[1]);
 					sequencer.sequence();
-					// if (sequencer.isSequenced()) {
-					// Worker goodWorker = workerQueue.dequeue();
-					// workerQueue.enqueue(goodWorker);
-					// } else {
-					// // Print message asking the worker to re-pick the
-					// // orders
-					// }
 				}
 				// if its an loader request
 				if (lineParts[0].matches("Loader")) {
 					loader.setId(lineParts[1]);
-					if (sequencer.isSequenced()) {
-						loader.loadOrders(sequencer.getPickingrequest(), sequencer.getFrontFasciaPallet(),
-								sequencer.getBackFasciaPallet());
-						truck1.addOrdersToTruck();
-					} else {
-						// show message saying "The pallets could not be
-						// loaded
-						// into the truck"
-					}
+					loader.loadOrders(sequencer.getPickingrequest(), sequencer.getFrontFasciaPallet(),
+							sequencer.getBackFasciaPallet());
+					truck1.addOrdersToTruck();
+					sequencer = new Sequencing();
 				}
 				// if its an replenisher request
 				if (lineParts[0].matches("Replenisher")) {

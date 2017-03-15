@@ -84,10 +84,7 @@ public class Worker {
 	 */
 	public Worker(String id) {
 		this.id = id;
-//		ArrayList<String> empty1 = new ArrayList<>();
-//		ArrayList<Integer> empty2 = new ArrayList<>();
-//		this.setlocation(empty1);
-//		this.setFinishedwork(empty2);
+
 	}
 
 	// methods
@@ -98,11 +95,13 @@ public class Worker {
 	 *            PickingRequest a new picking request for the worker
 	 */
 	public void givePickingRequest(PickingRequest picks) {
+
 		this.setWork(picks);
 		ArrayList<Integer> locations = new ArrayList<>();
 		for (int i = 0; i < this.getWork().getOrders().size(); i++) {
-			locations.add(this.getWork().getOrders().get(0).getSKUFront());
-			locations.add(this.getWork().getOrders().get(0).getSKUBack());
+			
+			locations.add(this.getWork().getOrders().get(i).getSKUFront());
+			locations.add(this.getWork().getOrders().get(i).getSKUBack());
 		}
 		this.setlocation(WarehousePicking.optimize(locations));
 	}
@@ -114,7 +113,8 @@ public class Worker {
 		String fascia = this.getlocation().remove(0);
 		System.out.println(this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
 				+ fascia.charAt(2) + " " + fascia.charAt(3));
-		Integer skuFascia = Integer.parseInt(fascia.substring(3, fascia.length() - 1));
+		Integer skuFascia = Integer.parseInt(fascia.substring(4, fascia.length()));
+		
 		this.getFinishedwork().add(skuFascia);
 
 	}

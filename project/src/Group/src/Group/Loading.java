@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Loading {
 	// Attributes
 	private String id; // id of our load
-	private ArrayList<Order> ordersLoaded;// the orders that will be written to
+	private ArrayList<Order> ordersLoaded = new ArrayList<Order>();// the orders that will be written to
 											// the file
 	// front and back fasica that are being loaded
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
@@ -73,6 +73,7 @@ public class Loading {
 	 */
 	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
 			ArrayList<Integer> backPallet) {
+		System.out.println(this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck");
 		this.ordersLoaded.addAll(pickingRequest.getOrders());
 		this.totalFront.add(frontPallet);
 		this.totalBack.add(backPallet);
@@ -82,8 +83,9 @@ public class Loading {
 	/**
 	 * Writes the orders loaded to file: orders.csv.
 	 * 
-	 * @param fileToWriteTo: String
-	 *            - this is the file that we are going to write the orders to
+	 * @param fileToWriteTo:
+	 *            String - this is the file that we are going to write the
+	 *            orders to
 	 * @throws IOException
 	 */
 	public void outputOrdersLoaded(String fileToWriteTo) throws IOException {
