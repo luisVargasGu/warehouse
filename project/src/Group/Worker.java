@@ -6,7 +6,7 @@ public class Worker {
 	private String id;
 	private PickingRequest work;
 	private ArrayList<String> location;
-	private ArrayList<Object> finishedwork;
+	private ArrayList<Integer> finishedwork;
 
 	// getters and setters
 	/**
@@ -49,8 +49,11 @@ public class Worker {
 	/**
 	 * @return the finished work
 	 */
-	public ArrayList<Object> getFinishedwork() {
+	public ArrayList<Integer> getFinishedwork() {
 		return finishedwork;
+	}
+	public void setFinishedwork(ArrayList<Integer> finishedwork) {
+		this.finishedwork = finishedwork;
 	}
 
 	// constructor
@@ -68,9 +71,28 @@ public class Worker {
 			locations.add(this.getWork().getOrders().get(0).getSKUBack());
 		}
 	}
-
 	public void pickUpOrder() {
-		this.getlocation().remove(0);
+		String fascia = this.getlocation().remove(0);
+		System.out.println(this.getId() + ",please go to zone" + fascia.charAt(0) + " " + fascia.charAt(1) + " "
+				+ fascia.charAt(2) + " " + fascia.charAt(3));
+		Integer skuFascia = Integer.parseInt(fascia.substring(3, fascia.length()-1));
+		this.getFinishedwork().add(skuFascia);
 
+	}
+
+	public boolean finishedWork() {
+		if ((this.getFinishedwork().size() == 8) && (this.getlocation().size() == 0)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void dropOffWork() {
+		if (this.finishedWork()) {
+			this.setlocation(null);
+			this.setWork(null);
+			this.setFinishedwork(null);
+		}
 	}
 }
