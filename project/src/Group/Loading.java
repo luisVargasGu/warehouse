@@ -6,35 +6,71 @@ import java.util.ArrayList;
 
 public class Loading {
 	// Attributes
-	private String id;
-	private ArrayList<Order> ordersLoaded;
+	private String id; // id of our load
+	private ArrayList<Order> ordersLoaded;// the orders that will be written to
+											// the file
+	// front and back fasica that are being loaded
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<ArrayList<Integer>> totalBack = new ArrayList<ArrayList<Integer>>();
 
+	/**
+	 * Initializes a new load.
+	 */
 	// Constructor
 	public Loading() {
 
 	}
 
 	// getters and setters
+	/**
+	 * Returns the private list for front fasica.
+	 * 
+	 * @return ArrayList<ArrayList<Integer>> - all the front facisa
+	 */
 	public ArrayList<ArrayList<Integer>> getTotalFront() {
 		return totalFront;
 	}
 
+	/**
+	 * Returns the private list for the back fasica.
+	 * 
+	 * @return ArrayList<ArrayList<Integer>> - all the back facisa
+	 */
 	public ArrayList<ArrayList<Integer>> getTotalBack() {
 		return totalBack;
 	}
 
+	/**
+	 * Returns the private list for the orders being loaded.
+	 * 
+	 * @return ArrayList<Order> - all the loaded orders
+	 */
 	public ArrayList<Order> getOrdersLoaded() {
 		return ordersLoaded;
 	}
 
+	/**
+	 * Sets the private list for the orders being loaded.
+	 * 
+	 * @param id:String
+	 *            - id of our load
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	// Methods
-
+	/**
+	 * Loads our order onto a truck.
+	 * 
+	 * @param pickingRequest:
+	 *            PickingRequest - this is the assigned picking request that is
+	 *            being loaded
+	 * @param frontPallet:
+	 *            ArrayList<Integer> - array containing the front pallets
+	 * @param backPallet:
+	 *            ArrayList<Integer> - array containing the back pallets
+	 */
 	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
 			ArrayList<Integer> backPallet) {
 		this.ordersLoaded.addAll(pickingRequest.getOrders());
@@ -46,10 +82,8 @@ public class Loading {
 	/**
 	 * Writes the orders loaded to file: orders.csv.
 	 * 
-	 * @param backFascia
-	 *            - SKU for the back facsia
-	 * @param frontFascia
-	 * @param modelInfo
+	 * @param fileToWriteTo: String
+	 *            - this is the file that we are going to write the orders to
 	 * @throws IOException
 	 */
 	public void outputOrdersLoaded(String fileToWriteTo) throws IOException {

@@ -12,6 +12,7 @@ public class LoadingTest {
 
 	ArrayList<Integer> frontFacia;
 	ArrayList<Integer> rearFacia;
+	PickingRequest pickingRequest;
 	Loading loder;
 	
 	@Before
@@ -33,6 +34,8 @@ public class LoadingTest {
 		first.add(5);
 		first.add(6);
 		first_equal.add(first);
+		System.out.println(loder.getTotalFront());
+		System.out.println(first_equal);
 		assertEquals(loder.getTotalFront(), first_equal);
 		ArrayList<ArrayList<Integer>> sec_equal = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> sec = new ArrayList<Integer>();
@@ -45,13 +48,13 @@ public class LoadingTest {
 	@Test
 	// it will override the file if the link name is the same and create a new one if it doesn't exist
 	public void test2saveToFile() {
-		//file was set to .../group_0406/project/TestingFiles/test2saveToFile.csv in Loading
+		String file = "/Users/AnnaZelisko/Desktop/group_0406/project/TestingFiles/test2saveToFile.csv";
 		// you can check it there
 		ArrayList<String> modelInfo = new ArrayList<String>();
 		modelInfo.add("SES");
 		modelInfo.add("IK");
 		try {
-			loder.outputOrdersLoaded();
+			loder.outputOrdersLoaded(file);
 		} catch (IOException e) {
 			System.out.println("Test Not Passed");
 		}

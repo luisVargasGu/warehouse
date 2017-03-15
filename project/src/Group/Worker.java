@@ -10,14 +10,18 @@ public class Worker {
 
 	// getters and setters
 	/**
-	 * @return the work
+	 * Return the workers pickingRequest.
+	 * 
+	 * @return PickingRequest: the workers picking request
 	 */
 	public PickingRequest getWork() {
 		return work;
 	}
 
 	/**
-	 * @param work
+	 * Sets the workers pickingRequest.
+	 * 
+	 * @param work:PickingRequest
 	 *            the work to set
 	 */
 	public void setWork(PickingRequest work) {
@@ -25,14 +29,18 @@ public class Worker {
 	}
 
 	/**
-	 * @return the location
+	 * Return the workers location.
+	 * 
+	 * @return ArrayList<String> - the workers locations
 	 */
 	public ArrayList<String> getlocation() {
 		return location;
 	}
 
 	/**
-	 * @param location
+	 * Sets the workers location.
+	 * 
+	 * @param location:ArrayList<String>
 	 *            the location to set
 	 */
 	public void setlocation(ArrayList<String> location) {
@@ -40,47 +48,79 @@ public class Worker {
 	}
 
 	/**
-	 * @return the id
+	 * Returns the workers id.
+	 * 
+	 * @return String: the workers id
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
-	 * @return the finished work
+	 * Returns the workers finished work.
+	 * 
+	 * @return ArrayList<Integer> - the finished work
 	 */
 	public ArrayList<Integer> getFinishedwork() {
 		return finishedwork;
 	}
+
+	/**
+	 * Sets the workers finished work.
+	 * 
+	 * @param finishedwork:ArrayList<Integer>
+	 *            the finished work
+	 */
 	public void setFinishedwork(ArrayList<Integer> finishedwork) {
 		this.finishedwork = finishedwork;
 	}
 
 	// constructor
+	/**
+	 * Create a new worker.
+	 * 
+	 * @param id: String
+	 *            the workers name aka id
+	 */
 	public Worker(String id) {
 		this.id = id;
 	}
 
 	// methods
-
+	/**
+	 * Gives a picking request to a new worker.
+	 * 
+	 * @param picks: PickingRequest
+	 *            a new picking request for the worker
+	 */
 	public void givePickingRequest(PickingRequest picks) {
 		this.setWork(picks);
 		ArrayList<Integer> locations = new ArrayList<>();
 		for (int i = 0; i < this.getWork().getOrders().size(); i++) {
 			locations.add(this.getWork().getOrders().get(0).getSKUFront());
 			locations.add(this.getWork().getOrders().get(0).getSKUBack());
-		this.setlocation(WarehousePicking.optimize(locations));
+			this.setlocation(WarehousePicking.optimize(locations));
 		}
 	}
+
+	/**
+	 * Tells the system which worker is picking up which order.
+	 */
 	public void pickUpOrder() {
 		String fascia = this.getlocation().remove(0);
 		System.out.println(this.getId() + ",please go to zone" + fascia.charAt(0) + " " + fascia.charAt(1) + " "
 				+ fascia.charAt(2) + " " + fascia.charAt(3));
-		Integer skuFascia = Integer.parseInt(fascia.substring(3, fascia.length()-1));
+		Integer skuFascia = Integer.parseInt(fascia.substring(3, fascia.length() - 1));
 		this.getFinishedwork().add(skuFascia);
 
 	}
 
+	/**
+	 * Checks if all 8 orders have been picked up.
+	 * 
+	 * @return Boolean
+	 *            true if all orders gathered.
+	 */
 	public boolean finishedWork() {
 		if ((this.getFinishedwork().size() == 8) && (this.getlocation().size() == 0)) {
 			return true;
@@ -89,6 +129,9 @@ public class Worker {
 		}
 	}
 
+	/**
+	 *  Worker is confirmed to have dropped off the work.
+	 */
 	public void dropOffWork() {
 		if (this.finishedWork()) {
 			this.setlocation(null);

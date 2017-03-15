@@ -9,24 +9,49 @@ public class PickingRequest{
 	private Integer id;
 	private ArrayList<Order> orders;
 	//getters and setters
+	/**
+     * Returns the id of this picking request
+     *
+     * @return int: representing the picking request id
+     */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+     * Sets the picking request id.
+     *
+     * @param  id:Integer - the id that will be set
+     */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+     * Returns list of orders for this picking request.
+     *
+     * @return ArrayList<Order>: list of orders 
+     */
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}
 
+	/**
+     * Set orders in this picking request.
+     *
+     * @param  orders: ArrayList<Order> - list of orders that needs to be set
+     */
 	public void setOrders(ArrayList<Order> orders) {
 		this.orders = orders;
 	}
 
 	
 	//constructor
+	/**
+     * New picking request created.
+     *
+     * @param  orders: ArrayList<Order> - list of orders that needs to be set
+     */
 	public PickingRequest(ArrayList<Order> orders){
 		this.setOrders(orders);
 		this.setId(n);

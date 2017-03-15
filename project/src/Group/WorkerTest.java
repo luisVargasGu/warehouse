@@ -44,9 +44,6 @@ public class WorkerTest {
 		location.add("New York");
 		worker.setlocation(location);
 		assertEquals(worker.getlocation(), location);
-		worker.pickUpOrder();
-		ArrayList<String> location2 = new ArrayList<String>();
-		assertEquals(worker.getlocation(), location2);
 	}
 
 }

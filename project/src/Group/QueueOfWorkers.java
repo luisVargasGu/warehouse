@@ -69,6 +69,12 @@ public class QueueOfWorkers {
 		}
 	}
 
+	/**
+     * Returns a worker object, that we are looking for.
+     * 
+     * @param   name:String - the name of that worker that we awant back
+     * @return  Worker - from the front of the queue
+     */
 	public Worker getWorker(String name) throws NoSuchElementException {
 		for (Worker worker : this.arrayz) {
 			if (worker.getId() == name) {
@@ -80,9 +86,9 @@ public class QueueOfWorkers {
 	}
 
 	/**
-	 * Returns a string representation of this queue of orders.
+	 * Returns a string representation of this queue of workers.
 	 *
-	 * @return the sequence of orders in FIFO order, separated by spaces
+	 * @return the sequence of workers in FIFO order, separated by spaces
 	 */
 	@Override
 	public String toString() {

@@ -78,10 +78,22 @@ public class Warehouse {
 	}
 
 	// getters and setters
+	/**
+	 * Return the keys that are in each warehouse zone A.
+	 *
+	 * @return Map<List<Integer>> - all the columns in that zone A in the
+	 *         Warehouse
+	 */
 	public Map<List<Integer>, Integer> getWarehouseZoneA() {
 		return warehouseZoneA;
 	}
 
+	/**
+	 * Return the keys that are in each warehouse zone B
+	 *
+	 * @return Map<List<Integer>> - all the columns in that zone B in the
+	 *         Warehouse
+	 */
 	public Map<List<Integer>, Integer> getWarehouseZoneB() {
 		return warehouseZoneB;
 	}

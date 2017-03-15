@@ -1,6 +1,5 @@
 package Group;
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,8 +21,10 @@ public class SKUReader {
 	private Map<List<Integer>, List<String>> translationTableModel = new HashMap<List<Integer>, List<String>>();
 
 	/**
-	 * @param filePath
-	 *            the place where the Translation-table is located.
+	 * Constructor: creates our SKU file, from our provided file
+	 * 
+	 * @param filePath:
+	 *            String the place where the Translation-table is located.
 	 * @throws IOException
 	 */
 	public SKUReader(String filePath) {
@@ -33,9 +34,9 @@ public class SKUReader {
 		// for each line we enter the information in to pairs of lists.
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			//removes the title
+			// removes the title
 			br.readLine();
-			
+
 			while (((line = br.readLine()) != null)) {
 				lineparts = line.split(",");
 				// local variables for the model info and the front/back Sku
@@ -47,7 +48,6 @@ public class SKUReader {
 				modelInfo.add(lineparts[1]);
 				skuInfo.add(Integer.parseInt(lineparts[2]));
 				skuInfo.add(Integer.parseInt(lineparts[3]));
-				
 
 				// putting the key/value pairs into the maps
 				this.getTranslationTableSku().put(modelInfo, skuInfo);
@@ -61,6 +61,9 @@ public class SKUReader {
 
 	/**
 	 * Gets the translationTableModel
+	 * 
+	 * @return Map<List<Integer>, List<String>> - information using models and
+	 *         colour as keys
 	 */
 	public Map<List<Integer>, List<String>> getTranslationTableModel() {
 		return translationTableModel;
@@ -68,6 +71,9 @@ public class SKUReader {
 
 	/**
 	 * Gets the translationTableSku
+	 * 
+	 * @return Map<List<String>, List<Integer>> - information using skufront and
+	 *         skuback as keys
 	 */
 	public Map<List<String>, List<Integer>> getTranslationTableSku() {
 		return translationTableSku;
@@ -77,8 +83,9 @@ public class SKUReader {
 	 * The method that will give back the SKU of the fascia Model with the given
 	 * specifications.
 	 * 
-	 * @param modelInfo
-	 * @return
+	 * @param modelInfo:
+	 *            List<String> - use this model/colour information
+	 * @return List<Integer> - return our sku values for front and back
 	 * @throws NullPointerException
 	 */
 	public List<Integer> getSKU(List<String> model) throws NullPointerException {
@@ -98,8 +105,8 @@ public class SKUReader {
 	/**
 	 * The method that will get the model information for a certain SKU
 	 * 
-	 * @param skuInfo
-	 * @return
+	 * @param skuInfo:ArrayList<Integer> - use these sku values for front and back
+	 * @return List<String> - return model/colour information for those skus
 	 * @throws NullPointerException
 	 */
 	public List<String> getModelInfo(ArrayList<Integer> sku) throws NullPointerException {
