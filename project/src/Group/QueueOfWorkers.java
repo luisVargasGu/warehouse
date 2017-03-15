@@ -51,7 +51,7 @@ public class QueueOfWorkers {
      *
      * @throws NoSuchElementException if this queue is empty
      */
-    public Object dequeue() {
+    public Worker dequeue() {
     	try{
     		//if our queue is empty how can we remove anything
     		if(isEmpty()){

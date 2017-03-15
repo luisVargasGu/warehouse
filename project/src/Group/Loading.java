@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Loading {
-
+	// Attributes
+	private ArrayList<Order> ordersLoaded;
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<ArrayList<Integer>> totalBack = new ArrayList<ArrayList<Integer>>();
 	private String fileToWriteTo = "/Users/AnnaZelisko/Desktop/group_0406/project/TestingFiles/order.csv";
 
-	public Loading(ArrayList<Integer> frontFacia, ArrayList<Integer> rearFacia) {
-		totalFront.add(frontFacia);
-		totalBack.add(rearFacia);
+	// Constructor
+	public Loading() {
 
 	}
 
@@ -25,6 +25,16 @@ public class Loading {
 		return totalBack;
 	}
 
+	// Methods
+
+	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
+			ArrayList<Integer> backPallet) {
+		this.ordersLoaded.addAll(pickingRequest.getOrders());
+		this.totalFront.add(frontPallet);
+		this.totalBack.add(backPallet);
+
+	}
+
 	/**
 	 * Writes the orders loaded to file: orders.csv.
 	 * 
@@ -34,7 +44,7 @@ public class Loading {
 	 * @param modelInfo
 	 * @throws IOException
 	 */
-	public void saveToFile(ArrayList<String> modelInfo, Integer frontFascia, Integer backFascia) throws IOException {
+	public void outputOrdersLoaded() throws IOException {
 		// Delimiter used in CSV file
 		final String COMMA_DELIMITER = ",";
 		final String NEW_LINE_SEPARATOR = "\n";
@@ -50,17 +60,17 @@ public class Loading {
 
 			// Add a new line separator after the header
 			fileWriter.append(NEW_LINE_SEPARATOR);
-
-			// Write a new object list to the CSV file
-			fileWriter.append(modelInfo.get(1));
-			fileWriter.append(COMMA_DELIMITER);
-			fileWriter.append(modelInfo.get(0));
-			fileWriter.append(COMMA_DELIMITER);
-			fileWriter.append(Integer.toString(frontFascia));
-			fileWriter.append(COMMA_DELIMITER);
-			fileWriter.append(Integer.toString(backFascia));
-			fileWriter.append(NEW_LINE_SEPARATOR);
-
+			for (Order order : this.ordersLoaded) {
+				// Write a new object list to the CSV file
+				fileWriter.append(order.getColour());
+				fileWriter.append(COMMA_DELIMITER);
+				fileWriter.append(order.getModel());
+				fileWriter.append(COMMA_DELIMITER);
+				fileWriter.append(((Integer) order.getSKUFront()).toString());
+				fileWriter.append(COMMA_DELIMITER);
+				fileWriter.append(((Integer) order.getSKUBack()).toString());
+				fileWriter.append(NEW_LINE_SEPARATOR);
+			}
 			System.out.println("CSV file was created successfully !!!");
 		} catch (Exception e) {
 			System.out.println("Error in CsvFileWriter !!!");

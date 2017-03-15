@@ -25,6 +25,8 @@ public class Main {
 		Warehouse WarehouseFile = new Warehouse(fileWithWarehouseInfo);
 		QueueOfOrders orderQueue = new QueueOfOrders();
 		QueueOfWorkers workerQueue = new QueueOfWorkers();
+		Loading loader = new Loading();
+		Sequencing sequencer = new Sequencing();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileWithSteps));
@@ -55,8 +57,7 @@ public class Main {
 						// loop through the worker queue to see if worker exists
 						for (int i = 0; i < workerQueue.size(); i++) {
 							if (workerQueue.getArrayz().get(i).getId() == lineParts[0]) {
-								// then the worker already exists in the system.
-								// Just assign more work
+								
 							} else {
 								// then create a new worker and add them to the
 								// queue
@@ -66,6 +67,10 @@ public class Main {
 								w1.givePickingRequest(workForWorker);
 								workerQueue.enqueue(w1);
 							}
+						}
+					}else if (lineParts[lineParts.length-1].matches("Marshaling")){
+						if(workerQueue.getArrayz().get(0).finishedWork()){
+							Worker goodworker = workerQueue.dequeue();
 						}
 					}
 
@@ -90,14 +95,14 @@ public class Main {
 																				// variables
 					ArrayList<Integer> backFascia = new ArrayList<Integer>();
 					// will need to  be replaced  with local  variables
-					Loading l1 = new Loading(frontFascia, backFascia);
+					Loading l1 = new Loading();
 					Truck truck1 = new Truck();
 					for (int i = 0; i <= 3; i++) {
 						// this list will act as our key
 						Integer[] value = { frontFascia.get(i), backFascia.get(i) };
 						ArrayList<Integer> sku = (ArrayList<Integer>) Arrays.asList(value);
 						ArrayList<String> modelInfo = (ArrayList<String>) SKUFile.getModelInfo(sku);
-						l1.saveToFile(modelInfo, frontFascia.get(i), backFascia.get(i));
+						l1.outputOrdersLoaded();
 					}
 					truck1.addOrdersToTruck();
 				}

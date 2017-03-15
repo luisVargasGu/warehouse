@@ -22,7 +22,7 @@ public class LoadingTest {
 		rearFacia = new ArrayList<Integer>();
 		rearFacia.add(3);
 		rearFacia.add(4);
-		loder =  new Loading(frontFacia, rearFacia);
+		loder =  new Loading();
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class LoadingTest {
 		modelInfo.add("SES");
 		modelInfo.add("IK");
 		try {
-			loder.saveToFile(modelInfo, frontFacia.get(0), rearFacia.get(0));
+			loder.outputOrdersLoaded();
 		} catch (IOException e) {
 			System.out.println("Test Not Passed");
 		}

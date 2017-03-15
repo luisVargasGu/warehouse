@@ -13,9 +13,7 @@ public class Sequencing {
 	private ArrayList<Integer> backFasciaPallet;
 
 	// Constructor
-	public Sequencing(PickingRequest pickingRequest, ArrayList<Integer> skus) {
-		this.skus = skus;
-		this.pickingrequest = pickingRequest;
+	public Sequencing() {
 
 	}
 
@@ -40,6 +38,10 @@ public class Sequencing {
 		return id;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public ArrayList<Integer> getFrontFasciaPallet() {
 		return frontFasciaPallet;
 	}
@@ -48,6 +50,19 @@ public class Sequencing {
 		return backFasciaPallet;
 	}
 	// Methods
+
+	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
+		this.skus = skus;
+		this.pickingrequest = pickingRequest;
+	}
+
+	public boolean isSequenced() {
+		if ((this.getFrontFasciaPallet().size() == 4) && (this.getBackFasciaPallet().size() == 4)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public void sequence() {
 		try {
