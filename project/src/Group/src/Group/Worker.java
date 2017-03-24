@@ -1,6 +1,7 @@
 package Group;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Worker {
 	private String id;
@@ -108,10 +109,12 @@ public class Worker {
 
 	/**
 	 * Tells the system which worker is picking up which order.
+	 * @param log:
+	 * 				this is the log file that we will be writting to 
 	 */
-	public void pickUpOrder() {
+	public void pickUpOrder(Logger log) {
 		String fascia = this.getlocation().remove(0);
-		System.out.println(this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
+		log.info("Event"+this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
 				+ fascia.charAt(2) + " " + fascia.charAt(3));
 		Integer skuFascia = Integer.parseInt(fascia.substring(4, fascia.length()));
 		

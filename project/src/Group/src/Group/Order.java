@@ -20,6 +20,7 @@ public class Order {
 	 *            - the model of that facisa
 	 */
 	public Order(ArrayList<String> modelInfo, ArrayList<Integer> skuInfo) {
+		//log.info("Event: New order entered into the system.");
 		orderNum = n;
 		model = modelInfo.get(1);
 		colour = modelInfo.get(0);

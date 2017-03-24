@@ -3,6 +3,8 @@ package Group;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import jdk.internal.instrumentation.Logger;
+
 public class Sequencing {
 
 	// Attributes
@@ -120,21 +122,18 @@ public class Sequencing {
 	 * @return Boolean - true if process complete, false if not
 	 */
 	public boolean isSequenced() {
-		// if ((this.getFrontFasciaPallet().size() == 4) &&
-		// (this.getBackFasciaPallet().size() == 4)) {
+
 		return true;
-		// } else {
-		// return false;
-		// }
+
 	}
 
 	/**
 	 * The sequencing process.
 	 */
-	public void sequence() {
+	public void sequence(java.util.logging.Logger log) {
 		// try catch in case something fails
 		try {
-			System.out.println(this.getId() + " is sequencing" + " picking request "
+			log.info("Event:"+ this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
 
 			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
@@ -160,9 +159,9 @@ public class Sequencing {
 			}
 
 		} catch (IOException e) {
-			System.out.println("The picking request could not be sequenced, due to missing or incorect fascia");
+			log.warning("Event: The picking request could not be sequenced, due to missing or incorect fascia");
 		} catch (IndexOutOfBoundsException e) {
-			System.out.println("Not enoguh indexs.");
+			log.warning("Event:Not enoguh indexs.");
 		}
 
 	}

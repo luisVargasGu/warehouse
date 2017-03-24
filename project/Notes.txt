@@ -28,8 +28,10 @@ March 13 me and Donald meet after class to use the extra provided time to discus
 Step 8: 
 We worked on testing our classes.
 
-
-
 INSTRUCTIONS:
 
 To run the program, first put in the file paths of the translationtable.csv initial.csv and 16_orders.txt files inside the Main class. Then put in the path where final.csv and orders.csv should be written too also in Main. Then run Main itself.
+
+Phase II: (Luis joined our group)
+
+Step 1: Change all System.out.print to loggers. Making sure to note which are events, input events, and output events.
