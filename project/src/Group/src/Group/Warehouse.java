@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class Warehouse {
 
@@ -13,15 +14,19 @@ public class Warehouse {
 	// the key: level as these id are unique 1-48 values: aisle, rack, amount
 	private Map<List<Integer>, Integer> warehouseZoneA = new HashMap<List<Integer>, Integer>();
 	private Map<List<Integer>, Integer> warehouseZoneB = new HashMap<List<Integer>, Integer>();
+	private Logger log;
 
 	/**
 	 * Initializes a new Warehouse
 	 * 
 	 * @param filename:String
 	 *            - path on the device to the file
-	 */
-	public Warehouse(String fileName) {
-	  //there might be redundancies in code.
+	 * @param log: Logger
+	 *            - takes all the events and documents them.
+	 */	 
+	public Warehouse(String fileName, Logger log) {
+	 //there might be redundancies in code.
+		this.log = log;
 		for (int j = 0; j < 2; j++) {
 			for (int k = 0; k < 3; k++) {
 				for (int r = 0; r < 4; r++) {
@@ -40,7 +45,7 @@ public class Warehouse {
 		// try statement because sometimes file can't be found
 		try (
 
-				BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 
 			// local variables to help us track and control each read in line
 			String line;
@@ -71,10 +76,10 @@ public class Warehouse {
 			br.close();
 			// catch any exception
 		} catch (FileNotFoundException e) {
-			System.out.println("File doesn't exsist");
+			log.warning("Input Event: Warehouse file to read from doesn't exsist.");
 
 		} catch (IOException e) {
-			System.out.println("Trouble read provided file.");
+			log.warning("Input Event: Trouble reading Warehouse file provided.");
 		}
 	}
 
@@ -132,8 +137,9 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			System.out.println("Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack + ", Level: " + level
+			log.warning("Event:Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack + ", Level: " + level
 					+ " doesnt exsist in this Warehouse");
+
 			return -1;
 		}
 
@@ -162,7 +168,7 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			System.out.println("Zone: " + zone + ", doesnt exsist in this Warehouse");
+			log.warning("Event: Zone: " + zone + " doesnt exsist in this Warehouse");		
 			return null;
 		}
 	}
@@ -180,19 +186,15 @@ public class Warehouse {
 		try {
 			// two separate zones
 			if (zone == "A") {
-				// return keys in zone A
-				System.out.println("warehouseZoneA.size():" + warehouseZoneA.size());
 				return warehouseZoneA.size();
 			} else if (zone == "B") {
-				// return keys in zone B
-				System.out.println("warehouseZoneB.size():" + warehouseZoneB.size());
 				return warehouseZoneB.size();
 			} else {
 				throw new NullPointerException();
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			System.out.println("Zone: " + zone + ", doesnt exsist in this Warehouse");
+			log.warning("Event:Zone: " + zone + " doesnt exsist in this Warehouse");
 			return -1;
 		}
 	}
@@ -246,16 +248,16 @@ public class Warehouse {
 				fileWriter.append(Integer.toString(this.getWarehouseZoneB().get(key)));
 				fileWriter.append(NEW_LINE_SEPARATOR);
 			}
-			System.out.println("CSV file was created successfully !!!");
+			log.info("Output Event: final.csv was created successfully !!!");
 		} catch (Exception e) {
-			System.out.println("Error in CsvFileWriter !!!");
+			log.warning("Output Event: Error in finding final.csv!!!");
 
 		} finally {
 			try {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				System.out.println("Error while flushing/closing fileWriter !!!");
+				log.warning("Output Event: Error while flushing/closing fileWriter for final.csv!!!");
 			}
 
 		}

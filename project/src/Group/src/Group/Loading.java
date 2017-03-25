@@ -3,6 +3,7 @@ package Group;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Loading {
 	// Attributes
@@ -12,13 +13,14 @@ public class Loading {
 	// front and back fasica that are being loaded
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<ArrayList<Integer>> totalBack = new ArrayList<ArrayList<Integer>>();
-
+	private Logger log;
+	
 	/**
 	 * Initializes a new load.
 	 */
 	// Constructor
-	public Loading() {
-
+	public Loading(Logger log) {
+		this.log = log;
 	}
 
 	// getters and setters
@@ -73,7 +75,7 @@ public class Loading {
 	 */
 	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
 			ArrayList<Integer> backPallet) {
-		System.out.println(this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck");
+		log.info("Event:"+ this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck");
 		this.ordersLoaded.addAll(pickingRequest.getOrders());
 		this.totalFront.add(frontPallet);
 		this.totalBack.add(backPallet);
@@ -115,16 +117,17 @@ public class Loading {
 				fileWriter.append(((Integer) order.getSKUBack()).toString());
 				fileWriter.append(NEW_LINE_SEPARATOR);
 			}
-			System.out.println("CSV file was created successfully !!!");
+			log.fine("Output Event: Order.csv file was created successfully !!!");
+			
 		} catch (Exception e) {
-			System.out.println("Error in CsvFileWriter !!!");
+			log.warning("Output Event: Error in trying to create order.csv !!!");
 
 		} finally {
 			try {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				System.out.println("Error while flushing/closing fileWriter !!!");
+				log.warning("Output Event: Error while flushing/closing order.csv fileWriter !!!");
 			}
 
 		}
