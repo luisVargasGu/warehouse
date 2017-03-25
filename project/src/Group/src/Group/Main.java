@@ -10,12 +10,17 @@ public class Main {
 	public static void main(String[] args) {
 		// Buffered Read is a java system used to read in files
 		// try statement because sometimes file can't be found
-		String fileWithSteps = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/16orders.txt";
-		String fileWithSKUs = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/translation.csv";
-		String fileWithWarehouseInfo = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/TestingFiles/initial.csv";
-		String fileToWriteToOrders = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/TestingFiles/orders.csv";
+		String fileWithSteps = "C:/Users/lvargas/Desktop/CSC207Workspace/"
+        + "group_0406/group_0406/project/16orders.txt";
+		String fileWithSKUs = "C:/Users/lvargas/Desktop/CSC207Workspace/"
+        + "group_0406/group_0406/project/translation.csv";
+		String fileWithWarehouseInfo = "C:/Users/lvargas/Desktop/CSC207Workspace/"
+        + "group_0406/group_0406/project/TestingFiles/initial.csv";
+		String fileToWriteToOrders = "C:/Users/lvargas/Desktop/CSC207Workspace/"
+        + "group_0406/group_0406/project/TestingFiles/orders.csv";
 		// Orders that have been loaded into the truck
-		String fileToWriteToFinal = "/Users/donaldkajo/Desktop/TempCSCfiles/group_0406/project/TestingFiles/final.csv";
+		String fileToWriteToFinal = "C:/Users/lvargas/Desktop/CSC207Workspace/"
+        + "group_0406/group_0406/project/TestingFiles/final.csv";
 		// Warehouse final, informing us the number of fascia
 		// creates SKu Reader and Warehouse instances that will be referred to
 		// through out main

@@ -21,6 +21,7 @@ public class Warehouse {
 	 *            - path on the device to the file
 	 */
 	public Warehouse(String fileName) {
+	  //there might be redundancies in code.
 		for (int j = 0; j < 2; j++) {
 			for (int k = 0; k < 3; k++) {
 				for (int r = 0; r < 4; r++) {
