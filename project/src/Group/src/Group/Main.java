@@ -14,12 +14,14 @@ import java.util.logging.SimpleFormatter;
 public class Main {
 
 	public static void main(String[] args) {
+		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace";
 		// Creates all the files we will interact with
-		File fileWithSteps = new File(args[0]);
-		File fileWithSKUs = new File("translation.csv");
-		File fileWithWarehouseInfo =  new File("TestingFiles/initial.csv");
-		File fileToWriteToOrders =  new File("TestingFiles/orders.csv");
-		File fileToWriteToFinal =  new File("TestingFiles/final.csv");
+		String fileWithSteps = basic_path + "/project/group_0406/project/16orders.txt";
+		String fileWithSKUs = basic_path + "/project/group_0406/project/translation.csv";
+		String fileWithWarehouseInfo = basic_path + "/project/group_0406/project/TestingFiles/initial.csv";
+		String fileToWriteToOrders = basic_path + "/project/group_0406/project/TestingFiles/orders.csv";
+		// Orders that have been loaded into the truck
+		String fileToWriteToFinal = basic_path + "/project/group_0406/project/TestingFiles/final.csv";
 				
 		//Logger Details
 		Logger log = Logger.getLogger("my.logger");

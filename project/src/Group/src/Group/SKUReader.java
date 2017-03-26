@@ -30,7 +30,7 @@ public class SKUReader {
 	 *            String the place where the Translation-table is located.
 	 * @throws IOException
 	 */
-	public SKUReader(File fileWithSKUs, Logger log) {
+	public SKUReader(String fileWithSKUs, Logger log) {
 		log = this.log;
 		// local variables to track each line and the information on each line
 		String line;
