@@ -1,12 +1,14 @@
 package Group;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * A Class that stores the translation table for fascia and can convert between
@@ -19,7 +21,8 @@ public class SKUReader {
 	 */
 	private Map<List<String>, List<Integer>> translationTableSku = new HashMap<List<String>, List<Integer>>();
 	private Map<List<Integer>, List<String>> translationTableModel = new HashMap<List<Integer>, List<String>>();
-
+	Logger log;
+	
 	/**
 	 * Constructor: creates our SKU file, from our provided file
 	 * 
@@ -27,13 +30,14 @@ public class SKUReader {
 	 *            String the place where the Translation-table is located.
 	 * @throws IOException
 	 */
-	public SKUReader(String filePath) {
+	public SKUReader(File fileWithSKUs, Logger log) {
+		log = this.log;
 		// local variables to track each line and the information on each line
 		String line;
 		String[] lineparts;
 		// for each line we enter the information in to pairs of lists.
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			BufferedReader br = new BufferedReader(new FileReader(fileWithSKUs));
 			// removes the title
 			br.readLine();
 

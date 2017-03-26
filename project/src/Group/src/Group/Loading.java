@@ -1,5 +1,6 @@
 package Group;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -90,7 +91,7 @@ public class Loading {
 	 *            orders to
 	 * @throws IOException
 	 */
-	public void outputOrdersLoaded(String fileToWriteTo) throws IOException {
+	public void outputOrdersLoaded(File fileToWriteToOrders) throws IOException {
 		// Delimiter used in CSV file
 		final String COMMA_DELIMITER = ",";
 		final String NEW_LINE_SEPARATOR = "\n";
@@ -100,7 +101,7 @@ public class Loading {
 		FileWriter fileWriter = null;
 		try {
 
-			fileWriter = new FileWriter(fileToWriteTo);
+			fileWriter = new FileWriter(fileToWriteToOrders);
 			// Write the CSV file header
 			fileWriter.append(FILE_HEADER.toString());
 

@@ -1,6 +1,7 @@
 package Group;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,31 +14,24 @@ import java.util.logging.SimpleFormatter;
 public class Main {
 
 	public static void main(String[] args) {
-		// to make life easier dont replace all the file directories just put ur
-		// computer info where group_0406 is on ur cpu
-		String cpuLocation = "C:/Users/lvargas/Desktop/CSC207Workspace/"
-        + "group_0406/";
-
-		// Buffered Read is a java system used to read in files
-		// try statement because sometimes file can't be found
-		String fileWithSteps = cpuLocation + "/group_0406/project/16orders.txt";
-		String fileWithSKUs = cpuLocation + "/group_0406/project/translation.csv";
-		String fileWithWarehouseInfo = cpuLocation + "/group_0406/project/TestingFiles/initial.csv";
-		String fileToWriteToOrders = cpuLocation + "/group_0406/project/TestingFiles/orders.csv";
-		// Orders that have been loaded into the truck
-		String fileToWriteToFinal = cpuLocation + "/group_0406/project/TestingFiles/final.csv";
-		
-		// Phase 2: Logger Details
+		// Creates all the files we will interact with
+		File fileWithSteps = new File(args[0]);
+		File fileWithSKUs = new File("translation.csv");
+		File fileWithWarehouseInfo =  new File("TestingFiles/initial.csv");
+		File fileToWriteToOrders =  new File("TestingFiles/orders.csv");
+		File fileToWriteToFinal =  new File("TestingFiles/final.csv");
+				
+		//Logger Details
 		Logger log = Logger.getLogger("my.logger");
-		String logFile = cpuLocation + "/group_0406/project/log.txt";
+		ConsoleHandler consoleHandler = new ConsoleHandler();
+		log.addHandler(consoleHandler);
+		consoleHandler.setFormatter(new SimpleFormatter());
+		consoleHandler.setLevel(Level.ALL);
+		
 		try {
-			ConsoleHandler consoleHandler = new ConsoleHandler();
-			FileHandler fileHandler = new FileHandler(logFile);
-			log.addHandler(consoleHandler);
+			FileHandler fileHandler = new FileHandler("log.txt");
 			log.addHandler(fileHandler);
-			consoleHandler.setFormatter(new SimpleFormatter());
 			fileHandler.setFormatter(new SimpleFormatter());
-			consoleHandler.setLevel(Level.ALL);
 			fileHandler.setLevel(Level.ALL);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -48,7 +42,7 @@ public class Main {
 		// Warehouse final, informing us the number of fascia
 		// creates SKu Reader and Warehouse instances that will be referred to
 		// through out main
-		SKUReader SKUFile = new SKUReader(fileWithSKUs);
+		SKUReader SKUFile = new SKUReader(fileWithSKUs, log);
 		Warehouse WarehouseFile = new Warehouse(fileWithWarehouseInfo, log);
 		QueueOfOrders orderQueue = new QueueOfOrders();
 		QueueOfWorkers workerQueue = new QueueOfWorkers();

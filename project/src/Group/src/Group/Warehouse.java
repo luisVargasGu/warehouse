@@ -1,6 +1,7 @@
 package Group;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,7 +25,7 @@ public class Warehouse {
 	 * @param log: Logger
 	 *            - takes all the events and documents them.
 	 */	 
-	public Warehouse(String fileName, Logger log) {
+	public Warehouse(File fileWithWarehouseInfo, Logger log) {
 	 //there might be redundancies in code.
 		this.log = log;
 		for (int j = 0; j < 2; j++) {
@@ -45,7 +46,7 @@ public class Warehouse {
 		// try statement because sometimes file can't be found
 		try (
 
-			BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			BufferedReader br = new BufferedReader(new FileReader(fileWithWarehouseInfo))) {
 
 			// local variables to help us track and control each read in line
 			String line;
@@ -206,7 +207,7 @@ public class Warehouse {
 	 *            String the file to write the records to
 	 * @throws IOException
 	 */
-	public void saveToFile(String fileToWriteTo) throws IOException {
+	public void saveToFile(File fileToWriteToFinal) throws IOException {
 		// Delimiter used in CSV file
 		final String COMMA_DELIMITER = ",";
 		final String NEW_LINE_SEPARATOR = "\n";
@@ -216,7 +217,7 @@ public class Warehouse {
 		FileWriter fileWriter = null;
 		try {
 
-			fileWriter = new FileWriter(fileToWriteTo);
+			fileWriter = new FileWriter(fileToWriteToFinal);
 			// Write the CSV file header
 			fileWriter.append(FILE_HEADER.toString());
 
