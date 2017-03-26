@@ -199,6 +199,48 @@ public class Warehouse {
 			return -1;
 		}
 	}
+	public void takeOutFacsia(String location) {
+		String zone = location.substring(0, 1);
+		Integer aisle = Integer.valueOf(location.substring(1, 2));
+		Integer rack = Integer.valueOf(location.substring(2, 3));
+		Integer level = Integer.valueOf(location.substring(3, 4));
+		Integer[] values = { aisle, rack, level };
+		List<Integer> key = Arrays.asList(values);
+		if (zone.matches("A")) {
+			this.getWarehouseZoneA().replace(key, this.warehouseZoneA.get(key) - 1);
+		} else {
+			this.getWarehouseZoneB().replace(key, this.warehouseZoneA.get(key) - 1);
+		}
+	}
+
+	public void resupplyRack(String location) {
+		String zone = location.substring(0, 1);
+		Integer aisle = Integer.valueOf(location.substring(1, 2));
+		Integer rack = Integer.valueOf(location.substring(2, 3));
+		Integer level = Integer.valueOf(location.substring(3, 4));
+		Integer[] values = { aisle, rack, level };
+		List<Integer> key = Arrays.asList(values);
+		if (zone.matches("A") && this.warehouseZoneA.get(key) <= 5) {
+			System.out.println("The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
+					+ zone.toString() + " has been resupplied");
+			this.getWarehouseZoneA().replace(key, 30);
+		}
+		if (zone.matches("B") && this.warehouseZoneA.get(key) <= 5) {
+			System.out.println("The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
+					+ zone.toString() + " has been resupplied");
+			this.getWarehouseZoneB().replace(key, 30);
+		}
+	}
+
+	public void resupplyAll() {
+		for (List<Integer> key : this.warehouseZoneA.keySet()) {
+			this.resupplyRack("A" + key.toString());
+		}
+		for (List<Integer> key : this.warehouseZoneB.keySet()) {
+			this.resupplyRack("B" + key.toString());
+		}
+	}
+
 
 	/**
 	 * Writes the warehouse information to file: final.csv.
