@@ -4,44 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class QueueOfOrders {
+public class QueueOfOrders extends AbstractQueue<Order>{
 	
-	//array elements that will allow us to control our queue
-    private LinkedList<Order> arrayz;              
-    
     /**
      * Initializes an empty queue of order.
      */
     public QueueOfOrders() {
-    	//start of our linked list queue
-    	arrayz = new LinkedList<Order>();
-    }
-
-    /**
-     * Tells us if queue of orders is empty.
-     *
-     * @return boolean: true- queue is empty and false - queue not empty
-     */
-    public boolean isEmpty() {
-        return arrayz.size() == 0;
-    }
-
-    /**
-     * Returns the number of items in queue of orders.
-     *
-     * @return int: representing size (number of orders in queue)
-     */
-    public int size() {
-        return arrayz.size();
-    }
-
-    /**
-     * Adds the item to this queue of orders.
-     *
-     * @param  item:Order - the order that needs to be added to the queue
-     */
-    public void enqueue(Order item) {
-    	arrayz.add(item);
+    	super(new LinkedList<Order>());
     }
 
     /**
@@ -57,7 +26,7 @@ public class QueueOfOrders {
     		if(isEmpty()){
     			throw new NoSuchElementException();
     		}
-    		else if(arrayz.size() < 4){
+    		else if(getArrayz().size() < 4){
     			throw new IndexOutOfBoundsException();
     		}
     		else{
@@ -65,8 +34,8 @@ public class QueueOfOrders {
     			ArrayList<Order> pickingOrders = new ArrayList<Order>();
     			//add all our orders
     			for (int i = 0; i <= 3; i++){
-    				pickingOrders.add(arrayz.peek());
-    				arrayz.remove();
+    				pickingOrders.add(getArrayz().peek());
+    				getArrayz().remove();
     			}
     			return pickingOrders;
     		}
@@ -82,21 +51,21 @@ public class QueueOfOrders {
     }
     
     /**
-    * Returns a string representation of this queue of orders.
-    *
-    * @return the sequence of orders in FIFO order, separated by spaces
-    */
-   public String toString() {
-	   //String that will contain our final orders
-       StringBuilder s = new StringBuilder();
+     * Returns a string representation of this queue of orders.
+     *
+     * @return the sequence of orders in FIFO order, separated by spaces
+     */
+    public String toString() {
+ 	   //String that will contain our final orders
+        StringBuilder s = new StringBuilder();
 
-       // loop through our array of orders
-   		for(int i = 0; i < arrayz.size(); i++){
-   			//add the order details
-   			s.append("colour:"+ arrayz.get(i).getColour() +" model:" + arrayz.get(i).getModel());
-   	        s.append(' ');
-   		}
-	   	return s.toString();
-	}
+        // loop through our array of orders
+    		for(int i = 0; i < getArrayz().size(); i++){
+    			//add the order details
+    			s.append("colour:"+ getArrayz().get(i).getColour() +" model:" + getArrayz().get(i).getModel());
+    	        s.append(' ');
+    		}
+ 	   	return s.toString();
+ 	}
 
 }

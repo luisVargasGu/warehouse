@@ -14,14 +14,14 @@ import java.util.logging.SimpleFormatter;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace";
+		String basic_path = "/Users/AnnaZelisko/Desktop";
 		// Creates all the files we will interact with
-		String fileWithSteps = basic_path + "/project/group_0406/project/16orders.txt";
-		String fileWithSKUs = basic_path + "/project/group_0406/project/translation.csv";
-		String fileWithWarehouseInfo = basic_path + "/project/group_0406/project/TestingFiles/initial.csv";
-		String fileToWriteToOrders = basic_path + "/project/group_0406/project/TestingFiles/orders.csv";
+		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
+		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
+		String fileWithWarehouseInfo = basic_path + "/group_0406/project/TestingFiles/initial.csv";
+		File fileToWriteToOrders = new File("orders.csv");
 		// Orders that have been loaded into the truck
-		String fileToWriteToFinal = basic_path + "/project/group_0406/project/TestingFiles/final.csv";
+		File fileToWriteToFinal = new File("final.csv");
 				
 		//Logger Details
 		Logger log = Logger.getLogger("my.logger");
@@ -89,7 +89,9 @@ public class Main {
 				if ((lineParts[0].matches("Picker")) && (lineParts[lineParts.length - 1].matches("Marshaling"))) {
 					if (workerQueue.getArrayz().get(0).finishedWork()) {
 						Worker goodWorker = workerQueue.dequeue();
-						sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
+						//sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork())
+						sequencer.setPickingrequest(goodWorker.getWork());
+						sequencer.setSkus(goodWorker.getFinishedwork());
 					}
 				}
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {

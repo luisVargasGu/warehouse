@@ -1,50 +1,16 @@
 package Group;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class QueueOfWorkers {
-	// array elements that will allow us to control our queue
-	private ArrayList<Worker> arrayz;
-
-	public ArrayList<Worker> getArrayz() {
-		return arrayz;
-	}
+public class QueueOfWorkers extends AbstractQueue<Worker>{
 
 	/**
 	 * Initializes an empty queue of Workers.
 	 */
 	public QueueOfWorkers() {
-		// start of our linked list queue
-		arrayz = new ArrayList<Worker>();
-	}
-
-	/**
-	 * Tells us if queue of workers is empty.
-	 *
-	 * @return boolean: true- queue is empty and false - queue not empty
-	 */
-	public boolean isEmpty() {
-		return arrayz.size() == 0;
-	}
-
-	/**
-	 * Returns the number of items in queue of workers.
-	 *
-	 * @return int: representing size (number of workers in queue)
-	 */
-	public int size() {
-		return arrayz.size();
-	}
-
-	/**
-	 * Adds the item to this queue of workers.
-	 *
-	 * @param item:Worker
-	 *            - the order that needs to be added to the queue
-	 */
-	public void enqueue(Worker worker) {
-		arrayz.add(worker);
+		super(new LinkedList<Worker>());
 	}
 
 	/**
@@ -59,7 +25,7 @@ public class QueueOfWorkers {
 			if (isEmpty()) {
 				throw new NoSuchElementException();
 			} else {
-				Worker worker1 = arrayz.remove(0);
+				Worker worker1 = getArrayz().remove(0);
 				return worker1;
 			}
 		} catch (NoSuchElementException e) {
@@ -83,7 +49,7 @@ public class QueueOfWorkers {
      * @return  Worker - from the front of the queue
      */
 	public Worker getWorker(String name) throws NoSuchElementException {
-		for (Worker worker : this.arrayz) {
+		for (Worker worker : getArrayz()) {
 			if (worker.getId().matches(name)) {
 				return (worker);
 			}else{
@@ -105,9 +71,9 @@ public class QueueOfWorkers {
 		StringBuilder s = new StringBuilder();
 
 		// loop through our array of orders
-		for (int i = 0; i < arrayz.size(); i++) {
+		for (int i = 0; i < getArrayz().size(); i++) {
 			// add the order details
-			s.append("id:" + arrayz.get(i).getId());
+			s.append("id:" + getArrayz().get(i).getId());
 			s.append(' ');
 		}
 		return s.toString();

@@ -100,21 +100,19 @@ public class Sequencing {
 	}
 
 	// Methods
-	/**
-	 * Giving work to the sequencing process.
-	 *
-	 * @param pickingRequest:
-	 *            PickingRequest - assigned picking request to the process
-	 * 
-	 * @param skus:
-	 *            ArrayList<Integer> - assigned skus to the process
-	 */
-	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
-		frontFasciaPallet = new ArrayList<Integer>(4);
-		backFasciaPallet = new ArrayList<Integer>(4);
-		this.skus = skus;
-		this.pickingrequest = pickingRequest;
-	}
+//	/**
+//	 * Giving work to the sequencing process.
+//	 *
+//	 * @param pickingRequest:
+//	 *            PickingRequest - assigned picking request to the process
+//	 * 
+//	 * @param skus:
+//	 *            ArrayList<Integer> - assigned skus to the process
+//	 */
+//	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
+//		this.skus = skus;
+//		this.pickingrequest = pickingRequest;
+//	}
 
 	/**
 	 * Checks if process has completed sequencing.

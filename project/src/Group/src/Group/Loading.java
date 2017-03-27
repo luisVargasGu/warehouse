@@ -91,7 +91,7 @@ public class Loading {
 	 *            orders to
 	 * @throws IOException
 	 */
-	public void outputOrdersLoaded(String fileToWriteToOrders) throws IOException {
+	public void outputOrdersLoaded(File fileToWriteToOrders) throws IOException {
 		// Delimiter used in CSV file
 		final String COMMA_DELIMITER = ",";
 		final String NEW_LINE_SEPARATOR = "\n";

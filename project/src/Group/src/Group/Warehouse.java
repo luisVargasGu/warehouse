@@ -249,7 +249,7 @@ public class Warehouse {
 	 *            String the file to write the records to
 	 * @throws IOException
 	 */
-	public void saveToFile(String fileToWriteToFinal) throws IOException {
+	public void saveToFile(File fileToWriteToFinal) throws IOException {
 		// Delimiter used in CSV file
 		final String COMMA_DELIMITER = ",";
 		final String NEW_LINE_SEPARATOR = "\n";
