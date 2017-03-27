@@ -10,7 +10,7 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
+		String basic_path = "/Users/AnnaZelisko/Desktop";
 		// Creates all the files we will interact with
 		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
@@ -22,11 +22,6 @@ public class Main {
 
 		// Logger Details
 		Logger log = Logger.getLogger("my.logger");
-		ConsoleHandler consoleHandler = new ConsoleHandler();
-		log.addHandler(consoleHandler);
-		consoleHandler.setFormatter(new SimpleFormatter());
-		consoleHandler.setLevel(Level.ALL);
-
 		try {
 			FileHandler fileHandler = new FileHandler("log.txt");
 			log.addHandler(fileHandler);
@@ -38,9 +33,7 @@ public class Main {
 		}
 		log.setLevel(Level.ALL);
 
-		// Warehouse final, informing us the number of fascia
-		// creates SKu Reader and Warehouse instances that will be referred to
-		// through out main
+		// all instances that require interaction in main
 		SKUReader SKUFile = new SKUReader(fileWithSKUs);
 		Warehouse WarehouseFile = new Warehouse(fileWithWarehouseInfo);
 		QueueOfOrders orderQueue = new QueueOfOrders();
@@ -48,6 +41,7 @@ public class Main {
 		Loading loader = new Loading();
 		Sequencing sequencer = new Sequencing();
 		Truck truck1 = new Truck();
+		
 		try {
 			BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
 			// Read the first line b4 the while so we skip the instructions.
@@ -66,6 +60,7 @@ public class Main {
 			log.warning("Location: Main, File: cant be read from or cant be found.");
 			System.exit(0);
 		}
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileWithSteps));
 			// local variables to help us track and control each read in line

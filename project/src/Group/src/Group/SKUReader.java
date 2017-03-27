@@ -20,7 +20,7 @@ public class SKUReader {
 	 */
 	private Map<List<String>, List<Integer>> translationTableSku = new HashMap<List<String>, List<Integer>>();
 	private Map<List<Integer>, List<String>> translationTableModel = new HashMap<List<Integer>, List<String>>();
-	Logger log = Logger.getLogger("my.logger");
+	private Logger log = Logger.getLogger("my.logger");
 	
 	/**
 	 * Constructor: creates our SKU file, from our provided file
