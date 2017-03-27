@@ -1,20 +1,23 @@
 package Group;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.logging.Logger;
 
 public class Sequencing {
-
+	// Amount of Fascia for sequencing.
+	private int palletSize;
 	// Attributes
 	private String id;
 	private ArrayList<Integer> skus;
 	private PickingRequest pickingrequest;
-	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>(4);
-	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>(4);
+	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>(palletSize);
+	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>(palletSize);
 	Logger log = Logger.getLogger("my.logger");
-	
+
 	/**
 	 * Create new sequencing.
 	 */
@@ -48,6 +51,28 @@ public class Sequencing {
 	 */
 	public PickingRequest getPickingrequest() {
 		return pickingrequest;
+	}
+	
+	/**
+	 * Sets the Pallet Size once from a file.
+	 * @param fileWithSpecs - filepath.
+	 */
+	protected void setPalletSize(String fileWithSpecs) {
+		try {
+			BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
+			// Read the first line b4 the while so we skip the instructions.
+			String line = spec.readLine();
+			String[] lineParts;
+			while ((line = spec.readLine()) != null) {
+				lineParts = line.split(" ");				
+				if(lineParts[0] == "PalletSize:") {
+					this.palletSize = Integer.parseInt(lineParts[1]);
+				}
+			}
+		} catch (IOException e2) {
+			log.warning("Location: Main, File: cant be read from or cant be found.");
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -98,19 +123,20 @@ public class Sequencing {
 	}
 
 	// Methods
-//	/**
-//	 * Giving work to the sequencing process.
-//	 *
-//	 * @param pickingRequest:
-//	 *            PickingRequest - assigned picking request to the process
-//	 * 
-//	 * @param skus:
-//	 *            ArrayList<Integer> - assigned skus to the process
-//	 */
-//	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
-//		this.skus = skus;
-//		this.pickingrequest = pickingRequest;
-//	}
+	// /**
+	// * Giving work to the sequencing process.
+	// *
+	// * @param pickingRequest:
+	// * PickingRequest - assigned picking request to the process
+	// *
+	// * @param skus:
+	// * ArrayList<Integer> - assigned skus to the process
+	// */
+	// public void giveWork(PickingRequest pickingRequest, ArrayList<Integer>
+	// skus) {
+	// this.skus = skus;
+	// this.pickingrequest = pickingRequest;
+	// }
 
 	/**
 	 * Checks if process has completed sequencing.
@@ -124,16 +150,17 @@ public class Sequencing {
 	/**
 	 * The sequencing process.
 	 */
-	public void sequence( ) {
+	public void sequence() {
 		// try catch in case something fails
 		try {
-			log.info("Location: Sequencing, Event:"+ this.getId() + " is sequencing" + " picking request "
+			log.info("Location: Sequencing, Event:" + this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
 
 			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
-				if (this.getFrontFasciaPallet().size() != 4 && this.getBackFasciaPallet().size() != 4) {
+				if (this.getFrontFasciaPallet().size() != palletSize
+						&& this.getBackFasciaPallet().size() != palletSize) {
 					Order order = this.getPickingrequest().getOrders().get(j);
-					for (int i = j; i < 8; i++) {
+					for (int i = j; i < palletSize * 2; i++) {
 						if (order.containsBackSKU(this.getSkus().get(i))) {
 
 							this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
@@ -153,7 +180,8 @@ public class Sequencing {
 			}
 
 		} catch (IOException e) {
-			log.warning("Location: Sequencing, Event: The picking request could not be sequenced, due to missing or incorect fascia");
+			log.warning(
+					"Location: Sequencing, Event: The picking request could not be sequenced, due to missing or incorect fascia");
 		} catch (IndexOutOfBoundsException e) {
 			log.warning("Location: Sequencing, Event:Not enoguh indexs.");
 		}

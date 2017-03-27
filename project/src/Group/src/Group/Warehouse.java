@@ -10,7 +10,10 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class Warehouse {
-
+	// Ware house Size.
+	private int aisle;
+	private int racks;
+	private int levels;
 	// Zone is the only string
 	// the key: level as these id are unique 1-48 values: aisle, rack, amount
 	private Map<List<Integer>, Integer> warehouseZoneA = new HashMap<List<Integer>, Integer>();
@@ -22,15 +25,15 @@ public class Warehouse {
 	 * 
 	 * @param filename:String
 	 *            - path on the device to the file
-	 * @param log: Logger
-	 *            - takes all the events and documents them.
-	 */	 
+	 * @param log:
+	 *            Logger - takes all the events and documents them.
+	 */
 	public Warehouse(String fileWithWarehouseInfo) {
-	 //there might be redundancies in code.
-		//this.log = log;
-		for (int j = 0; j < 2; j++) {
-			for (int k = 0; k < 3; k++) {
-				for (int r = 0; r < 4; r++) {
+		// there might be redundancies in code.
+		// this.log = log;
+		for (int j = 0; j < aisle; j++) {
+			for (int k = 0; k < racks; k++) {
+				for (int r = 0; r < levels; r++) {
 					Integer[] values = { j, k, r };
 					List<Integer> tempkey = Arrays.asList(values);
 					this.getWarehouseZoneA().put(tempkey, 30);
@@ -46,7 +49,7 @@ public class Warehouse {
 		// try statement because sometimes file can't be found
 		try (
 
-			BufferedReader br = new BufferedReader(new FileReader(fileWithWarehouseInfo))) {
+				BufferedReader br = new BufferedReader(new FileReader(fileWithWarehouseInfo))) {
 
 			// local variables to help us track and control each read in line
 			String line;
@@ -140,8 +143,8 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Location: Warehouse, Event:Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack + ", Level: " + level
-					+ " doesnt exsist in this Warehouse");
+			log.warning("Location: Warehouse, Event:Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack
+					+ ", Level: " + level + " doesnt exsist in this Warehouse");
 			System.exit(0);
 			return -1;
 		}
@@ -171,7 +174,7 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Location: Warehouse, Event: Zone: " + zone + " doesnt exsist in this Warehouse");	
+			log.warning("Location: Warehouse, Event: Zone: " + zone + " doesnt exsist in this Warehouse");
 			System.exit(0);
 			return null;
 		}
@@ -204,6 +207,28 @@ public class Warehouse {
 		}
 	}
 	
+	/**
+	 * Changes the Aisle Parameter.
+	 * @param aisle
+	 */
+	public void setAisle(int aisle) {
+		this.aisle = aisle;
+	}
+	/**
+	 * Changes the Racks Parameter.
+	 * @param racks
+	 */
+	public void setRacks(int racks) {
+		this.racks = racks;
+	}
+	/**
+	 * Changes the Racks Parameter.
+	 * @param levels
+	 */
+	public void setLevels(int levels) {
+		this.levels = levels;
+	}
+
 	public void takeOutFacsia(String location) {
 		String zone = location.substring(0, 1);
 		Integer aisle = Integer.valueOf(location.substring(1, 2));
@@ -226,13 +251,13 @@ public class Warehouse {
 		Integer[] values = { aisle, rack, level };
 		List<Integer> key = Arrays.asList(values);
 		if (zone.matches("A") && this.warehouseZoneA.get(key) <= 5) {
-			log.info("Location: Warehouse, Event: Zone: The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
-					+ zone.toString() + " has been resupplied");
+			log.info("Location: Warehouse, Event: Zone: The area at zone " + zone + " aisle" + aisle.toString()
+					+ " rack" + rack.toString() + zone.toString() + " has been resupplied");
 			this.getWarehouseZoneA().replace(key, 30);
 		}
 		if (zone.matches("B") && this.warehouseZoneA.get(key) <= 5) {
-			log.info("Location: Warehouse, Event: The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
-					+ zone.toString() + " has been resupplied");
+			log.info("Location: Warehouse, Event: The area at zone " + zone + " aisle" + aisle.toString() + " rack"
+					+ rack.toString() + zone.toString() + " has been resupplied");
 			this.getWarehouseZoneB().replace(key, 30);
 		}
 	}
@@ -305,7 +330,8 @@ public class Warehouse {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				log.warning("Location: Warehouse, Output Event: Error while flushing/closing fileWriter for final.csv!!!");
+				log.warning(
+						"Location: Warehouse, Output Event: Error while flushing/closing fileWriter for final.csv!!!");
 				System.exit(0);
 			}
 

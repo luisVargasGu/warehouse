@@ -1,214 +1,214 @@
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SES Blue
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SES Red
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SE Grey
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SE Grey
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice ready
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order S Beige
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SES Green
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SE White
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 1
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 1 0 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 1 1 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SE Silver
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 2
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 0 2 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 1 1 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 3
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 1 0 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 1 2 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SE Tan
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order S Green
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SES Graphite
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order S White
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob ready
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 4
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 1 2 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 0 2 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 1
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 1 0 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 2 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 5
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 1 1 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 1 0 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 2
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 1 2 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 2 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SES Grey
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 3
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 1 2 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 1 2 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 6
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 1 2 0
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 0 0 0
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 4
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 1 1 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone B 1 2 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 5
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 0 1 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 1 0
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 7
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 0 0 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 1 0 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order SE Blue
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 8
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 0 2 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 1 2 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order S Gold
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice to Marshaling
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 6
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 1 1 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone B 1 1 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 7
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 1 1 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 1 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice ready
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 1
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 1 0 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 0 1 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Sequencer Sue sequences
-Mar 26, 2017 6:15:06 PM Group.Sequencing sequence
-INFO: Event:Sue is sequencing picking request 0
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Sequencing sequence
+INFO: Location: Sequencing, Event:Sue is sequencing picking request 0
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 2
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 1 1 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 0 0 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Loader Bill loads
-Mar 26, 2017 6:15:06 PM Group.Loading loadOrders
-INFO: Event:Bill loaded picking request 0 onto the truck
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Loading loadOrders
+INFO: Location: Loading, Event: Bill loaded picking request 0 onto the truck.
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Order S Gold
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 8
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 0 0 0
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone B 1 2 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 3
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 1 1 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 0 0 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob to Marshaling
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 4
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 0 2 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 1 1 0
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob ready
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 5
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone A 0 2 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone A 0 1 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 1
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 1 1 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 0 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 2
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 0 2 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 1 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 6
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 1 0 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 0 1 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 3
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 1 0 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone B 1 1 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Sequencer Sue sequences
-Mar 26, 2017 6:15:06 PM Group.Sequencing sequence
-INFO: Event:Sue is sequencing picking request 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Sequencing sequence
+INFO: Location: Sequencing, Event:Sue is sequencing picking request 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 4
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 0 1 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 1 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 7
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 1 0 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 1 0 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Loader Bill loads
-Mar 26, 2017 6:15:06 PM Group.Loading loadOrders
-INFO: Event:Bill loaded picking request 1 onto the truck
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Loading loadOrders
+INFO: Location: Loading, Event: Bill loaded picking request 1 onto the truck.
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice pick 8
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventAlice, please go to zone B 0 1 0
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Alice, please go to zone B 1 0 0
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 5
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone A 1 1 0
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone B 0 1 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Alice to Marshaling
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 6
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 1 2 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone B 0 0 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Sequencer Sue sequences
-Mar 26, 2017 6:15:06 PM Group.Sequencing sequence
-INFO: Event:Sue is sequencing picking request 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Sequencing sequence
+INFO: Location: Sequencing, Event:Sue is sequencing picking request 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 7
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 0 0 0
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 1 2 2
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Replenisher Ruby replenish A 1 1 2
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob pick 8
-Mar 26, 2017 6:15:06 PM Group.Worker pickUpOrder
-INFO: EventBob, please go to zone B 0 0 1
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Worker pickUpOrder
+INFO: Location: Worker Event: Bob, please go to zone A 0 1 1
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Loader Bill loads
-Mar 26, 2017 6:15:06 PM Group.Loading loadOrders
-INFO: Event:Bill loaded picking request 2 onto the truck
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Loading loadOrders
+INFO: Location: Loading, Event: Bill loaded picking request 2 onto the truck.
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Picker Bob to Marshaling
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Sequencer Sue sequences
-Mar 26, 2017 6:15:06 PM Group.Sequencing sequence
-INFO: Event:Sue is sequencing picking request 3
-Mar 26, 2017 6:15:06 PM Group.Main main
+Mar 27, 2017 1:13:57 AM Group.Sequencing sequence
+INFO: Location: Sequencing, Event:Sue is sequencing picking request 3
+Mar 27, 2017 1:13:57 AM Group.Main main
 INFO: Input Event:Loader Bill loads
-Mar 26, 2017 6:15:06 PM Group.Loading loadOrders
-INFO: Event:Bill loaded picking request 3 onto the truck
-Mar 26, 2017 6:15:06 PM Group.Warehouse saveToFile
-INFO: Output Event: final.csv was created successfully !!!
-Mar 26, 2017 6:15:06 PM Group.Loading outputOrdersLoaded
-FINE: Output Event: Order.csv file was created successfully !!!
+Mar 27, 2017 1:13:57 AM Group.Loading loadOrders
+INFO: Location: Loading, Event: Bill loaded picking request 3 onto the truck.
+Mar 27, 2017 1:13:57 AM Group.Warehouse saveToFile
+INFO: Location: Warehouse, Output Event: final.csv was created successfully !!!
+Mar 27, 2017 1:13:57 AM Group.Loading outputOrdersLoaded
+FINE: Location: Loading, Output Event: Order.csv file was created successfully!!!
