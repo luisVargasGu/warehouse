@@ -11,6 +11,7 @@ import org.junit.Test;
 
 public class LoadingTest {
 
+	
 	ArrayList<Integer> frontFacia;
 	ArrayList<Integer> rearFacia;
 	PickingRequest pickingRequest;
@@ -47,7 +48,7 @@ public class LoadingTest {
 	@Test
 	// it will override the file if the link name is the same and create a new one if it doesn't exist
 	public void test2saveToFile() {
-		File file = new File("/TestingFiles/test2saveToFile.csv");
+		File file = new File("Loadingtest2saveToFile.csv");
 		// you can check it there
 		ArrayList<String> modelInfo = new ArrayList<String>();
 		modelInfo.add("SES");

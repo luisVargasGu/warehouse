@@ -16,29 +16,8 @@ public class SequencingTest {
 	
 	}
 
-//	@Test
-//	public void test1giveWork() {
-//		ArrayList<Order> orders  = new ArrayList<Order>();
-//		ArrayList<String> modelInfo = new ArrayList<String>();
-//		modelInfo.add("Blue");
-//		modelInfo.add("SES");
-//		ArrayList<Integer>skuInfo = new ArrayList<Integer>();
-//		skuInfo.add(5);
-//		skuInfo.add(6);
-//		Order order1 = new Order(modelInfo, skuInfo);
-//		orders.add(order1);
-//		PickingRequest picking = new PickingRequest(orders);
-//		seq.giveWork(picking, skuInfo);
-//		assertEquals(seq.getPickingrequest(), picking);
-//		assertEquals(seq.getSkus(), skuInfo);
-//		
-//		seq.sequence();
-//		Boolean finalz = seq.isSequenced();
-//		assertFalse(finalz);
-//	}
-	
 	@Test
-	public void test2round2() {
+	public void test1round1() {
 		ArrayList<Order> orders  = new ArrayList<Order>();
 		ArrayList<String> modelInfo = new ArrayList<String>();
 		modelInfo.add("Blue");
@@ -78,8 +57,6 @@ public class SequencingTest {
 		assertEquals(seq.getPickingrequest(), picking);
 		assertEquals(seq.getSkus(), finalskuInfo);
 		
-		//this is where i think we may have future problems 
-		//cause sequencing for less than 8 wont run properly we must check size
 		seq.sequence();
 		Boolean finalz = seq.isSequenced();
 		assertTrue(finalz);

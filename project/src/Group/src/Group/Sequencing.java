@@ -35,16 +35,6 @@ public class Sequencing {
 	}
 
 	/**
-	 * Sets the SKUS
-	 * 
-	 * @param skus:ArrayList<Integer>
-	 *            all the skus to be set as
-	 */
-	public void setSkus(ArrayList<Integer> skus) {
-		this.skus = skus;
-	}
-
-	/**
 	 * Return the pickingRequest for this sequencing process
 	 * 
 	 * @return PickingRequest
@@ -69,21 +59,13 @@ public class Sequencing {
 					this.palletSize = Integer.parseInt(lineParts[1]);
 				}
 			}
+			spec.close();
 		} catch (IOException e2) {
 			log.warning("Location: Main, File: cant be read from or cant be found.");
 			System.exit(0);
 		}
 	}
 
-	/**
-	 * Sets the pickingRequest for this sequencing process
-	 * 
-	 * @param pickingrequest:PickingRequest
-	 *            - this is the pickingRequest for this sequencing process
-	 */
-	public void setPickingrequest(PickingRequest pickingrequest) {
-		this.pickingrequest = pickingrequest;
-	}
 
 	/**
 	 * Return the id.
@@ -122,21 +104,20 @@ public class Sequencing {
 		return backFasciaPallet;
 	}
 
-	// Methods
-	// /**
-	// * Giving work to the sequencing process.
-	// *
-	// * @param pickingRequest:
-	// * PickingRequest - assigned picking request to the process
-	// *
-	// * @param skus:
-	// * ArrayList<Integer> - assigned skus to the process
-	// */
-	// public void giveWork(PickingRequest pickingRequest, ArrayList<Integer>
-	// skus) {
-	// this.skus = skus;
-	// this.pickingrequest = pickingRequest;
-	// }
+	 //Methods
+	 /**
+	 * Giving work to the sequencing process.
+	 *
+	 * @param pickingRequest:
+	 * PickingRequest - assigned picking request to the process
+	 *
+	 * @param skus:
+	 * ArrayList<Integer> - assigned skus to the process
+	 */
+	 public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
+		 this.skus = skus;
+		 this.pickingrequest = pickingRequest;
+	 }
 
 	/**
 	 * Checks if process has completed sequencing.

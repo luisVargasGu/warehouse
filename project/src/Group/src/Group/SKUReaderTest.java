@@ -7,22 +7,23 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class SKUReaderTest {
-
+	String basic_path = "/Users/AnnaZelisko/Desktop";
+	
 	@Test
 	public void testSKUReaderTableSizeMapModel() {
-		SKUReader table = new SKUReader("/Users/donaldkajo/Desktop/group_0406/project/translation.csv");
+		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
 		assertTrue(table.getTranslationTableModel().size() == 48);
 	}
 
 	@Test
 	public void testSKUReaderTableSizeMapSKU() {
-		SKUReader table = new SKUReader("/Users/donaldkajo/Desktop/group_0406/project/translation.csv");
+		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
 		assertTrue(table.getTranslationTableSku().size() == 48);
 	}
 
 	@Test
 	public void testSKUReaderGetSku() {
-		SKUReader table = new SKUReader("/Users/donaldkajo/Desktop/group_0406/project/translation.csv");
+		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
@@ -34,7 +35,7 @@ public class SKUReaderTest {
 
 	@Test
 	public void testSKUReaderGetSkuBadParameter() {
-		SKUReader table = new SKUReader("/Users/donaldkajo/Desktop/group_0406/project/translation.csv");
+		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
@@ -47,7 +48,7 @@ public class SKUReaderTest {
 	
 	@Test
 	public void testSKUReaderGetModel(){
-		SKUReader table = new SKUReader("/Users/donaldkajo/Desktop/group_0406/project/translation.csv");
+		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");

@@ -9,10 +9,8 @@ public class QueueOfWorkersTest {
 
 	QueueOfWorkers queue1;
 	
-	Worker worker1;
-	Worker worker2;
-	Worker worker3;
-	Worker worker4;
+	Worker worker1, worker2, worker3, worker4;
+
 	
 	@Before
 	public void setUp() throws Exception {

@@ -4,7 +4,6 @@ import java.awt.List;
 import java.util.logging.Logger;
 
 public class Supply {
-	private List newSupply;
 	private boolean supplyNotDamaged = true;
 	Logger log = Logger.getLogger("my.logger");
 	
@@ -15,7 +14,6 @@ public class Supply {
      * @param   maker:String - the model of that facisa
      */
 	public Supply(String color, String model, String position){
-		setNewSupply(new List());
 		log.info("Location: Supply, Event: A new supply has arrived to the Warehouse:"+ color+", "+ model+", &"+position);
 	}
 
@@ -36,15 +34,7 @@ public class Supply {
 		
 	}
 
-	//getters and setters
-	public List getNewSupply() {
-		return newSupply;
-	}
-
-	public void setNewSupply(List newSupply) {
-		this.newSupply = newSupply;
-	}
-	
+	//getters and setters	
 	public void setSupplyNotDamaged(Boolean status) {
 		this.supplyNotDamaged = status;
 	}

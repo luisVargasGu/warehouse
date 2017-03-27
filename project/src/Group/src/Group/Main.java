@@ -10,7 +10,7 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
+		String basic_path = "/Users/AnnaZelisko/Desktop";
 		// Creates all the files we will interact with
 		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
@@ -61,6 +61,7 @@ public class Main {
 					WarehouseFile.setLevels(Integer.parseInt(lineParts[3]));
 				}
 			}
+			spec.close();
 		} catch (IOException e2) {
 			log.warning("Location: Main, File: cant be read from or cant be found.");
 			System.exit(0);
@@ -101,10 +102,8 @@ public class Main {
 				if ((lineParts[0].matches("Picker")) && (lineParts[lineParts.length - 1].matches("Marshaling"))) {
 					if (workerQueue.getArrayz().get(0).finishedWork()) {
 						Worker goodWorker = workerQueue.dequeue();
-						// sequencer.giveWork(goodWorker.getWork(),
-						// goodWorker.getFinishedwork())
-						sequencer.setPickingrequest(goodWorker.getWork());
-						sequencer.setSkus(goodWorker.getFinishedwork());
+						sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
+
 					}
 				}
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {
