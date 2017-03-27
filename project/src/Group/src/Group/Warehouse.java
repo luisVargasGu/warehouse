@@ -15,7 +15,7 @@ public class Warehouse {
 	// the key: level as these id are unique 1-48 values: aisle, rack, amount
 	private Map<List<Integer>, Integer> warehouseZoneA = new HashMap<List<Integer>, Integer>();
 	private Map<List<Integer>, Integer> warehouseZoneB = new HashMap<List<Integer>, Integer>();
-	private Logger log;
+	private Logger log = Logger.getLogger("my.logger");
 
 	/**
 	 * Initializes a new Warehouse
@@ -25,9 +25,9 @@ public class Warehouse {
 	 * @param log: Logger
 	 *            - takes all the events and documents them.
 	 */	 
-	public Warehouse(String fileWithWarehouseInfo, Logger log) {
+	public Warehouse(String fileWithWarehouseInfo) {
 	 //there might be redundancies in code.
-		this.log = log;
+		//this.log = log;
 		for (int j = 0; j < 2; j++) {
 			for (int k = 0; k < 3; k++) {
 				for (int r = 0; r < 4; r++) {
@@ -77,10 +77,12 @@ public class Warehouse {
 			br.close();
 			// catch any exception
 		} catch (FileNotFoundException e) {
-			log.warning("Input Event: Warehouse file to read from doesn't exsist.");
+			log.warning("Location: Warehouse, Input Event: Warehouse file to read from doesn't exsist.");
+			System.exit(0);
 
 		} catch (IOException e) {
-			log.warning("Input Event: Trouble reading Warehouse file provided.");
+			log.warning("Location: Warehouse, Input Event: Trouble reading Warehouse file provided.");
+			System.exit(0);
 		}
 	}
 
@@ -138,9 +140,9 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Event:Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack + ", Level: " + level
+			log.warning("Location: Warehouse, Event:Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack + ", Level: " + level
 					+ " doesnt exsist in this Warehouse");
-
+			System.exit(0);
 			return -1;
 		}
 
@@ -169,7 +171,8 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Event: Zone: " + zone + " doesnt exsist in this Warehouse");		
+			log.warning("Location: Warehouse, Event: Zone: " + zone + " doesnt exsist in this Warehouse");	
+			System.exit(0);
 			return null;
 		}
 	}
@@ -195,10 +198,12 @@ public class Warehouse {
 			}
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Event:Zone: " + zone + " doesnt exsist in this Warehouse");
+			log.warning("Location: Warehouse, Event:Zone: " + zone + " doesnt exsist in this Warehouse");
+			System.exit(0);
 			return -1;
 		}
 	}
+	
 	public void takeOutFacsia(String location) {
 		String zone = location.substring(0, 1);
 		Integer aisle = Integer.valueOf(location.substring(1, 2));
@@ -221,12 +226,12 @@ public class Warehouse {
 		Integer[] values = { aisle, rack, level };
 		List<Integer> key = Arrays.asList(values);
 		if (zone.matches("A") && this.warehouseZoneA.get(key) <= 5) {
-			System.out.println("The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
+			log.info("Location: Warehouse, Event: Zone: The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
 					+ zone.toString() + " has been resupplied");
 			this.getWarehouseZoneA().replace(key, 30);
 		}
 		if (zone.matches("B") && this.warehouseZoneA.get(key) <= 5) {
-			System.out.println("The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
+			log.info("Location: Warehouse, Event: The area at zone " + zone + " aisle" + aisle.toString() + " rack" + rack.toString()
 					+ zone.toString() + " has been resupplied");
 			this.getWarehouseZoneB().replace(key, 30);
 		}
@@ -240,7 +245,6 @@ public class Warehouse {
 			this.resupplyRack("B" + key.toString());
 		}
 	}
-
 
 	/**
 	 * Writes the warehouse information to file: final.csv.
@@ -291,16 +295,18 @@ public class Warehouse {
 				fileWriter.append(Integer.toString(this.getWarehouseZoneB().get(key)));
 				fileWriter.append(NEW_LINE_SEPARATOR);
 			}
-			log.info("Output Event: final.csv was created successfully !!!");
+			log.info("Location: Warehouse, Output Event: final.csv was created successfully !!!");
 		} catch (Exception e) {
-			log.warning("Output Event: Error in finding final.csv!!!");
+			log.warning("Location: Warehouse, Output Event: Error in interacting with final.csv!!!");
+			System.exit(0);
 
 		} finally {
 			try {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				log.warning("Output Event: Error while flushing/closing fileWriter for final.csv!!!");
+				log.warning("Location: Warehouse, Output Event: Error while flushing/closing fileWriter for final.csv!!!");
+				System.exit(0);
 			}
 
 		}

@@ -8,6 +8,7 @@ public class Worker {
 	private PickingRequest work;
 	private ArrayList<String> location = new ArrayList<>();
 	private ArrayList<Integer> finishedwork = new ArrayList<>();
+	private Logger log = Logger.getLogger("my.logger");
 
 	// getters and setters
 	/**
@@ -112,9 +113,9 @@ public class Worker {
 	 * @param log:
 	 * 				this is the log file that we will be writting to 
 	 */
-	public void pickUpOrder(Logger log) {
+	public void pickUpOrder() {
 		String fascia = this.getlocation().remove(0);
-		log.info("Event"+this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
+		log.info("Location: Worker Event: "+this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
 				+ fascia.charAt(2) + " " + fascia.charAt(3));
 		Integer skuFascia = Integer.parseInt(fascia.substring(4, fascia.length()));
 		

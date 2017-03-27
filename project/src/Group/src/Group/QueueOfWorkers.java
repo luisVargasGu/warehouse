@@ -1,11 +1,13 @@
 package Group;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 public class QueueOfWorkers extends AbstractQueue<Worker>{
 
+	private Logger log = Logger.getLogger("my.logger");
+	
 	/**
 	 * Initializes an empty queue of Workers.
 	 */
@@ -29,11 +31,17 @@ public class QueueOfWorkers extends AbstractQueue<Worker>{
 				return worker1;
 			}
 		} catch (NoSuchElementException e) {
-			System.out.println("No Workers have been given yet.");
+			log.info("Location: QueueOfWorkers, Event: No Workers have been given yet.");
 			return null;
 		}
 	}
 	
+	/**
+	 * Send worker from the front of this queue to create a PickingReuest.
+	 *
+	 * @throws NoSuchElementException
+	 *             if this queue is empty
+	 */
 	public boolean searchWorker(String name){
 		for(Worker worker: this.getArrayz()){
 			if(worker.getId() == name){
@@ -73,8 +81,7 @@ public class QueueOfWorkers extends AbstractQueue<Worker>{
 		// loop through our array of orders
 		for (int i = 0; i < getArrayz().size(); i++) {
 			// add the order details
-			s.append("id:" + getArrayz().get(i).getId());
-			s.append(' ');
+			s.append("id:" + getArrayz().get(i).getId()+" ");
 		}
 		return s.toString();
 	}

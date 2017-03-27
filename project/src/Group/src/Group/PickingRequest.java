@@ -1,6 +1,5 @@
 package Group;
 
-
 import java.util.ArrayList;
 
 public class PickingRequest{
@@ -12,21 +11,21 @@ public class PickingRequest{
 	/**
      * Returns the id of this picking request
      *
-     * @return int: representing the picking request id
+     * @return Integer: representing the picking request id
      */
 	public Integer getId() {
 		return id;
 	}
 
 	/**
-     * Sets the picking request id.
+     * Sets Id of this picking request.
      *
-     * @param  id:Integer - the id that will be set
+     * @param  Id: Integer - set the picking request order.
      */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(int Id) {
+		this.id = Id;
+		
 	}
-
 	/**
      * Returns list of orders for this picking request.
      *
@@ -45,7 +44,6 @@ public class PickingRequest{
 		this.orders = orders;
 	}
 
-	
 	//constructor
 	/**
      * New picking request created.
@@ -54,9 +52,11 @@ public class PickingRequest{
      */
 	public PickingRequest(ArrayList<Order> orders){
 		this.setOrders(orders);
-		this.setId(n);
+		this.id = n;
 		n++;
 		
 	}
+
+	
 
 }

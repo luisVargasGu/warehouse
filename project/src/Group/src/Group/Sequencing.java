@@ -3,7 +3,7 @@ package Group;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import jdk.internal.instrumentation.Logger;
+import java.util.logging.Logger;
 
 public class Sequencing {
 
@@ -11,16 +11,14 @@ public class Sequencing {
 	private String id;
 	private ArrayList<Integer> skus;
 	private PickingRequest pickingrequest;
-	ArrayList<Integer> frontFasciaPallet;
-	ArrayList<Integer> backFasciaPallet;
-
-	// Constructor
+	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>(4);
+	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>(4);
+	Logger log = Logger.getLogger("my.logger");
+	
 	/**
 	 * Create new sequencing.
 	 */
 	public Sequencing() {
-		frontFasciaPallet = new ArrayList<Integer>(4);
-		backFasciaPallet = new ArrayList<Integer>(4);
 	}
 
 	// Getters and Setters
@@ -120,18 +118,16 @@ public class Sequencing {
 	 * @return Boolean - true if process complete, false if not
 	 */
 	public boolean isSequenced() {
-
 		return true;
-
 	}
 
 	/**
 	 * The sequencing process.
 	 */
-	public void sequence(java.util.logging.Logger log) {
+	public void sequence( ) {
 		// try catch in case something fails
 		try {
-			log.info("Event:"+ this.getId() + " is sequencing" + " picking request "
+			log.info("Location: Sequencing, Event:"+ this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
 
 			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
@@ -157,9 +153,9 @@ public class Sequencing {
 			}
 
 		} catch (IOException e) {
-			log.warning("Event: The picking request could not be sequenced, due to missing or incorect fascia");
+			log.warning("Location: Sequencing, Event: The picking request could not be sequenced, due to missing or incorect fascia");
 		} catch (IndexOutOfBoundsException e) {
-			log.warning("Event:Not enoguh indexs.");
+			log.warning("Location: Sequencing, Event:Not enoguh indexs.");
 		}
 
 	}

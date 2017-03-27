@@ -3,8 +3,11 @@ package Group;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 public class QueueOfOrders extends AbstractQueue<Order>{
+	
+	private Logger log = Logger.getLogger("my.logger");
 	
     /**
      * Initializes an empty queue of order.
@@ -41,11 +44,11 @@ public class QueueOfOrders extends AbstractQueue<Order>{
     		}
     	}
     	catch(NoSuchElementException e){
-    		System.out.println("No Orders have been given yet.");
+    		log.info("Location: QueueOfOrders, Event: No Orders have been given yet.");
     		return null;
     	}
     	catch(IndexOutOfBoundsException e){
-    		System.out.println("Not Orders to complete your request.");
+    		log.info("Location: QueueOfOrders, Event: Not Orders to complete your request.");
     		return null;
     	}
     }
@@ -55,6 +58,7 @@ public class QueueOfOrders extends AbstractQueue<Order>{
      *
      * @return the sequence of orders in FIFO order, separated by spaces
      */
+    @Override
     public String toString() {
  	   //String that will contain our final orders
         StringBuilder s = new StringBuilder();

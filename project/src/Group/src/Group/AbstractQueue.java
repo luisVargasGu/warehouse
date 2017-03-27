@@ -5,13 +5,12 @@ import java.util.LinkedList;
 public abstract class AbstractQueue <T>{
 
 	//array elements that will allow us to control our queue
-    private LinkedList<T> arrayz;              
+    private LinkedList<T> arrayz;    
     
     /**
      * Initializes an empty queue of order.
      */
     public AbstractQueue(LinkedList<T> list) {
-    	//start of our linked list queue
     	arrayz = list;
     }
     
@@ -36,17 +35,16 @@ public abstract class AbstractQueue <T>{
     /**
      * Adds the item to this queue of orders.
      *
-     * @param  item:Order - the order that needs to be added to the queue
+     * @param  item: the item that needs to be added to the queue
      */
     public void enqueue(T item) {
     	arrayz.add(item);
     }
-    
-    
+        
     /**
-     * Returns an array list
+     * Returns our private array list.
      * 
-     * @return LinkedList<T>: list
+     * @return LinkedList<T>: list of elements  
      */
     public LinkedList<T> getArrayz() {
 		return arrayz;

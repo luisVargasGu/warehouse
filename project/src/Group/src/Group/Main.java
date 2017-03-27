@@ -5,11 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
+
 
 public class Main {
 
@@ -36,19 +33,19 @@ public class Main {
 			fileHandler.setFormatter(new SimpleFormatter());
 			fileHandler.setLevel(Level.ALL);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			log.warning("Location: Main, FileHandler: file handler cant be created.");
+			System.exit(0);
 		}
 		log.setLevel(Level.ALL);
 				
 		// Warehouse final, informing us the number of fascia
 		// creates SKu Reader and Warehouse instances that will be referred to
 		// through out main
-		SKUReader SKUFile = new SKUReader(fileWithSKUs, log);
-		Warehouse WarehouseFile = new Warehouse(fileWithWarehouseInfo, log);
+		SKUReader SKUFile = new SKUReader(fileWithSKUs);
+		Warehouse WarehouseFile = new Warehouse(fileWithWarehouseInfo);
 		QueueOfOrders orderQueue = new QueueOfOrders();
 		QueueOfWorkers workerQueue = new QueueOfWorkers();
-		Loading loader = new Loading(log);
+		Loading loader = new Loading();
 		Sequencing sequencer = new Sequencing();
 		Truck truck1 = new Truck();
 		
@@ -83,7 +80,6 @@ public class Main {
 					PickingRequest workForWorker = new PickingRequest(pickingRequest);
 					w1.givePickingRequest(workForWorker);
 					workerQueue.enqueue(w1);
-
 				}
 
 				if ((lineParts[0].matches("Picker")) && (lineParts[lineParts.length - 1].matches("Marshaling"))) {
@@ -95,14 +91,14 @@ public class Main {
 					}
 				}
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {
-					workerQueue.getWorker(lineParts[1]).pickUpOrder(log);
+					workerQueue.getWorker(lineParts[1]).pickUpOrder();
 
 				}
 
 				// if its an picker request
 				if (lineParts[0].matches("Sequencer")) {
 					sequencer.setId(lineParts[1]);
-					sequencer.sequence(log);
+					sequencer.sequence();
 				}
 				// if its an loader request
 				if (lineParts[0].matches("Loader")) {
@@ -123,10 +119,10 @@ public class Main {
 			loader.outputOrdersLoaded(fileToWriteToOrders);
 			br.close();
 		}
-		// catch any exception
+		// catch any file exception
 		catch (IOException e) {
-			// track
-			e.printStackTrace();
+			log.warning("Location: Main, File: cant be read from or cant be found.");
+			System.exit(0);
 		}
 	}
 }

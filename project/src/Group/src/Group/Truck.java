@@ -1,8 +1,11 @@
 package Group;
 
+import java.util.logging.Logger;
+
 public class Truck {
 	int numOrders = 0;
-
+	Logger log = Logger.getLogger("my.logger");
+	
 	public Truck() {
 
 	}
@@ -15,7 +18,7 @@ public class Truck {
 	public void addOrdersToTruck() {
 		numOrders++;
 		if ((numOrders == 80) || (numOrders > 80)) {
-			System.out.println("Truck fully loaded, leaving Warehouse.");
+			log.info("Location: Truck, Event: Truck fully loaded, leaving Warehouse.");
 			numOrders = numOrders - 80;
 		}
 	}

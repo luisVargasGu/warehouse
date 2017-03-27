@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class Loading {
-	// Attributes
-	private String id; // id of our load
-	private ArrayList<Order> ordersLoaded = new ArrayList<Order>();// the orders that will be written to
-											// the file
+	// id of our load
+	private String id;
+	// the orders to be loaded
+	private ArrayList<Order> ordersLoaded = new ArrayList<Order>();
+	
 	// front and back fasica that are being loaded
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<ArrayList<Integer>> totalBack = new ArrayList<ArrayList<Integer>>();
-	private Logger log;
+	private Logger log = Logger.getLogger("my.logger");
 	
 	/**
 	 * Initializes a new load.
 	 */
-	// Constructor
-	public Loading(Logger log) {
-		this.log = log;
+	public Loading() {
+		
 	}
 
 	// getters and setters
 	/**
-	 * Returns the private list for front fasica.
+	 * Returns the private list representing front fasica.
 	 * 
 	 * @return ArrayList<ArrayList<Integer>> - all the front facisa
 	 */
@@ -55,8 +55,7 @@ public class Loading {
 	/**
 	 * Sets the private list for the orders being loaded.
 	 * 
-	 * @param id:String
-	 *            - id of our load
+	 * @param id:String - id of our load
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -76,11 +75,10 @@ public class Loading {
 	 */
 	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
 			ArrayList<Integer> backPallet) {
-		log.info("Event:"+ this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck");
+		log.info("Location: Loading, Event: "+ this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck.");
 		this.ordersLoaded.addAll(pickingRequest.getOrders());
 		this.totalFront.add(frontPallet);
 		this.totalBack.add(backPallet);
-
 	}
 
 	/**
@@ -118,17 +116,19 @@ public class Loading {
 				fileWriter.append(((Integer) order.getSKUBack()).toString());
 				fileWriter.append(NEW_LINE_SEPARATOR);
 			}
-			log.fine("Output Event: Order.csv file was created successfully !!!");
+			log.fine("Location: Loading, Output Event: Order.csv file was created successfully!!!");
 			
 		} catch (Exception e) {
-			log.warning("Output Event: Error in trying to create order.csv !!!");
+			log.warning("Location: Loading, Output Event: Error in trying to create order.csv!!!");
+			System.exit(0);
 
 		} finally {
 			try {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				log.warning("Output Event: Error while flushing/closing order.csv fileWriter !!!");
+				log.warning("Location: Loading, Output Event: Error while flushing/closing order.csv fileWriter!!!");
+				System.exit(0);
 			}
 
 		}

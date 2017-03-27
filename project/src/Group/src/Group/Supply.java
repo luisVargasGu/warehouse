@@ -1,22 +1,23 @@
 package Group;
 
 import java.awt.List;
+import java.util.logging.Logger;
 
 public class Supply {
 	private List newSupply;
 	private boolean supplyNotDamaged = true;
+	Logger log = Logger.getLogger("my.logger");
 	
 	/**
-     * Controls a new supply.
+     * Creates a new supply.
      * 
      * @param   color:String - the color of that facisa
      * @param   maker:String - the model of that facisa
      */
 	public Supply(String color, String model, String position){
 		setNewSupply(new List());
-		System.out.println("A new supply has arrived to the Warehouse:"+ color+", "+ model+", "+position);
+		log.info("Location: Supply, Event: A new supply has arrived to the Warehouse:"+ color+", "+ model+", &"+position);
 	}
-	
 
 	/**
      * Checks the new supply for damage.
@@ -27,10 +28,10 @@ public class Supply {
 			//system runs damage report, if something was wrong supplyNotDamaged = False
 		}
 		if (supplyNotDamaged){
-			System.out.println("Supply not damaged, has been put away in the warehouse reserve room");
+			log.info("Location: Supply, Event: Supply not damaged, has been put away in the warehouse reserve room");
 		}
 		else{
-			System.out.println("Supply damaged, its gonna be thrown out");
+			log.info("Location: Supply, Event: Supply damaged, its gonna be thrown out");
 		}
 		
 	}
