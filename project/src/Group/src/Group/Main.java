@@ -10,7 +10,7 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "/Users/AnnaZelisko/Desktop";
+		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
 		// Creates all the files we will interact with
 		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
@@ -114,6 +114,7 @@ public class Main {
 				// if its an picker request
 				if (lineParts[0].matches("Sequencer")) {
 					sequencer.setId(lineParts[1]);
+					// Could be put somewhere else?
 					sequencer.setPalletSize(fileWithSpecs);
 					sequencer.sequence();
 				}

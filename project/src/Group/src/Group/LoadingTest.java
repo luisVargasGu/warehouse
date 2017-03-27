@@ -10,15 +10,43 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LoadingTest {
-
 	
+	// Picking-Request variables.
+	ArrayList<String> modelInfo;
+	ArrayList<Integer> skuInfo;
+	ArrayList<Order> orders;
+	PickingRequest picking;
+	Order order1;
+	Order order2;
+	// Loading Variables.
 	ArrayList<Integer> frontFacia;
 	ArrayList<Integer> rearFacia;
 	PickingRequest pickingRequest;
 	Loading loder;
 	
+	
 	@Before
 	public void setUp() throws Exception {
+		// Setup for Orders and Picking Request.
+		orders  = new ArrayList<Order>();
+		modelInfo = new ArrayList<String>();
+		modelInfo.add("Blue");
+		modelInfo.add("SES");
+		skuInfo = new ArrayList<Integer>();
+		skuInfo.add(5);
+		skuInfo.add(3);
+		order1 = new Order(modelInfo, skuInfo);
+		orders.add(order1);
+		modelInfo = new ArrayList<String>();
+		modelInfo.add("Grey");
+		modelInfo.add("SE");
+		skuInfo = new ArrayList<Integer>();
+		skuInfo.add(6);
+		skuInfo.add(4);
+		order2 = new Order(modelInfo, skuInfo);
+		orders.add(order2);
+		pickingRequest = new PickingRequest(orders);
+		// Fascia and Loader setup.
 		frontFacia = new ArrayList<Integer>();
 		frontFacia.add(5);
 		frontFacia.add(6);
@@ -35,14 +63,16 @@ public class LoadingTest {
 		ArrayList<Integer> first = new ArrayList<Integer>();
 		first.add(5);
 		first.add(6);
-		first_equal.add(first);
-		//assertEquals(loder.getTotalFront(), first_equal);
 		ArrayList<ArrayList<Integer>> sec_equal = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> sec = new ArrayList<Integer>();
 		sec.add(3);
 		sec.add(4);
 		sec_equal.add(sec);
-		//assertEquals(loder.getTotalBack(), sec_equal);
+		first_equal.add(first);
+		loder.loadOrders(pickingRequest, first, sec);
+		assertEquals(loder.getTotalFront(), first_equal);
+		assertEquals(loder.getTotalBack(), sec_equal);
+
 	}
 	
 	@Test
