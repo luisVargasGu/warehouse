@@ -35,24 +35,33 @@ public class Main {
 
 		// all instances that require interaction in main
 		SKUReader SKUFile = new SKUReader(fileWithSKUs);
-		Warehouse WarehouseFile = new Warehouse(fileWithWarehouseInfo);
+		//WarehouseFile = new Warehouse(fileWithWarehouseInfo);
+		Warehouse WarehouseFile = null;
 		QueueOfOrders orderQueue = new QueueOfOrders();
 		QueueOfWorkers workerQueue = new QueueOfWorkers();
 		Loading loader = new Loading();
 		Sequencing sequencer = new Sequencing();
 		Truck truck1 = new Truck();
-		
+
 		try {
 			BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
 			// Read the first line b4 the while so we skip the instructions.
-			String line = spec.readLine();
+			String line;
 			String[] lineParts;
 			while ((line = spec.readLine()) != null) {
 				lineParts = line.split(" ");
-				if (lineParts[0] == "Warehouse:") {
-					WarehouseFile.setAisle(Integer.parseInt(lineParts[1]));
-					WarehouseFile.setRacks(Integer.parseInt(lineParts[2]));
-					WarehouseFile.setLevels(Integer.parseInt(lineParts[3]));
+				if (lineParts[0].equals("Warehouse:")) {
+					// when we create the Warehouse before this loop the parameters from the config file will not be set.
+					// so our default Warehouse of 30 fasica is never set.
+					// if we send them in as we create warehouse then the for loop at the start actually runs
+					WarehouseFile = new Warehouse(fileWithWarehouseInfo, Integer.parseInt(lineParts[1]),
+							Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3]),
+							Integer.parseInt(lineParts[4]));
+
+					// WarehouseFile.setZone(Integer.parseInt(lineParts[1]));
+					// WarehouseFile.setAisle(Integer.parseInt(lineParts[2]));
+					// WarehouseFile.setRacks(Integer.parseInt(lineParts[3]));
+					// WarehouseFile.setLevels(Integer.parseInt(lineParts[4]));
 				}
 			}
 			spec.close();
@@ -60,7 +69,7 @@ public class Main {
 			log.warning("Location: Main, File: cant be read from or cant be found.");
 			System.exit(0);
 		}
-		
+
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileWithSteps));
 			// local variables to help us track and control each read in line
@@ -128,7 +137,12 @@ public class Main {
 			}
 
 			// Output all the files that are needed
-			WarehouseFile.saveToFile(fileToWriteToFinal);
+			try{
+				WarehouseFile.saveToFile(fileToWriteToFinal);
+			}catch(IOException e) {
+				log.warning("Location: Main, File: Warehouse file is not intiated.");
+				System.exit(0);
+			}
 			loader.outputOrdersLoaded(fileToWriteToOrders);
 			br.close();
 		}

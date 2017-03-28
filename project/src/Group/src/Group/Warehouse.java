@@ -11,13 +11,13 @@ import java.util.logging.Logger;
 
 public class Warehouse {
 	// Ware house Size.
-	private int aisle;
-	private int racks;
-	private int levels;
-	// Zone is the only string
-	// the key: level as these id are unique 1-48 values: aisle, rack, amount
-	private Map<List<Integer>, Integer> warehouseZoneA = new HashMap<List<Integer>, Integer>();
-	private Map<List<Integer>, Integer> warehouseZoneB = new HashMap<List<Integer>, Integer>();
+//	private int zone;
+//	private int aisle;
+//	private int racks;
+//	private int levels;
+	
+	// the string key: zone aisle, rack, amount
+	private Map<List<String>, Integer> warehouse = new HashMap<List<String>, Integer>();
 	private Logger log = Logger.getLogger("my.logger");
 
 	/**
@@ -28,19 +28,18 @@ public class Warehouse {
 	 * @param log:
 	 *            Logger - takes all the events and documents them.
 	 */
-	public Warehouse(String fileWithWarehouseInfo) {
-		// there might be redundancies in code.
-		// this.log = log;
-		for (int j = 0; j < aisle; j++) {
-			for (int k = 0; k < racks; k++) {
-				for (int r = 0; r < levels; r++) {
-					Integer[] values = { j, k, r };
-					List<Integer> tempkey = Arrays.asList(values);
-					this.getWarehouseZoneA().put(tempkey, 30);
-					this.getWarehouseZoneB().put(tempkey, 30);
+	public Warehouse(String fileWithWarehouseInfo, int zone, int aisle, int racks, int levels) {
+		// this for loop creates a default warehouse with 30 fasica per location
+		for (int h = 0; h < zone; h++) {
+			for (int j = 0; j < aisle; j++) {
+				for (int k = 0; k < racks; k++) {
+					for (int r = 0; r < levels; r++) {
+						String[] values = {  String.valueOf((char)(h + 65)), String.valueOf(j),  String.valueOf(k), String.valueOf(r)};
+						List<String> tempkey = Arrays.asList(values);
+						this.getWarehouse().put(tempkey, 30);
+					}
 				}
 			}
-
 		}
 
 		// this method will read in the file information, we could call it the
@@ -61,20 +60,10 @@ public class Warehouse {
 				// we split into the string array based on spaces, csv is -1
 				lineParts = line.split(",");
 				// this list will act as our key
-				Integer[] value = { Integer.parseInt(lineParts[1]), Integer.parseInt(lineParts[2]),
-						Integer.parseInt(lineParts[3]) };
-				List<Integer> warehouseKeys = Arrays.asList(value);
-
-				if (lineParts[0].matches("A")) {
-					// we set the splitting to Strings (first variable read in
-					// is a
-					// string)
-					warehouseZoneA.replace(warehouseKeys, Integer.parseInt(lineParts[4]));
-				}
-
-				else if (lineParts[0].matches("B")) {
-					warehouseZoneB.replace(warehouseKeys, Integer.parseInt(lineParts[4]));
-				}
+				String[] value = { lineParts[0], lineParts[1], lineParts[2],
+						lineParts[3]};
+				List<String> warehouseKeys = Arrays.asList(value);
+				warehouse.replace(warehouseKeys, Integer.parseInt(lineParts[4]));
 
 			}
 			br.close();
@@ -90,24 +79,14 @@ public class Warehouse {
 	}
 
 	// getters and setters
-	/**
-	 * Return the keys that are in each warehouse zone A.
-	 *
-	 * @return Map<List<Integer>> - all the columns in that zone A in the
-	 *         Warehouse
-	 */
-	public Map<List<Integer>, Integer> getWarehouseZoneA() {
-		return warehouseZoneA;
-	}
 
 	/**
-	 * Return the keys that are in each warehouse zone B
+	 * Return the warehouse map. 
 	 *
-	 * @return Map<List<Integer>> - all the columns in that zone B in the
-	 *         Warehouse
+	 * @return Map<List<String>, Integer>  - all the columns in that Warehouse
 	 */
-	public Map<List<Integer>, Integer> getWarehouseZoneB() {
-		return warehouseZoneB;
+	public Map<List<String>, Integer> getWarehouse() {
+		return warehouse;
 	}
 
 	/**
@@ -127,20 +106,11 @@ public class Warehouse {
 	public int getAmountInZone(String zone, int aisle, int rack, int level) {
 
 		// we create our list so that we can check if we have a key in our map
-		Integer[] value = { aisle, rack, level };
-		List<Integer> keyz = Arrays.asList(value);
+		String[] value = {zone, String.valueOf(aisle), String.valueOf(rack), String.valueOf(level)};
+		List<String> keyz = Arrays.asList(value);
 
 		try {
-			// two separate zones
-			if (zone == "A") {
-				// check if we have that key in zone A
-				return warehouseZoneA.get(keyz);
-			} else if (zone == "B") {
-				// check if we have that key in zone B
-				return warehouseZoneB.get(keyz);
-			} else {
-				throw new NullPointerException();
-			}
+			return warehouse.get(keyz);
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
 			log.warning("Location: Warehouse, Event:Zone: " + zone + ", Aisle: " + aisle + ", Rack: " + rack
@@ -157,24 +127,14 @@ public class Warehouse {
 	 * @param zone:String
 	 *            - the zone in the Warehouse
 	 * 
-	 * @return Set<List<Integer>> - all the columns in that zone in the
-	 *         Warehouse
+	 * @return Set<List<Integer>> - all the columns in the Warehouse
 	 */
-	public Set<List<Integer>> getWarehouseZoneKeys(String zone) {
+	public Set<List<String>> getWarehouseZoneKeys() {
 		try {
-			// two separate zones
-			if (zone == "A") {
-				// return keys in zone A
-				return warehouseZoneA.keySet();
-			} else if (zone == "B") {
-				// return keys in zone B
-				return warehouseZoneB.keySet();
-			} else {
-				throw new NullPointerException();
-			}
+			return warehouse.keySet();			
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Location: Warehouse, Event: Zone: " + zone + " doesnt exsist in this Warehouse");
+			log.warning("Location: Warehouse, Event: That warehouse doesnt exsist.");
 			System.exit(0);
 			return null;
 		}
@@ -189,85 +149,100 @@ public class Warehouse {
 	 * @return int - size of each warehouse array
 	 */
 	// method will
-	public int getWarehouseSize(String zone) {
+	public int getWarehouseSize() {
 		try {
-			// two separate zones
-			if (zone == "A") {
-				return warehouseZoneA.size();
-			} else if (zone == "B") {
-				return warehouseZoneB.size();
-			} else {
-				throw new NullPointerException();
-			}
+			return warehouse.size();
+
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
-			log.warning("Location: Warehouse, Event:Zone: " + zone + " doesnt exsist in this Warehouse");
+			log.warning("Location: Warehouse, Event: That warehouse doesnt exsist.");
 			System.exit(0);
 			return -1;
 		}
 	}
-	
-	/**
-	 * Changes the Aisle Parameter.
-	 * @param aisle
-	 */
-	public void setAisle(int aisle) {
-		this.aisle = aisle;
-	}
-	/**
-	 * Changes the Racks Parameter.
-	 * @param racks
-	 */
-	public void setRacks(int racks) {
-		this.racks = racks;
-	}
-	/**
-	 * Changes the Racks Parameter.
-	 * @param levels
-	 */
-	public void setLevels(int levels) {
-		this.levels = levels;
-	}
+//	/**
+//	 * Changes the zone Parameter.
+//	 * @param zone: Integer - number of zones in the Warehouse
+//	 */
+//	public void setZone(int zone) {
+//		System.out.println("Set zone:"+zone);
+//		this.zone = zone;
+//		System.out.println("?Set zone:"+this.zone);
+//	}
+//	
+//	/**
+//	 * Changes the Aisle Parameter.
+//	 * @param aisle: Integer - number of aisle in the Warehouse
+//	 */
+//	public void setAisle(int aisle) {
+//		System.out.println("Set aisle:"+aisle);
+//		this.aisle = aisle;
+//		System.out.println("?Set aisle:"+this.aisle);
+//	}
+//	/**
+//	 * Changes the Racks Parameter.
+//	 * @param racks: Integer - number of racks in the Warehouse
+//	 */
+//	public void setRacks(int racks) {
+//		this.racks = racks;
+//	}
+//	/**
+//	 * Changes the Racks Parameter.
+//	 * @param levels: Integer - number of levels in the Warehouse
+//	 */
+//	public void setLevels(int levels) {
+//		this.levels = levels;
+//	}
 
+	/**
+	 * Remove fascia at a certain location.
+	 *
+	 *@param location: String
+	 *            - the location in the Warehouse
+	 * 
+	 */
 	public void takeOutFacsia(String location) {
 		String zone = location.substring(0, 1);
-		Integer aisle = Integer.valueOf(location.substring(1, 2));
-		Integer rack = Integer.valueOf(location.substring(2, 3));
-		Integer level = Integer.valueOf(location.substring(3, 4));
-		Integer[] values = { aisle, rack, level };
-		List<Integer> key = Arrays.asList(values);
-		if (zone.matches("A")) {
-			this.getWarehouseZoneA().replace(key, this.warehouseZoneA.get(key) - 1);
-		} else {
-			this.getWarehouseZoneB().replace(key, this.warehouseZoneA.get(key) - 1);
-		}
+		String aisle = location.substring(1, 2);
+		String rack = location.substring(2, 3);
+		String level = location.substring(3, 4);
+		String[] values = { zone, aisle, rack, level };
+		List<String> key = Arrays.asList(values);
+		this.getWarehouse().replace(key, this.warehouse.get(key) - 1);
+		
 	}
 
+	/**
+	 * Resupply at a certain location
+	 *
+	 * @param location: String
+	 *            - the location in the Warehouse
+	 * 
+	 */
 	public void resupplyRack(String location) {
 		String zone = location.substring(0, 1);
-		Integer aisle = Integer.valueOf(location.substring(1, 2));
-		Integer rack = Integer.valueOf(location.substring(2, 3));
-		Integer level = Integer.valueOf(location.substring(3, 4));
-		Integer[] values = { aisle, rack, level };
-		List<Integer> key = Arrays.asList(values);
-		if (zone.matches("A") && this.warehouseZoneA.get(key) <= 5) {
-			log.info("Location: Warehouse, Event: Zone: The area at zone " + zone + " aisle" + aisle.toString()
-					+ " rack" + rack.toString() + zone.toString() + " has been resupplied");
-			this.getWarehouseZoneA().replace(key, 30);
-		}
-		if (zone.matches("B") && this.warehouseZoneA.get(key) <= 5) {
-			log.info("Location: Warehouse, Event: The area at zone " + zone + " aisle" + aisle.toString() + " rack"
-					+ rack.toString() + zone.toString() + " has been resupplied");
-			this.getWarehouseZoneB().replace(key, 30);
+		String aisle = location.substring(1, 2);
+		String rack = location.substring(2, 3);
+		String level = location.substring(3, 4);
+		String[] values = { zone, aisle, rack, level };
+		List<String> key = Arrays.asList(values);
+		if (zone.matches("A") && this.warehouse.get(key) <= 5) {
+			log.info("Location: Warehouse, Event: Zone: The area at zone: " + zone + " aisle: " + aisle
+					+ " rack: " + rack +" level: " + level + " has been resupplied");
+			this.getWarehouse().replace(key, 30);
 		}
 	}
 
+	/**
+	 * Checks if we can resupply any of the warehouses levels
+	 */
 	public void resupplyAll() {
-		for (List<Integer> key : this.warehouseZoneA.keySet()) {
-			this.resupplyRack("A" + key.toString());
-		}
-		for (List<Integer> key : this.warehouseZoneB.keySet()) {
-			this.resupplyRack("B" + key.toString());
+		for (List<String> key : this.warehouse.keySet()) {
+			String keyz = "";
+			for (int i = 0; i< key.size(); i++){
+				keyz = keyz + key.get(i);
+			}
+			this.resupplyRack(keyz);
 		}
 	}
 
@@ -296,28 +271,16 @@ public class Warehouse {
 			fileWriter.append(NEW_LINE_SEPARATOR);
 
 			// Write a new object list to the CSV file
-			for (List<Integer> key : this.getWarehouseZoneA().keySet()) {
-				fileWriter.append(String.valueOf("A"));
+			for (List<String> key : this.getWarehouse().keySet()) {
+				fileWriter.append(key.get(0));
 				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(key.get(0)));
+				fileWriter.append(key.get(1));
 				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(key.get(1)));
+				fileWriter.append(key.get(2));
 				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(key.get(2)));
+				fileWriter.append(key.get(3));
 				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(this.getWarehouseZoneA().get(key)));
-				fileWriter.append(NEW_LINE_SEPARATOR);
-			}
-			for (List<Integer> key : this.getWarehouseZoneB().keySet()) {
-				fileWriter.append(String.valueOf("B"));
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(key.get(0)));
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(key.get(1)));
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(key.get(2)));
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(Integer.toString(this.getWarehouseZoneB().get(key)));
+				fileWriter.append(Integer.toString(this.getWarehouse().get(key)));
 				fileWriter.append(NEW_LINE_SEPARATOR);
 			}
 			log.info("Location: Warehouse, Output Event: final.csv was created successfully !!!");
