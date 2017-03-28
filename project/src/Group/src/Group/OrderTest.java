@@ -59,8 +59,15 @@ public class OrderTest {
 		skuInfo2.add(9);
 		Order o2 = new Order(modelInfo2, skuInfo2);
 		// its created 4 new order
-		assertTrue(o1.getOrderNum() == 4);
-		assertTrue(o2.getOrderNum() == 5);
+		assertTrue(o1.getOrderNum() == 6);
+		assertTrue(o2.getOrderNum() == 7);
+	}
+	
+	@Test
+	public void Test5EmptyOrder() {
+		modelInfo = new ArrayList<String>();
+		skuInfo = new ArrayList<Integer>();
+		Order o2 = new Order(modelInfo, skuInfo);
 	}
 	
 

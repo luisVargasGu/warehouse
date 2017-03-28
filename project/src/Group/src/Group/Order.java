@@ -1,6 +1,8 @@
 package Group;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.*;
 
 public class Order {
 	static Integer n = 1;
@@ -9,6 +11,7 @@ public class Order {
 	private String model;
 	private Integer SKUFront;
 	private Integer SKUBack;
+	private Logger log = Logger.getLogger("my.logger");
 
 	/**
 	 * Initializes a new order.
@@ -20,11 +23,16 @@ public class Order {
 	 */
 	public Order(ArrayList<String> modelInfo, ArrayList<Integer> skuInfo) {
 		orderNum = n;
-		model = modelInfo.get(1);
-		colour = modelInfo.get(0);
-		SKUFront = skuInfo.get(0);
-		SKUBack = skuInfo.get(1);
-		n++;
+		try {
+			model = modelInfo.get(1);
+			colour = modelInfo.get(0);
+			SKUFront = skuInfo.get(0);
+			SKUBack = skuInfo.get(1);
+			n++;
+		} finally {
+			log.warning("Size: Info for SKU and Model too small.");
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -64,7 +72,7 @@ public class Order {
 	}
 
 	/**
-	 * Sets the SKU front number of this order 
+	 * Sets the SKU front number of this order
 	 * 
 	 * @param SKUFront:
 	 *            Integer - the number to set the SKU front
@@ -81,16 +89,16 @@ public class Order {
 	public int getSKUBack() {
 		return SKUBack;
 	}
-	
+
 	/**
-	 * Sets the SKU back number of this order 
+	 * Sets the SKU back number of this order
 	 * 
 	 * @param skuBack:
 	 *            Integer - the number to set the SKU back
 	 */
 	public void setSKUBack(int skuBack) {
 		this.SKUBack = skuBack;
-		
+
 	}
 
 	/**

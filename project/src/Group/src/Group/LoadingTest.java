@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LoadingTest {
-	
+
 	// Picking-Request variables.
 	ArrayList<String> modelInfo;
 	ArrayList<Integer> skuInfo;
@@ -23,12 +23,11 @@ public class LoadingTest {
 	ArrayList<Integer> rearFacia;
 	PickingRequest pickingRequest;
 	Loading loder;
-	
-	
+
 	@Before
 	public void setUp() throws Exception {
 		// Setup for Orders and Picking Request.
-		orders  = new ArrayList<Order>();
+		orders = new ArrayList<Order>();
 		modelInfo = new ArrayList<String>();
 		modelInfo.add("Blue");
 		modelInfo.add("SES");
@@ -53,9 +52,9 @@ public class LoadingTest {
 		rearFacia = new ArrayList<Integer>();
 		rearFacia.add(3);
 		rearFacia.add(4);
-		loder =  new Loading();
+		loder = new Loading();
 	}
-	
+
 	@Test
 	public void test1getTotal() {
 
@@ -69,14 +68,17 @@ public class LoadingTest {
 		sec.add(4);
 		sec_equal.add(sec);
 		first_equal.add(first);
+		// Change name (no getter so its always fine.)
+		loder.setId("");
 		loder.loadOrders(pickingRequest, first, sec);
 		assertEquals(loder.getTotalFront(), first_equal);
 		assertEquals(loder.getTotalBack(), sec_equal);
 
 	}
-	
+
 	@Test
-	// it will override the file if the link name is the same and create a new one if it doesn't exist
+	// it will override the file if the link name is the same and create a new
+	// one if it doesn't exist
 	public void test2saveToFile() {
 		File file = new File("Loadingtest2saveToFile.csv");
 		// you can check it there
