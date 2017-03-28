@@ -69,6 +69,4 @@ public class OrderTest {
 		skuInfo = new ArrayList<Integer>();
 		Order o2 = new Order(modelInfo, skuInfo);
 	}
-	
-
 }

@@ -29,15 +29,15 @@ public class Order {
 			SKUFront = skuInfo.get(0);
 			SKUBack = skuInfo.get(1);
 			n++;
-		} finally {
-			log.warning("Size: Info for SKU and Model too small.");
+		} catch (Exception cause) {
+			log.warning("Location: Order, Input: Wrong input type, or size.");
 			System.exit(0);
 		}
 	}
 
 	/**
 	 * Returns the id of this order.
-	 * 
+	 *
 	 * @return Integer - the id of this order
 	 */
 	public Integer getOrderNum() {
