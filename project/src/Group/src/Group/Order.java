@@ -1,6 +1,5 @@
 package Group;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.*;
 
@@ -30,8 +29,7 @@ public class Order {
 			SKUBack = skuInfo.get(1);
 			n++;
 		} catch (Exception cause) {
-			log.warning("Location: Order, Input: Wrong input type, or size.");
-			System.exit(0);
+			log.warning("Location: Order, Input: Nothing was inputed. This variable hasn't been assigned.");
 		}
 	}
 
