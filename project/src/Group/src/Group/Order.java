@@ -29,7 +29,7 @@ public class Order {
 			SKUBack = skuInfo.get(1);
 			n++;
 		} catch (Exception cause) {
-			log.warning("Location: " + Main.class.getName() + " , Input: Wrong input type, or size.");
+			log.warning("Location: Order, Input: Nothing was inputed. This variable hasn't been assigned.");
 		}
 	}
 

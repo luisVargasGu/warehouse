@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class WarehouseTest {
-	String basic_path = "/Users/AnnaZelisko/Desktop";
+	String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
 	Warehouse ware1, ware2;
 	
 	@Before

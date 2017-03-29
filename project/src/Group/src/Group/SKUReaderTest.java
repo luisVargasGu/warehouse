@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class SKUReaderTest {
-	String basic_path = "/Users/AnnaZelisko/Desktop";
+	String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
 
 	@Test
 	public void testSKUReaderTableSizeMapModel() throws Exception {
