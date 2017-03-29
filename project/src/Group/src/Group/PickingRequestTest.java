@@ -36,14 +36,14 @@ public class PickingRequestTest {
 	}
 
 	@Test
-	public void test2SettingID() {
+	public void test2SettingID() throws Exception {
 		picking.setId(3);
 		assertTrue(picking.getId() == 3);
 		
 	}
 	
 	@Test
-	public void test3SettingOrders() {
+	public void test3SettingOrders() throws Exception {
 		ArrayList<Order> orderz  = new ArrayList<Order>();
 		ArrayList<String> modelInfoz = new ArrayList<String>();
 		modelInfoz.add("Red");

@@ -1,6 +1,5 @@
 package Group;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.*;
 
@@ -30,8 +29,7 @@ public class Order {
 			SKUBack = skuInfo.get(1);
 			n++;
 		} catch (Exception cause) {
-			log.warning("Location: Order, Input: Wrong input type, or size.");
-			System.exit(0);
+			log.warning("Location: " + Main.class.getName() + " , Input: Wrong input type, or size.");
 		}
 	}
 
@@ -78,7 +76,11 @@ public class Order {
 	 *            Integer - the number to set the SKU front
 	 */
 	public void setSKUFront(int SKUFront) {
-		this.SKUFront = SKUFront;
+		try {
+			this.SKUFront = SKUFront;
+		} catch (Exception e) {
+			log.warning("Location: " + Main.class.getName() + " , Input: Wrong input type, or size.");
+		}
 	}
 
 	/**
@@ -97,8 +99,11 @@ public class Order {
 	 *            Integer - the number to set the SKU back
 	 */
 	public void setSKUBack(int skuBack) {
-		this.SKUBack = skuBack;
-
+		try {
+			this.SKUBack = skuBack;
+		} catch (Exception o) {
+			log.warning("Location: " + Main.class.getName() + " , Input: Wrong input type, or size.");
+		}
 	}
 
 	/**
@@ -109,7 +114,7 @@ public class Order {
 	 *            Integer - supposedly the SKU front number of this order
 	 * @return Integer - the SKU front number of this order
 	 */
-	public boolean containsFrontSKU(int sku) {
+	public boolean containsFrontSKU(int sku) throws Exception {
 		return this.getSKUFront() == sku;
 	}
 
@@ -121,7 +126,7 @@ public class Order {
 	 *            Integer - supposedly the SKU back number of this order
 	 * @return Integer - the SKU back number of this order
 	 */
-	public boolean containsBackSKU(int sku) {
+	public boolean containsBackSKU(int sku) throws Exception {
 		return this.getSKUBack() == sku;
 	}
 

@@ -42,20 +42,22 @@ public class Sequencing {
 	public PickingRequest getPickingrequest() {
 		return pickingrequest;
 	}
-	
+
 	/**
 	 * Sets the Pallet Size once from a file.
-	 * @param fileWithSpecs - filepath.
+	 * 
+	 * @param fileWithSpecs
+	 *            - filepath.
 	 */
 	protected void setPalletSize(String fileWithSpecs) {
 		try {
 			BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
 			// Read the first line b4 the while so we skip the instructions.
-			String line = spec.readLine();
+			String line;
 			String[] lineParts;
 			while ((line = spec.readLine()) != null) {
-				lineParts = line.split(" ");				
-				if(lineParts[0] == "PalletSize:") {
+				lineParts = line.split(" ");
+				if (lineParts[0].equals("Palletsize:")) {
 					this.palletSize = Integer.parseInt(lineParts[1]);
 				}
 			}
@@ -65,7 +67,6 @@ public class Sequencing {
 			System.exit(0);
 		}
 	}
-
 
 	/**
 	 * Return the id.
@@ -104,20 +105,20 @@ public class Sequencing {
 		return backFasciaPallet;
 	}
 
-	 //Methods
-	 /**
+	// Methods
+	/**
 	 * Giving work to the sequencing process.
 	 *
 	 * @param pickingRequest:
-	 * PickingRequest - assigned picking request to the process
+	 *            PickingRequest - assigned picking request to the process
 	 *
 	 * @param skus:
-	 * ArrayList<Integer> - assigned skus to the process
+	 *            ArrayList<Integer> - assigned skus to the process
 	 */
-	 public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) {
-		 this.skus = skus;
-		 this.pickingrequest = pickingRequest;
-	 }
+	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) throws Exception{
+		this.skus = skus;
+		this.pickingrequest = pickingRequest;
+	}
 
 	/**
 	 * Checks if process has completed sequencing.
@@ -165,7 +166,8 @@ public class Sequencing {
 					"Location: Sequencing, Event: The picking request could not be sequenced, due to missing or incorect fascia");
 		} catch (IndexOutOfBoundsException e) {
 			log.warning("Location: Sequencing, Event:Not enoguh indexs.");
+		} catch (Exception e) {
+			log.warning("Location: Sequencing, Event:Wrong Imput type.");
 		}
-
 	}
 }

@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 
 public class Warehouse {
 	// Ware house Size.
-//	private int zone;
-//	private int aisle;
-//	private int racks;
-//	private int levels;
-	
+	// private int zone;
+	// private int aisle;
+	// private int racks;
+	// private int levels;
+
 	// the string key: zone aisle, rack, amount
 	private Map<List<String>, Integer> warehouse = new HashMap<List<String>, Integer>();
 	private Logger log = Logger.getLogger("my.logger");
@@ -34,7 +34,8 @@ public class Warehouse {
 			for (int j = 0; j < aisle; j++) {
 				for (int k = 0; k < racks; k++) {
 					for (int r = 0; r < levels; r++) {
-						String[] values = {  String.valueOf((char)(h + 65)), String.valueOf(j),  String.valueOf(k), String.valueOf(r)};
+						String[] values = { String.valueOf((char) (h + 65)), String.valueOf(j), String.valueOf(k),
+								String.valueOf(r) };
 						List<String> tempkey = Arrays.asList(values);
 						this.getWarehouse().put(tempkey, 30);
 					}
@@ -60,8 +61,7 @@ public class Warehouse {
 				// we split into the string array based on spaces, csv is -1
 				lineParts = line.split(",");
 				// this list will act as our key
-				String[] value = { lineParts[0], lineParts[1], lineParts[2],
-						lineParts[3]};
+				String[] value = { lineParts[0], lineParts[1], lineParts[2], lineParts[3] };
 				List<String> warehouseKeys = Arrays.asList(value);
 				warehouse.replace(warehouseKeys, Integer.parseInt(lineParts[4]));
 
@@ -81,9 +81,9 @@ public class Warehouse {
 	// getters and setters
 
 	/**
-	 * Return the warehouse map. 
+	 * Return the warehouse map.
 	 *
-	 * @return Map<List<String>, Integer>  - all the columns in that Warehouse
+	 * @return Map<List<String>, Integer> - all the columns in that Warehouse
 	 */
 	public Map<List<String>, Integer> getWarehouse() {
 		return warehouse;
@@ -106,7 +106,7 @@ public class Warehouse {
 	public int getAmountInZone(String zone, int aisle, int rack, int level) {
 
 		// we create our list so that we can check if we have a key in our map
-		String[] value = {zone, String.valueOf(aisle), String.valueOf(rack), String.valueOf(level)};
+		String[] value = { zone, String.valueOf(aisle), String.valueOf(rack), String.valueOf(level) };
 		List<String> keyz = Arrays.asList(value);
 
 		try {
@@ -131,7 +131,7 @@ public class Warehouse {
 	 */
 	public Set<List<String>> getWarehouseZoneKeys() {
 		try {
-			return warehouse.keySet();			
+			return warehouse.keySet();
 		} catch (NullPointerException e) {
 			// if none of those zones have been found
 			log.warning("Location: Warehouse, Event: That warehouse doesnt exsist.");
@@ -160,48 +160,48 @@ public class Warehouse {
 			return -1;
 		}
 	}
-//	/**
-//	 * Changes the zone Parameter.
-//	 * @param zone: Integer - number of zones in the Warehouse
-//	 */
-//	public void setZone(int zone) {
-//		System.out.println("Set zone:"+zone);
-//		this.zone = zone;
-//		System.out.println("?Set zone:"+this.zone);
-//	}
-//	
-//	/**
-//	 * Changes the Aisle Parameter.
-//	 * @param aisle: Integer - number of aisle in the Warehouse
-//	 */
-//	public void setAisle(int aisle) {
-//		System.out.println("Set aisle:"+aisle);
-//		this.aisle = aisle;
-//		System.out.println("?Set aisle:"+this.aisle);
-//	}
-//	/**
-//	 * Changes the Racks Parameter.
-//	 * @param racks: Integer - number of racks in the Warehouse
-//	 */
-//	public void setRacks(int racks) {
-//		this.racks = racks;
-//	}
-//	/**
-//	 * Changes the Racks Parameter.
-//	 * @param levels: Integer - number of levels in the Warehouse
-//	 */
-//	public void setLevels(int levels) {
-//		this.levels = levels;
-//	}
+	// /**
+	// * Changes the zone Parameter.
+	// * @param zone: Integer - number of zones in the Warehouse
+	// */
+	// public void setZone(int zone) {
+	// System.out.println("Set zone:"+zone);
+	// this.zone = zone;
+	// System.out.println("?Set zone:"+this.zone);
+	// }
+	//
+	// /**
+	// * Changes the Aisle Parameter.
+	// * @param aisle: Integer - number of aisle in the Warehouse
+	// */
+	// public void setAisle(int aisle) {
+	// System.out.println("Set aisle:"+aisle);
+	// this.aisle = aisle;
+	// System.out.println("?Set aisle:"+this.aisle);
+	// }
+	// /**
+	// * Changes the Racks Parameter.
+	// * @param racks: Integer - number of racks in the Warehouse
+	// */
+	// public void setRacks(int racks) {
+	// this.racks = racks;
+	// }
+	// /**
+	// * Changes the Racks Parameter.
+	// * @param levels: Integer - number of levels in the Warehouse
+	// */
+	// public void setLevels(int levels) {
+	// this.levels = levels;
+	// }
 
 	/**
 	 * Remove fascia at a certain location.
 	 *
-	 *@param location: String
-	 *            - the location in the Warehouse
+	 * @param location:
+	 *            String - the location in the Warehouse
 	 * 
 	 */
-	public void takeOutFacsia(String location) {
+	public void takeOutFacsia(String location) throws Exception {
 		String zone = location.substring(0, 1);
 		String aisle = location.substring(1, 2);
 		String rack = location.substring(2, 3);
@@ -209,17 +209,17 @@ public class Warehouse {
 		String[] values = { zone, aisle, rack, level };
 		List<String> key = Arrays.asList(values);
 		this.getWarehouse().replace(key, this.warehouse.get(key) - 1);
-		
+
 	}
 
 	/**
 	 * Resupply at a certain location
 	 *
-	 * @param location: String
-	 *            - the location in the Warehouse
+	 * @param location:
+	 *            String - the location in the Warehouse
 	 * 
 	 */
-	public void resupplyRack(String location) {
+	public void resupplyRack(String location) throws Exception {
 		String zone = location.substring(0, 1);
 		String aisle = location.substring(1, 2);
 		String rack = location.substring(2, 3);
@@ -227,19 +227,21 @@ public class Warehouse {
 		String[] values = { zone, aisle, rack, level };
 		List<String> key = Arrays.asList(values);
 		if (zone.matches("A") && this.warehouse.get(key) <= 5) {
-			log.info("Location: Warehouse, Event: Zone: The area at zone: " + zone + " aisle: " + aisle
-					+ " rack: " + rack +" level: " + level + " has been resupplied");
+			log.info("Location: Warehouse, Event: Zone: The area at zone: " + zone + " aisle: " + aisle + " rack: "
+					+ rack + " level: " + level + " has been resupplied");
 			this.getWarehouse().replace(key, 30);
 		}
 	}
 
 	/**
 	 * Checks if we can resupply any of the warehouses levels
+	 * 
+	 * @throws Exception
 	 */
-	public void resupplyAll() {
+	public void resupplyAll() throws Exception {
 		for (List<String> key : this.warehouse.keySet()) {
 			String keyz = "";
-			for (int i = 0; i< key.size(); i++){
+			for (int i = 0; i < key.size(); i++) {
 				keyz = keyz + key.get(i);
 			}
 			this.resupplyRack(keyz);

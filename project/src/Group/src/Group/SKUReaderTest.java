@@ -8,22 +8,22 @@ import org.junit.Test;
 
 public class SKUReaderTest {
 	String basic_path = "/Users/AnnaZelisko/Desktop";
-	
+
 	@Test
-	public void testSKUReaderTableSizeMapModel() {
+	public void testSKUReaderTableSizeMapModel() throws Exception {
 		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
 		assertTrue(table.getTranslationTableModel().size() == 48);
 	}
 
 	@Test
-	public void testSKUReaderTableSizeMapSKU() {
-		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
+	public void testSKUReaderTableSizeMapSKU() throws Exception {
+		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
 		assertTrue(table.getTranslationTableSku().size() == 48);
 	}
 
 	@Test
-	public void testSKUReaderGetSku() {
-		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
+	public void testSKUReaderGetSku() throws Exception{
+		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
@@ -34,8 +34,8 @@ public class SKUReaderTest {
 	}
 
 	@Test
-	public void testSKUReaderGetSkuBadParameter() {
-		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
+	public void testSKUReaderGetSkuBadParameter() throws Exception{
+		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
@@ -45,10 +45,9 @@ public class SKUReaderTest {
 		assertEquals(table.getSKU(model), realSku);
 	}
 
-	
 	@Test
-	public void testSKUReaderGetModel(){
-		SKUReader table = new SKUReader(basic_path+"/group_0406/project/translation.csv");
+	public void testSKUReaderGetModel() throws Exception{
+		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");

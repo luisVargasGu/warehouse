@@ -10,7 +10,7 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "/Users/AnnaZelisko/Desktop";
+		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
 		// Creates all the files we will interact with
 		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
@@ -35,7 +35,7 @@ public class Main {
 
 		// all instances that require interaction in main
 		SKUReader SKUFile = new SKUReader(fileWithSKUs);
-		//WarehouseFile = new Warehouse(fileWithWarehouseInfo);
+		// WarehouseFile = new Warehouse(fileWithWarehouseInfo);
 		Warehouse WarehouseFile = null;
 		QueueOfOrders orderQueue = new QueueOfOrders();
 		QueueOfWorkers workerQueue = new QueueOfWorkers();
@@ -51,9 +51,11 @@ public class Main {
 			while ((line = spec.readLine()) != null) {
 				lineParts = line.split(" ");
 				if (lineParts[0].equals("Warehouse:")) {
-					// when we create the Warehouse before this loop the parameters from the config file will not be set.
+					// when we create the Warehouse before this loop the
+					// parameters from the config file will not be set.
 					// so our default Warehouse of 30 fasica is never set.
-					// if we send them in as we create warehouse then the for loop at the start actually runs
+					// if we send them in as we create warehouse then the for
+					// loop at the start actually runs
 					WarehouseFile = new Warehouse(fileWithWarehouseInfo, Integer.parseInt(lineParts[1]),
 							Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3]),
 							Integer.parseInt(lineParts[4]));
@@ -137,17 +139,22 @@ public class Main {
 			}
 
 			// Output all the files that are needed
-			try{
+			try {
 				WarehouseFile.saveToFile(fileToWriteToFinal);
-			}catch(IOException e) {
+			} catch (IOException e) {
 				log.warning("Location: Main, File: Warehouse file is not intiated.");
 				System.exit(0);
 			}
 			loader.outputOrdersLoaded(fileToWriteToOrders);
 			br.close();
 		}
-		// catch any file exception
+		
 		catch (IOException e) {
+			log.warning("Location: Main, File: cant be read from or cant be found.");
+			System.exit(0);
+		}
+		// catch any file exception
+		catch (Exception e) {
 			log.warning("Location: Main, File: cant be read from or cant be found.");
 			System.exit(0);
 		}

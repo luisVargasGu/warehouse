@@ -33,13 +33,13 @@ public class WorkerTest {
 	}
 	
 	@Test
-	public void test2Work() {
+	public void test2Work() throws Exception{
 		worker.givePickingRequest(work); //automatically tests setWork()
 		assertEquals(worker.getWork(), work);
 	}
 	
 	@Test
-	public void test3Location() {
+	public void test3Location() throws Exception{
 		ArrayList<String> location = new ArrayList<String>();
 		location.add("New York");
 		worker.setlocation(location);
@@ -47,7 +47,7 @@ public class WorkerTest {
 	}
 	
 	@Test
-	public void test4FinishedWork() {
+	public void test4FinishedWork() throws Exception{
 		ArrayList<String> location = new ArrayList<String>();
 		location.add("New York");
 		worker.setlocation(location);

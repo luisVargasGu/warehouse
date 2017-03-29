@@ -32,7 +32,7 @@ public class WarehouseTest {
 	}
 
 	@Test
-	public void FasicaAmount(){
+	public void FasicaAmount() throws Exception{
 
 		int amount1 = ware2.getAmountInZone("A", 1, 0, 3);
 		assertTrue(amount1 == 16);

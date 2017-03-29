@@ -12,7 +12,7 @@ public class OrderTest {
 	ArrayList<String> modelInfo;
 	ArrayList<Integer> skuInfo;
 	Order o1;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		modelInfo = new ArrayList<String>();
@@ -23,7 +23,7 @@ public class OrderTest {
 		skuInfo.add(6);
 		o1 = new Order(modelInfo, skuInfo);
 	}
-	
+
 	@Test
 	public void Test1CreateOrder() {
 		assertEquals(o1.getColour(), "Blue");
@@ -32,7 +32,7 @@ public class OrderTest {
 		assertEquals(o1.getSKUBack(), 6);
 		assertTrue(o1.getOrderNum() == 1);
 	}
-	
+
 	@Test
 	public void Test2SetModel() {
 		o1.setSKUFront(7);
@@ -40,15 +40,15 @@ public class OrderTest {
 		assertEquals(o1.getSKUFront(), 7);
 		assertEquals(o1.getSKUBack(), 8);
 	}
-	
+
 	@Test
-	public void Test3ContainsSKU() {
+	public void Test3ContainsSKU() throws Exception {
 		assertFalse(o1.containsFrontSKU(7));
 		assertFalse(o1.containsBackSKU(8));
 		assertTrue(o1.containsFrontSKU(5));
 		assertTrue(o1.containsBackSKU(6));
 	}
-	
+
 	@Test
 	public void Test4OrderNum() {
 		ArrayList<String> modelInfo2 = new ArrayList<String>();
@@ -58,15 +58,20 @@ public class OrderTest {
 		skuInfo2.add(8);
 		skuInfo2.add(9);
 		Order o2 = new Order(modelInfo2, skuInfo2);
-		// its created 4 new order
-		assertTrue(o1.getOrderNum() == 6);
-		assertTrue(o2.getOrderNum() == 7);
+		// Its created 4 new order
+		assertTrue(o1.getOrderNum() == 4);
+		assertTrue(o2.getOrderNum() == 5);
 	}
-	
-	@Test
+
+/*	@Test
 	public void Test5EmptyOrder() {
 		modelInfo = new ArrayList<String>();
 		skuInfo = new ArrayList<Integer>();
 		Order o2 = new Order(modelInfo, skuInfo);
-	}
+	}*/
+
+	/*@Test
+	public void Test6ContainsSKUInvalid() throws Exception {
+		assertTrue(o1.containsFrontSKU(Integer.parseInt("")));
+	}*/
 }

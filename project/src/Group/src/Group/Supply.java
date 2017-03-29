@@ -13,7 +13,7 @@ public class Supply {
      * @param   color:String - the color of that facisa
      * @param   maker:String - the model of that facisa
      */
-	public Supply(String color, String model, String position){
+	public Supply(String color, String model, String position) throws Exception{
 		log.info("Location: Supply, Event: A new supply has arrived to the Warehouse:"+ color+", "+ model+", &"+position);
 	}
 
@@ -35,7 +35,7 @@ public class Supply {
 	}
 
 	//getters and setters	
-	public void setSupplyNotDamaged(Boolean status) {
+	public void setSupplyNotDamaged(Boolean status) throws Exception{
 		this.supplyNotDamaged = status;
 	}
 

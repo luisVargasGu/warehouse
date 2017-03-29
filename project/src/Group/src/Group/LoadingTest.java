@@ -56,7 +56,7 @@ public class LoadingTest {
 	}
 
 	@Test
-	public void test1getTotal() {
+	public void test1getTotal() throws Exception {
 
 		ArrayList<ArrayList<Integer>> first_equal = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> first = new ArrayList<Integer>();

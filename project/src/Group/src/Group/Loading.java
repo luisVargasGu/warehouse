@@ -57,7 +57,7 @@ public class Loading {
 	 * 
 	 * @param id:String - id of our load
 	 */
-	public void setId(String id) {
+	public void setId(String id) throws Exception{
 		this.id = id;
 	}
 
@@ -74,7 +74,7 @@ public class Loading {
 	 *            ArrayList<Integer> - array containing the back pallets
 	 */
 	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
-			ArrayList<Integer> backPallet) {
+			ArrayList<Integer> backPallet) throws Exception {
 		log.info("Location: Loading, Event: "+ this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck.");
 		this.ordersLoaded.addAll(pickingRequest.getOrders());
 		this.totalFront.add(frontPallet);

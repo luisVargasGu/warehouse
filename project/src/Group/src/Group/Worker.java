@@ -26,7 +26,7 @@ public class Worker {
 	 * @param work:PickingRequest
 	 *            the work to set
 	 */
-	public void setWork(PickingRequest work) {
+	public void setWork(PickingRequest work) throws Exception{
 		this.work = work;
 	}
 
@@ -45,7 +45,7 @@ public class Worker {
 	 * @param location:ArrayList<String>
 	 *            the location to set
 	 */
-	public void setlocation(ArrayList<String> location) {
+	public void setlocation(ArrayList<String> location) throws Exception{
 		this.location = location;
 	}
 
@@ -73,7 +73,7 @@ public class Worker {
 	 * @param finishedwork:ArrayList<Integer>
 	 *            the finished work
 	 */
-	public void setFinishedwork(ArrayList<Integer> finishedwork) {
+	public void setFinishedwork(ArrayList<Integer> finishedwork) throws Exception{
 		this.finishedwork = finishedwork;
 	}
 
@@ -96,7 +96,7 @@ public class Worker {
 	 * @param picks:
 	 *            PickingRequest a new picking request for the worker
 	 */
-	public void givePickingRequest(PickingRequest picks) {
+	public void givePickingRequest(PickingRequest picks) throws Exception{
 
 		this.setWork(picks);
 		ArrayList<Integer> locations = new ArrayList<>();
@@ -139,7 +139,7 @@ public class Worker {
 	/**
 	 * Worker is confirmed to have dropped off the work.
 	 */
-	public void dropOffWork() {
+	public void dropOffWork() throws Exception{
 		if (this.finishedWork()) {
 			ArrayList<String> empty1 = new ArrayList<>();
 			ArrayList<Integer> empty2 = new ArrayList<>();

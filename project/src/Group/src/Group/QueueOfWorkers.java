@@ -42,7 +42,7 @@ public class QueueOfWorkers extends AbstractQueue<Worker>{
 	 * @throws NoSuchElementException
 	 *             if this queue is empty
 	 */
-	public boolean searchWorker(String name){
+	public boolean searchWorker(String name) throws Exception{
 		for(Worker worker: this.getArrayz()){
 			if(worker.getId() == name){
 				return true;

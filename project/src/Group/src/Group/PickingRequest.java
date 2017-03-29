@@ -22,7 +22,7 @@ public class PickingRequest{
      *
      * @param  Id: Integer - set the picking request order.
      */
-	public void setId(int Id) {
+	public void setId(int Id) throws Exception{
 		this.id = Id;
 		
 	}
@@ -40,7 +40,7 @@ public class PickingRequest{
      *
      * @param  orders: ArrayList<Order> - list of orders that needs to be set
      */
-	public void setOrders(ArrayList<Order> orders) {
+	public void setOrders(ArrayList<Order> orders) throws Exception{
 		this.orders = orders;
 	}
 
@@ -50,7 +50,7 @@ public class PickingRequest{
      *
      * @param  orders: ArrayList<Order> - list of orders that needs to be set
      */
-	public PickingRequest(ArrayList<Order> orders){
+	public PickingRequest(ArrayList<Order> orders) throws Exception{
 		this.setOrders(orders);
 		this.id = n;
 		n++;

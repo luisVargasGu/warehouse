@@ -1,2 +1,2 @@
 Warehouse: 2 2 3 4
-Pallet size: 4
+Palletsize: 4
