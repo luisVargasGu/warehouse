@@ -10,7 +10,7 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
+		String basic_path = "/Users/AnnaZelisko/Desktop";
 		// Creates all the files we will interact with
 		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
@@ -59,12 +59,11 @@ public class Main {
 					WarehouseFile = new Warehouse(fileWithWarehouseInfo, Integer.parseInt(lineParts[1]),
 							Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3]),
 							Integer.parseInt(lineParts[4]));
-
-					// WarehouseFile.setZone(Integer.parseInt(lineParts[1]));
-					// WarehouseFile.setAisle(Integer.parseInt(lineParts[2]));
-					// WarehouseFile.setRacks(Integer.parseInt(lineParts[3]));
-					// WarehouseFile.setLevels(Integer.parseInt(lineParts[4]));
 				}
+				if (lineParts[0].equals("Palletsize:")) {
+					sequencer.setPalletSize(lineParts[1]);
+				}
+				
 			}
 			spec.close();
 		} catch (IOException e2) {
@@ -98,6 +97,7 @@ public class Main {
 				}
 				// if its an picker request
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("ready"))) {
+					log.info("Location: Main, Event: Picker "+lineParts[1]+" ready.");
 					Worker w1 = new Worker(lineParts[1]);
 					ArrayList<Order> pickingRequest = orderQueue.dequeue();
 					PickingRequest workForWorker = new PickingRequest(pickingRequest);
@@ -106,35 +106,46 @@ public class Main {
 				}
 
 				if ((lineParts[0].matches("Picker")) && (lineParts[lineParts.length - 1].matches("Marshaling"))) {
+					log.info("Location: Main, Event: Picker "+lineParts[1]+" to marshaling.");
 					if (workerQueue.getArrayz().get(0).finishedWork()) {
 						Worker goodWorker = workerQueue.dequeue();
 						sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
-
 					}
 				}
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {
 					workerQueue.getWorker(lineParts[1]).pickUpOrder();
-
 				}
 
-				// if its an picker request
-				if (lineParts[0].matches("Sequencer")) {
+				// if its an sequencer request
+				if (lineParts[0].matches("Sequencer") && (lineParts[2].matches("ready"))){
+					log.info("Location: Main, Event: Sequencer "+lineParts[1]+" ready.");
 					sequencer.setId(lineParts[1]);
-					// Could be put somewhere else?
-					sequencer.setPalletSize(fileWithSpecs);
+					//sequencer.setPalletSize(String fileWithSpecs);
+			
+				}
+				if (lineParts[0].matches("Sequencer") && (lineParts[2].matches("sequences"))){
+					log.info("Location: Main, Event: Sequencer "+lineParts[1]+" sequences.");
 					sequencer.sequence();
 				}
 				// if its an loader request
-				if (lineParts[0].matches("Loader")) {
+				if (lineParts[0].matches("Loader") && (lineParts[2].matches("ready"))) {
+					log.info("Location: Main, Event: Loader "+lineParts[1]+" ready.");
 					loader.setId(lineParts[1]);
+				}
+				if (lineParts[0].matches("Loader") && (lineParts[2].matches("loads"))) {
+					log.info("Location: Main, Event: Loader "+lineParts[1]+" loads.");
 					loader.loadOrders(sequencer.getPickingrequest(), sequencer.getFrontFasciaPallet(),
 							sequencer.getBackFasciaPallet());
 					truck1.addOrdersToTruck();
 					sequencer = new Sequencing();
 				}
 				// if its an replenisher request
-				if (lineParts[0].matches("Replenisher")) {
-
+				if (lineParts[0].matches("Replenisher") && (lineParts[2].matches("ready"))) {
+					log.info("Location: Main, Event: Replenisher "+lineParts[1]+" ready.");
+				}
+				// if its an replenisher request
+				if (lineParts[0].matches("Replenisher") && (lineParts[2].matches("replenisher"))) {
+					log.info("Location: Main, Event: Replenisher "+lineParts[1]+" replenisher.");
 				}
 			}
 

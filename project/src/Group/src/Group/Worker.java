@@ -111,13 +111,15 @@ public class Worker {
 	/**
 	 * Tells the system which worker is picking up which order.
 	 * @param log:
-	 * 				this is the log file that we will be writting to 
+	 * 				this is the log file that we will be writing to 
 	 */
 	public void pickUpOrder() {
 		String fascia = this.getlocation().remove(0);
 		log.info("Location: Worker Event: "+this.getId() + ", please go to zone " + fascia.charAt(0) + " " + fascia.charAt(1) + " "
 				+ fascia.charAt(2) + " " + fascia.charAt(3));
+		
 		Integer skuFascia = Integer.parseInt(fascia.substring(4, fascia.length()));
+		log.info("Location: Worker, Event: Picker " + this.getId() + " pick "+skuFascia);
 		
 		this.getFinishedwork().add(skuFascia);
 

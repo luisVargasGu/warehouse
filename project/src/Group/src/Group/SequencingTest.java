@@ -58,7 +58,7 @@ public class SequencingTest {
 		seq.giveWork(picking, finalskuInfo);
 		assertEquals(seq.getPickingrequest(), picking);
 		assertEquals(seq.getSkus(), finalskuInfo);
-		seq.setPalletSize(path);
+		seq.setPalletSize("4");
 		seq.sequence();
 		Boolean finalz = seq.isSequenced();
 		assertTrue(finalz);

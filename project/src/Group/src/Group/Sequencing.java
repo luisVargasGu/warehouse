@@ -1,7 +1,7 @@
 package Group;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -49,23 +49,26 @@ public class Sequencing {
 	 * @param fileWithSpecs
 	 *            - filepath.
 	 */
-	protected void setPalletSize(String fileWithSpecs) {
-		try {
-			BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
-			// Read the first line b4 the while so we skip the instructions.
-			String line;
-			String[] lineParts;
-			while ((line = spec.readLine()) != null) {
-				lineParts = line.split(" ");
-				if (lineParts[0].equals("Palletsize:")) {
-					this.palletSize = Integer.parseInt(lineParts[1]);
-				}
-			}
-			spec.close();
-		} catch (IOException e2) {
-			log.warning("Location: Main, File: cant be read from or cant be found.");
-			System.exit(0);
-		}
+	// protected void setPalletSize(String fileWithSpecs) {
+	// try {
+	// BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
+	// // Read the first line b4 the while so we skip the instructions.
+	// String line;
+	// String[] lineParts;
+	// while ((line = spec.readLine()) != null) {
+	// lineParts = line.split(" ");
+	// if (lineParts[0].equals("Palletsize:")) {
+	// this.palletSize = Integer.parseInt(lineParts[1]);
+	// }
+	// }
+	// spec.close();
+	// } catch (IOException e2) {
+	// log.warning("Location: Main, File: cant be read from or cant be found.");
+	// System.exit(0);
+	// }
+	// }
+	public void setPalletSize(String size) {
+		this.palletSize = Integer.parseInt(size);
 	}
 
 	/**
@@ -115,7 +118,7 @@ public class Sequencing {
 	 * @param skus:
 	 *            ArrayList<Integer> - assigned skus to the process
 	 */
-	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) throws Exception{
+	public void giveWork(PickingRequest pickingRequest, ArrayList<Integer> skus) throws Exception {
 		this.skus = skus;
 		this.pickingrequest = pickingRequest;
 	}
@@ -135,7 +138,7 @@ public class Sequencing {
 	public void sequence() {
 		// try catch in case something fails
 		try {
-			log.info("Location: Sequencing, Event:" + this.getId() + " is sequencing" + " picking request "
+			log.info("Location: Sequencing, Event: " + this.getId() + " is sequencing" + " picking request "
 					+ (this.getPickingrequest().getId()).toString());
 
 			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
@@ -144,18 +147,27 @@ public class Sequencing {
 					Order order = this.getPickingrequest().getOrders().get(j);
 					for (int i = j; i < palletSize * 2; i++) {
 						if (order.containsBackSKU(this.getSkus().get(i))) {
-
+							log.info("Location: Sequencing, Event: Fasica SKU provided: " + this.getSkus().get(i)
+									+ ", is a correct back fasica for order: " + order.getOrderNum()
+									+ " back fasica SKU: " + order.getSKUBack());
 							this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 									this.getSkus().get(i));
 						} else if (order.containsFrontSKU(this.getSkus().get(i))) {
-
+							log.info("Location: Sequencing, Event: Fasica SKU provided: " + this.getSkus().get(i)
+									+ ", is a correct front fasica for order: " + order.getOrderNum()
+									+ " front fasica SKU: " + order.getSKUFront());
 							this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 									this.getSkus().get(i));
-						}
+						} 
 					}
 
 				}
-
+				else if(this.getFrontFasciaPallet().size() != palletSize) {
+					log.info("Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
+				}
+				else if (this.getBackFasciaPallet().size() != palletSize) {
+					log.info("Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
+				}
 			}
 			if (this.isSequenced() == false) {
 				throw new IOException();
