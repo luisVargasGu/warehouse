@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class WarehouseTest {
-	String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
+	String basic_path = "C:/Users/ASUS/Desktop/CSC207Workspace/";
 	Warehouse ware1, ware2;
 	
 	@Before
@@ -17,8 +17,9 @@ public class WarehouseTest {
 	}
 	
 	@Test
-	public void WarehouseConstructor() {		
-		assertTrue(ware1.getWarehouseSize() == 48);
+	public void WarehouseConstructor() {
+		int size = ware1.getWarehouseSize();
+		assertEquals(size, 48);
 		String[] value1 = { "A", String.valueOf(0), String.valueOf(0), String.valueOf(0) }; 
 		List<String> list1 = Arrays.asList(value1);
 		assertTrue(ware1.getWarehouseZoneKeys().contains(list1));
@@ -33,22 +34,21 @@ public class WarehouseTest {
 
 	@Test
 	public void FasicaAmount() throws Exception{
-
 		int amount1 = ware2.getAmountInZone("A", 1, 0, 3);
-		assertTrue(amount1 == 16);
+		assertEquals(amount1, 16);
 		int amount2 = ware2.getAmountInZone("B", 0, 0, 0);
-		assertTrue(amount2 == 25);
+		assertEquals(amount2, 25);
 		ware2.resupplyAll();
 		int amount11 = ware2.getAmountInZone("A", 1, 0, 3);
-		assertTrue(amount11 == 16);
+		assertEquals(amount11 ,16);
 		int amount21 = ware2.getAmountInZone("B", 0, 0, 0);
-		assertTrue(amount21 == 25);
+		assertEquals(amount21, 25);
 		
 		int amount3 = ware1.getAmountInZone("A", 0, 0, 2);
-		assertTrue(amount3 == 3);
+		assertEquals(amount3,3);
 		ware1.resupplyAll();
 		int amount31 = ware1.getAmountInZone("A", 0, 0, 2);
-		assertTrue(amount31 == 30);
+		assertEquals(amount31, 30);
 	}
 	
 	

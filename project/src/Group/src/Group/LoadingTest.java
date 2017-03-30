@@ -79,17 +79,13 @@ public class LoadingTest {
 	@Test
 	// it will override the file if the link name is the same and create a new
 	// one if it doesn't exist
-	public void test2saveToFile() {
+	public void test2saveToFile() throws Exception{
 		File file = new File("Loadingtest2saveToFile.csv");
 		// you can check it there
 		ArrayList<String> modelInfo = new ArrayList<String>();
 		modelInfo.add("SES");
 		modelInfo.add("IK");
-		try {
-			loder.outputOrdersLoaded(file);
-		} catch (IOException e) {
-			System.out.println("Test Not Passed");
-		}
-	}
+		loder.outputOrdersLoaded(file);
 
+	}
 }

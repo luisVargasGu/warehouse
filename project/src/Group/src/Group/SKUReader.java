@@ -21,7 +21,7 @@ public class SKUReader {
 	private Map<List<String>, List<Integer>> translationTableSku = new HashMap<List<String>, List<Integer>>();
 	private Map<List<Integer>, List<String>> translationTableModel = new HashMap<List<Integer>, List<String>>();
 	private Logger log = Logger.getLogger("my.logger");
-	
+
 	/**
 	 * Constructor: creates our SKU file, from our provided file
 	 * 
@@ -29,36 +29,32 @@ public class SKUReader {
 	 *            String the place where the Translation-table is located.
 	 * @throws IOException
 	 */
-	public SKUReader(String fileWithSKUs) {
+	public SKUReader(String fileWithSKUs) throws Exception {
 		// local variables to track each line and the information on each line
 		String line;
 		String[] lineparts;
 		// for each line we enter the information in to pairs of lists.
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileWithSKUs));
-			// removes the title
-			br.readLine();
+		BufferedReader br = new BufferedReader(new FileReader(fileWithSKUs));
+		// removes the title
+		br.readLine();
 
-			while (((line = br.readLine()) != null)) {
-				lineparts = line.split(",");
-				// local variables for the model info and the front/back Sku
-				ArrayList<String> modelInfo = new ArrayList<String>();
-				ArrayList<Integer> skuInfo = new ArrayList<Integer>();
+		while (((line = br.readLine()) != null)) {
+			lineparts = line.split(",");
+			// local variables for the model info and the front/back Sku
+			ArrayList<String> modelInfo = new ArrayList<String>();
+			ArrayList<Integer> skuInfo = new ArrayList<Integer>();
 
-				// setting up the keys and values for the map
-				modelInfo.add(lineparts[0]);
-				modelInfo.add(lineparts[1]);
-				skuInfo.add(Integer.parseInt(lineparts[2]));
-				skuInfo.add(Integer.parseInt(lineparts[3]));
+			// setting up the keys and values for the map
+			modelInfo.add(lineparts[0]);
+			modelInfo.add(lineparts[1]);
+			skuInfo.add(Integer.parseInt(lineparts[2]));
+			skuInfo.add(Integer.parseInt(lineparts[3]));
 
-				// putting the key/value pairs into the maps
-				this.getTranslationTableSku().put(modelInfo, skuInfo);
-				this.getTranslationTableModel().put(skuInfo, modelInfo);
-			}
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			// putting the key/value pairs into the maps
+			this.getTranslationTableSku().put(modelInfo, skuInfo);
+			this.getTranslationTableModel().put(skuInfo, modelInfo);
 		}
+		br.close();
 	}
 
 	/**
@@ -91,37 +87,19 @@ public class SKUReader {
 	 * @throws NullPointerException
 	 */
 	public List<Integer> getSKU(List<String> model) throws NullPointerException {
-		try {
-			if (this.getTranslationTableSku().containsKey(model)) {
-				return this.getTranslationTableSku().get(model);
-			} else {
-				throw new NullPointerException();
-			}
-		} catch (NullPointerException e) {
-			log.warning("Location: SKUReader, File: That key does not exist.");
-			System.exit(0);
-			return null;
-		}
+		return this.getTranslationTableSku().get(model);
 	}
 
 	/**
 	 * The method that will get the model information for a certain SKU
 	 * 
-	 * @param skuInfo:ArrayList<Integer> - use these sku values for front and back
+	 * @param skuInfo:ArrayList<Integer>
+	 *            - use these sku values for front and back
 	 * @return List<String> - return model/colour information for those skus
 	 * @throws NullPointerException
 	 */
 	public List<String> getModelInfo(ArrayList<Integer> sku) throws NullPointerException {
-		try {
-			if (this.getTranslationTableModel().containsKey(sku)) {
-				return this.getTranslationTableModel().get(sku);
-			} else {
-				throw new NullPointerException();
-			}
-		} catch (NullPointerException e) {
-			log.warning("Location: SKUReader, File: That key does not exist.");
-			System.exit(0);
-			return null;
-		}
+		return this.getTranslationTableModel().get(sku);
+
 	}
 }

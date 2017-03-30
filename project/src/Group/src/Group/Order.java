@@ -76,11 +76,7 @@ public class Order {
 	 *            Integer - the number to set the SKU front
 	 */
 	public void setSKUFront(int SKUFront) {
-		try {
-			this.SKUFront = SKUFront;
-		} catch (Exception e) {
-			log.warning("Location: " + Main.class.getName() + " , Input: Wrong input type, or size.");
-		}
+		this.SKUFront = SKUFront;
 	}
 
 	/**
@@ -99,11 +95,7 @@ public class Order {
 	 *            Integer - the number to set the SKU back
 	 */
 	public void setSKUBack(int skuBack) {
-		try {
-			this.SKUBack = skuBack;
-		} catch (Exception o) {
-			log.warning("Location: " + Main.class.getName() + " , Input: Wrong input type, or size.");
-		}
+		this.SKUBack = skuBack;
 	}
 
 	/**

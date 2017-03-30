@@ -19,7 +19,7 @@ public class SequencingTest {
 
 	@Test
 	public void test1round1() throws Exception {
-		path = "C:/Users/lvargas/Desktop/CSC207Workspace/project/group_0406/project/specifications.txt";
+		path = "C:/Users/ASUS/Desktop/CSC207Workspace/group_0406/project/specifications.txt";
 		ArrayList<Order> orders = new ArrayList<Order>();
 		ArrayList<String> modelInfo = new ArrayList<String>();
 		modelInfo.add("Blue");
@@ -59,6 +59,7 @@ public class SequencingTest {
 		assertEquals(seq.getPickingrequest(), picking);
 		assertEquals(seq.getSkus(), finalskuInfo);
 		seq.setPalletSize(path);
+		seq.setId("Billy");
 		seq.sequence();
 		Boolean finalz = seq.isSequenced();
 		assertTrue(finalz);

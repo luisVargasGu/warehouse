@@ -7,18 +7,20 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class SKUReaderTest {
-	String basic_path = "C:/Users/lvargas/Desktop/CSC207Workspace/project";
+	String basic_path = "C:/Users/ASUS/Desktop/CSC207Workspace/";
 
 	@Test
 	public void testSKUReaderTableSizeMapModel() throws Exception {
 		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
-		assertTrue(table.getTranslationTableModel().size() == 48);
+		int n = table.getTranslationTableModel().size();
+		assertEquals(n, 48);
 	}
 
 	@Test
 	public void testSKUReaderTableSizeMapSKU() throws Exception {
 		SKUReader table = new SKUReader(basic_path + "/group_0406/project/translation.csv");
-		assertTrue(table.getTranslationTableSku().size() == 48);
+		int n = table.getTranslationTableSku().size();
+		assertEquals(n, 48);
 	}
 
 	@Test
@@ -44,6 +46,8 @@ public class SKUReaderTest {
 		realSku.add((Integer) 6);
 		assertEquals(table.getSKU(model), realSku);
 	}
+	
+	
 
 	@Test
 	public void testSKUReaderGetModel() throws Exception{
