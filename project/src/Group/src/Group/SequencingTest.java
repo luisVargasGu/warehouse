@@ -58,6 +58,7 @@ public class SequencingTest {
 		seq.giveWork(picking, finalskuInfo);
 		assertEquals(seq.getPickingrequest(), picking);
 		assertEquals(seq.getSkus(), finalskuInfo);
+
 		seq.setPalletSize(path);
 		seq.setId("Billy");
 		seq.sequence();

@@ -49,6 +49,7 @@ public class Sequencing {
 	 * @param fileWithSpecs
 	 *            - filepath.
 	 */
+
 	protected void setPalletSize(String fileWithSpecs) throws IOException {
 		BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
 		// Read the first line b4 the while so we skip the instructions.
@@ -129,6 +130,7 @@ public class Sequencing {
 	 */
 	public void sequence() throws Exception {
 		// try catch in case something fails
+
 		log.info("Location: Sequencing, Event:" + this.getId() + " is sequencing" + " picking request "
 				+ (this.getPickingrequest().getId()).toString());
 
@@ -145,11 +147,18 @@ public class Sequencing {
 						this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 								this.getSkus().get(i));
 					}
+
+					else if (this.getFrontFasciaPallet().size() != palletSize) {
+						log.info(
+								"Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
+					} else if (this.getBackFasciaPallet().size() != palletSize) {
+						log.info(
+								"Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
+					}
 				}
 
 			}
 
 		}
-
 	}
 }
