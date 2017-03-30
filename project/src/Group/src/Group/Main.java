@@ -63,7 +63,7 @@ public class Main {
 				if (lineParts[0].equals("Palletsize:")) {
 					sequencer.setPalletSize(lineParts[1]);
 				}
-				
+
 			}
 			spec.close();
 		} catch (IOException e2) {
@@ -97,7 +97,7 @@ public class Main {
 				}
 				// if its an picker request
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("ready"))) {
-					log.info("Location: Main, Event: Picker "+lineParts[1]+" ready.");
+					log.info("Location: Main, Event: Picker " + lineParts[1] + " ready.");
 					Worker w1 = new Worker(lineParts[1]);
 					ArrayList<Order> pickingRequest = orderQueue.dequeue();
 					PickingRequest workForWorker = new PickingRequest(pickingRequest);
@@ -106,34 +106,42 @@ public class Main {
 				}
 
 				if ((lineParts[0].matches("Picker")) && (lineParts[lineParts.length - 1].matches("Marshaling"))) {
-					log.info("Location: Main, Event: Picker "+lineParts[1]+" to marshaling.");
+					log.info("Location: Main, Event: Picker " + lineParts[1] + " to marshaling.");
 					if (workerQueue.getArrayz().get(0).finishedWork()) {
 						Worker goodWorker = workerQueue.dequeue();
 						sequencer.giveWork(goodWorker.getWork(), goodWorker.getFinishedwork());
 					}
 				}
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {
+					// taking out a facsia from that location
+					WarehouseFile
+							.takeOutFacsia(workerQueue.getWorker(lineParts[1]).getlocation().get(0).substring(0, 4));
+					// checking if a resupply needs to happen here at that
+					// location
+					WarehouseFile
+							.resupplyRack(workerQueue.getWorker(lineParts[1]).getlocation().get(0).substring(0, 4));
 					workerQueue.getWorker(lineParts[1]).pickUpOrder();
+
 				}
 
 				// if its an sequencer request
-				if (lineParts[0].matches("Sequencer") && (lineParts[2].matches("ready"))){
-					log.info("Location: Main, Event: Sequencer "+lineParts[1]+" ready.");
+				if (lineParts[0].matches("Sequencer") && (lineParts[2].matches("ready"))) {
+					log.info("Location: Main, Event: Sequencer " + lineParts[1] + " ready.");
 					sequencer.setId(lineParts[1]);
-					//sequencer.setPalletSize(String fileWithSpecs);
-			
+					// sequencer.setPalletSize(String fileWithSpecs);
+
 				}
-				if (lineParts[0].matches("Sequencer") && (lineParts[2].matches("sequences"))){
-					log.info("Location: Main, Event: Sequencer "+lineParts[1]+" sequences.");
+				if (lineParts[0].matches("Sequencer") && (lineParts[2].matches("sequences"))) {
+					log.info("Location: Main, Event: Sequencer " + lineParts[1] + " sequences.");
 					sequencer.sequence();
 				}
 				// if its an loader request
 				if (lineParts[0].matches("Loader") && (lineParts[2].matches("ready"))) {
-					log.info("Location: Main, Event: Loader "+lineParts[1]+" ready.");
+					log.info("Location: Main, Event: Loader " + lineParts[1] + " ready.");
 					loader.setId(lineParts[1]);
 				}
 				if (lineParts[0].matches("Loader") && (lineParts[2].matches("loads"))) {
-					log.info("Location: Main, Event: Loader "+lineParts[1]+" loads.");
+					log.info("Location: Main, Event: Loader " + lineParts[1] + " loads.");
 					loader.loadOrders(sequencer.getPickingrequest(), sequencer.getFrontFasciaPallet(),
 							sequencer.getBackFasciaPallet());
 					truck1.addOrdersToTruck();
@@ -141,11 +149,15 @@ public class Main {
 				}
 				// if its an replenisher request
 				if (lineParts[0].matches("Replenisher") && (lineParts[2].matches("ready"))) {
-					log.info("Location: Main, Event: Replenisher "+lineParts[1]+" ready.");
+					log.info("Location: Main, Event: Replenisher " + lineParts[1] + " ready.");
 				}
 				// if its an replenisher request
 				if (lineParts[0].matches("Replenisher") && (lineParts[2].matches("replenisher"))) {
-					log.info("Location: Main, Event: Replenisher "+lineParts[1]+" replenisher.");
+					log.info("Location: Main, Event: Replenisher " + lineParts[1] + " replenisher.");
+				}
+				if (lineParts[2].matches("rescan")) {
+					log.info("Location: Main, Event:" + lineParts[0] + lineParts[1] + " sends orders to be rescaned.");
+					sequencer.sequence();
 				}
 			}
 
@@ -157,9 +169,10 @@ public class Main {
 				System.exit(0);
 			}
 			loader.outputOrdersLoaded(fileToWriteToOrders);
+			WarehouseFile.resupplyAll();
 			br.close();
 		}
-		
+
 		catch (IOException e) {
 			log.warning("Location: Main, File: cant be read from or cant be found.");
 			System.exit(0);

@@ -208,12 +208,13 @@ public class Warehouse {
 		String level = location.substring(3, 4);
 		String[] values = { zone, aisle, rack, level };
 		List<String> key = Arrays.asList(values);
-		this.getWarehouse().replace(key, this.warehouse.get(key) - 1);
-
+		if (this.getAmountInZone(zone, Integer.valueOf(aisle), Integer.valueOf(rack), Integer.valueOf(level)) != 0) {
+			this.getWarehouse().replace(key, this.warehouse.get(key) - 1);
+		}
 	}
 
 	/**
-	 * Resupply at a certain location
+	 * Re-supply at a certain location
 	 *
 	 * @param location:
 	 *            String - the location in the Warehouse
@@ -230,7 +231,8 @@ public class Warehouse {
 			log.info("Location: Warehouse, Event: Zone: The area at zone: " + zone + " aisle: " + aisle + " rack: "
 					+ rack + " level: " + level + " has been resupplied");
 			this.getWarehouse().replace(key, 30);
-		}
+		} 
+		
 	}
 
 	/**

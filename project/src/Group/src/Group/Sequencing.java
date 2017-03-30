@@ -129,7 +129,8 @@ public class Sequencing {
 	 * @return Boolean - true if process complete, false if not
 	 */
 	public boolean isSequenced() {
-		return true;
+		return (this.getBackFasciaPallet().size() == this.palletSize)
+				&& (this.getFrontFasciaPallet().size() == this.palletSize);
 	}
 
 	/**
@@ -158,16 +159,19 @@ public class Sequencing {
 									+ " front fasica SKU: " + order.getSKUFront());
 							this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 									this.getSkus().get(i));
-						} 
+						}
 					}
 
+				} else if (this.getFrontFasciaPallet().size() != palletSize) {
+					log.info(
+							"Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra/missing fasica. Go get new fasica.");
+				} else if (this.getBackFasciaPallet().size() != palletSize) {
+					log.info(
+							"Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra/missing fasica. Go get new fasica.");
 				}
-				else if(this.getFrontFasciaPallet().size() != palletSize) {
-					log.info("Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
-				}
-				else if (this.getBackFasciaPallet().size() != palletSize) {
-					log.info("Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
-				}
+			}
+			if (this.isSequenced() == true) {
+				log.info("Location: Sequencing, Event: All pallets are sequenced proceed to the loading area");
 			}
 			if (this.isSequenced() == false) {
 				throw new IOException();
