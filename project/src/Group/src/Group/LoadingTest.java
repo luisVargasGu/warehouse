@@ -82,11 +82,19 @@ public class LoadingTest {
 	// one if it doesn't exist
 	public void test2saveToFile() throws Exception{
 		File file = new File("Loadingtest2saveToFile.csv");
-		// you can check it there
-		ArrayList<String> modelInfo = new ArrayList<String>();
-		modelInfo.add("SES");
-		modelInfo.add("IK");
+		ArrayList<ArrayList<Integer>> first_equal = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> first = new ArrayList<Integer>();
+		first.add(5);
+		first.add(6);
+		ArrayList<ArrayList<Integer>> sec_equal = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> sec = new ArrayList<Integer>();
+		sec.add(3);
+		sec.add(4);
+		sec_equal.add(sec);
+		first_equal.add(first);
+		// Change name (no getter so its always fine.)
+		loder.setId("");
+		loder.loadOrders(pickingRequest, first, sec);
 		loder.outputOrdersLoaded(file);
-
 	}
 }

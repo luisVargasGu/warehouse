@@ -11,17 +11,17 @@ public class Loading {
 	private String id;
 	// the orders to be loaded
 	private ArrayList<Order> ordersLoaded = new ArrayList<Order>();
-	
+
 	// front and back fasica that are being loaded
 	private ArrayList<ArrayList<Integer>> totalFront = new ArrayList<ArrayList<Integer>>();
 	private ArrayList<ArrayList<Integer>> totalBack = new ArrayList<ArrayList<Integer>>();
 	private Logger log = Logger.getLogger("my.logger");
-	
+
 	/**
 	 * Initializes a new load.
 	 */
 	public Loading() {
-		
+
 	}
 
 	// getters and setters
@@ -55,9 +55,10 @@ public class Loading {
 	/**
 	 * Sets the private list for the orders being loaded.
 	 * 
-	 * @param id:String - id of our load
+	 * @param id:String
+	 *            - id of our load
 	 */
-	public void setId(String id) throws Exception{
+	public void setId(String id) throws Exception {
 		this.id = id;
 	}
 
@@ -73,9 +74,10 @@ public class Loading {
 	 * @param backPallet:
 	 *            ArrayList<Integer> - array containing the back pallets
 	 */
-	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet,
-			ArrayList<Integer> backPallet) throws Exception {
-		log.info("Location: Loading, Event: "+ this.id + " loaded picking request " + pickingRequest.getId() + " onto the truck.");
+	public void loadOrders(PickingRequest pickingRequest, ArrayList<Integer> frontPallet, ArrayList<Integer> backPallet)
+			throws Exception {
+		log.info("Location: Loading, Event: " + this.id + " loaded picking request " + pickingRequest.getId()
+				+ " onto the truck.");
 		this.ordersLoaded.addAll(pickingRequest.getOrders());
 		this.totalFront.add(frontPallet);
 		this.totalBack.add(backPallet);
@@ -97,42 +99,28 @@ public class Loading {
 		final String FILE_HEADER = "Colour, Model, SKU (front), SKU (back)";
 
 		FileWriter fileWriter = null;
-		try {
 
-			fileWriter = new FileWriter(fileToWriteToOrders);
-			// Write the CSV file header
-			fileWriter.append(FILE_HEADER.toString());
+		fileWriter = new FileWriter(fileToWriteToOrders);
+		// Write the CSV file header
+		fileWriter.append(FILE_HEADER.toString());
 
-			// Add a new line separator after the header
+		// Add a new line separator after the header
+		fileWriter.append(NEW_LINE_SEPARATOR);
+		for (Order order : this.ordersLoaded) {
+			// Write a new object list to the CSV file
+			fileWriter.append(order.getColour());
+			fileWriter.append(COMMA_DELIMITER);
+			fileWriter.append(order.getModel());
+			fileWriter.append(COMMA_DELIMITER);
+			fileWriter.append(((Integer) order.getSKUFront()).toString());
+			fileWriter.append(COMMA_DELIMITER);
+			fileWriter.append(((Integer) order.getSKUBack()).toString());
 			fileWriter.append(NEW_LINE_SEPARATOR);
-			for (Order order : this.ordersLoaded) {
-				// Write a new object list to the CSV file
-				fileWriter.append(order.getColour());
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(order.getModel());
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(((Integer) order.getSKUFront()).toString());
-				fileWriter.append(COMMA_DELIMITER);
-				fileWriter.append(((Integer) order.getSKUBack()).toString());
-				fileWriter.append(NEW_LINE_SEPARATOR);
-			}
-			log.fine("Location: Loading, Output Event: Order.csv file was created successfully!!!");
-			
-		} catch (Exception e) {
-			log.warning("Location: Loading, Output Event: Error in trying to create order.csv!!!");
-			System.exit(0);
-
-		} finally {
-			try {
-				fileWriter.flush();
-				fileWriter.close();
-			} catch (IOException e) {
-				log.warning("Location: Loading, Output Event: Error while flushing/closing order.csv fileWriter!!!");
-				System.exit(0);
-			}
-
 		}
+		log.fine("Location: Loading, Output Event: Order.csv file was created successfully!!!");
+
+		fileWriter.flush();
+		fileWriter.close();
 
 	}
-
 }
