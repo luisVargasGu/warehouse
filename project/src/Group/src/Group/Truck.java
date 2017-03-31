@@ -3,8 +3,8 @@ package Group;
 import java.util.logging.Logger;
 
 public class Truck {
-	int numOrders = 0;
-	Logger log = Logger.getLogger("my.logger");
+	private int numOrders = 0;
+	private Logger log = Logger.getLogger("my.logger");
 	
 	public Truck() {
 

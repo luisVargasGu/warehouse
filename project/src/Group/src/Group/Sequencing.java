@@ -1,7 +1,5 @@
 package Group;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,7 +14,7 @@ public class Sequencing {
 	private PickingRequest pickingrequest;
 	private ArrayList<Integer> frontFasciaPallet = new ArrayList<Integer>(palletSize);
 	private ArrayList<Integer> backFasciaPallet = new ArrayList<Integer>(palletSize);
-	Logger log = Logger.getLogger("my.logger");
+	private Logger log = Logger.getLogger("my.logger");
 
 	/**
 	 * Create new sequencing.
@@ -128,6 +126,7 @@ public class Sequencing {
 						&& this.getBackFasciaPallet().size() != palletSize) {
 					Order order = this.getPickingrequest().getOrders().get(j);
 					for (int i = j; i < palletSize * 2; i++) {
+		
 						if (order.containsBackSKU(this.getSkus().get(i))) {
 							log.info("Location: Sequencing, Event: Fasica SKU provided: " + this.getSkus().get(i)
 									+ ", is a correct back fasica for order: " + order.getOrderNum()
@@ -142,13 +141,13 @@ public class Sequencing {
 									this.getSkus().get(i));
 						}
 					}
-				}
-				if (this.isSequenced() == true) {
-					log.info("Location: Sequencing, Event: All pallets are sequenced proceed to the loading area");
-				}
-				if (this.isSequenced() == false) {
-					throw new IOException();
-				}
+				}			
+			}
+			if (this.isSequenced() == true) {
+				log.info("Location: Sequencing, Event: All pallets are sequenced proceed to the loading area");
+			}
+			else if (this.isSequenced() == false) {
+				throw new IOException();
 			}
 		} catch (Exception e) {
 			log.info("Location: Sequencing, Event: Please repick the picking request.");

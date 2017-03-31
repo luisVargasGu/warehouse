@@ -10,11 +10,6 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class Warehouse {
-	// Ware house Size.
-	// private int zone;
-	// private int aisle;
-	// private int racks;
-	// private int levels;
 
 	// the string key: zone aisle, rack, amount
 	private Map<List<String>, Integer> warehouse = new HashMap<List<String>, Integer>();
@@ -160,39 +155,7 @@ public class Warehouse {
 			return -1;
 		}
 	}
-	// /**
-	// * Changes the zone Parameter.
-	// * @param zone: Integer - number of zones in the Warehouse
-	// */
-	// public void setZone(int zone) {
-	// System.out.println("Set zone:"+zone);
-	// this.zone = zone;
-	// System.out.println("?Set zone:"+this.zone);
-	// }
-	//
-	// /**
-	// * Changes the Aisle Parameter.
-	// * @param aisle: Integer - number of aisle in the Warehouse
-	// */
-	// public void setAisle(int aisle) {
-	// System.out.println("Set aisle:"+aisle);
-	// this.aisle = aisle;
-	// System.out.println("?Set aisle:"+this.aisle);
-	// }
-	// /**
-	// * Changes the Racks Parameter.
-	// * @param racks: Integer - number of racks in the Warehouse
-	// */
-	// public void setRacks(int racks) {
-	// this.racks = racks;
-	// }
-	// /**
-	// * Changes the Racks Parameter.
-	// * @param levels: Integer - number of levels in the Warehouse
-	// */
-	// public void setLevels(int levels) {
-	// this.levels = levels;
-	// }
+
 
 	/**
 	 * Remove fascia at a certain location.

@@ -62,6 +62,8 @@ public class SequencingTest {
 		assertEquals(seq.getId(), "Billy");
 		seq.sequence();
 		int test = seq.getBackFasciaPallet().size();
+		
+		System.out.println(seq.getBackFasciaPallet());
 		assertEquals(seq.getBackFasciaPallet().size(), 4);
 		Boolean finalz = seq.isSequenced();
 		assertTrue(finalz);

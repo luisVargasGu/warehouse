@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.logging.*;
 
 public class Order {
-	static Integer n = 1;
+	private static Integer n = 1;
 	private Integer orderNum;
 	private String colour;
 	private String model;
