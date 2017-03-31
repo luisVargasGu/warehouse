@@ -117,12 +117,10 @@ public class Main {
 				}
 				if ((lineParts[0].matches("Picker")) && (lineParts[2].matches("pick"))) {
 					// taking out a facsia from that location
-					WarehouseFile
-							.takeOutFacsia(workerQueue.getWorker(lineParts[1]).getlocation().get(0).substring(0, 4));
+					WarehouseFile.takeOutFacsia(workerQueue.getWorker(lineParts[1]).getlocation().get(0).substring(0, 4));
 					// checking if a resupply needs to happen here at that
 					// location
-					WarehouseFile
-							.resupplyRack(workerQueue.getWorker(lineParts[1]).getlocation().get(0).substring(0, 4));
+					WarehouseFile.resupplyRack(workerQueue.getWorker(lineParts[1]).getlocation().get(0).substring(0, 4));
 					workerQueue.getWorker(lineParts[1]).pickUpOrder();
 
 				}
