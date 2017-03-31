@@ -129,10 +129,10 @@ public class Sequencing {
 	/**
 	 * The sequencing process.
 	 */
-	public void sequence() throws Exception {
+	public void sequence(){
 		// try catch in case something fails
 
-<<<<<<< HEAD
+		try {
 			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
 				if (this.getFrontFasciaPallet().size() != palletSize
 						&& this.getBackFasciaPallet().size() != palletSize) {
@@ -151,54 +151,17 @@ public class Sequencing {
 							this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 									this.getSkus().get(i));
 						}
-=======
-		log.info("Location: Sequencing, Event:" + this.getId() + " is sequencing" + " picking request "
-				+ (this.getPickingrequest().getId()).toString());
-
-		for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
-			if (this.getFrontFasciaPallet().size() != palletSize && this.getBackFasciaPallet().size() != palletSize) {
-				Order order = this.getPickingrequest().getOrders().get(j);
-				for (int i = j; i < palletSize * 2; i++) {
-					if (order.containsBackSKU(this.getSkus().get(i))) {
-
-						this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
-								this.getSkus().get(i));
-					} else if (order.containsFrontSKU(this.getSkus().get(i))) {
-
-						this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
-								this.getSkus().get(i));
->>>>>>> branch 'master' of https://markus.teach.cs.toronto.edu/git/csc207-2017-01/group_0406
 					}
-
-<<<<<<< HEAD
-				} else if (this.getFrontFasciaPallet().size() != palletSize) {
-					log.info(
-							"Location: Sequencing, Event: Front Fasica SKU pallet provided has a missing fasica. Go get new fasica.");
-				} else if (this.getBackFasciaPallet().size() != palletSize) {
-					log.info(
-							"Location: Sequencing, Event: Back Fasica SKU pallet provided has a missing fasica. Go get new fasica.");
-=======
-					else if (this.getFrontFasciaPallet().size() != palletSize) {
-						log.info(
-								"Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
-					} else if (this.getBackFasciaPallet().size() != palletSize) {
-						log.info(
-								"Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
-					}
->>>>>>> branch 'master' of https://markus.teach.cs.toronto.edu/git/csc207-2017-01/group_0406
 				}
-<<<<<<< HEAD
+				if (this.isSequenced() == true) {
+					log.info("Location: Sequencing, Event: All pallets are sequenced proceed to the loading area");
+				}
+				if (this.isSequenced() == false) {
+					throw new IOException();
+				}
 			}
-			if (this.isSequenced() == true) {
-				log.info("Location: Sequencing, Event: All pallets are sequenced proceed to the loading area");
-			}
-			if (this.isSequenced() == false) {
-				throw new IOException();
-=======
-
->>>>>>> branch 'master' of https://markus.teach.cs.toronto.edu/git/csc207-2017-01/group_0406
-			}
-
+		} catch (Exception e) {
+			log.info("Location: Sequencing, Event: Please repick the picking request.");
 		}
 	}
 }
