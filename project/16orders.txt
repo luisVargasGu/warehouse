@@ -59,6 +59,7 @@ Sequencer Sue sequences
 Picker Bob pick 7
 Replenisher Ruby replenish A 1 1 2
 Picker Bob pick 8
+Loader Bill ready
 Loader Bill loads
 Picker Bob to Marshaling
 Sequencer Sue sequences

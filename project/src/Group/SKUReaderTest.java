@@ -12,21 +12,21 @@ public class SKUReaderTest {
 
 	@Test
 	public void testSKUReaderTableSizeMapModel() throws Exception {
-		SKUReader table = new SKUReader(new File("traversal_table.csv"));
+		SKUReader table = new SKUReader(new File("translation.csv"));
 		int n = table.getTranslationTableModel().size();
 		assertEquals(n, 48);
 	}
 
 	@Test
 	public void testSKUReaderTableSizeMapSKU() throws Exception {
-		SKUReader table = new SKUReader(new File("traversal_table.csv"));
+		SKUReader table = new SKUReader(new File("translation.csv"));
 		int n = table.getTranslationTableSku().size();
 		assertEquals(n, 48);
 	}
 
 	@Test
 	public void testSKUReaderGetSku() throws Exception{
-		SKUReader table = new SKUReader(new File("traversal_table.csv"));
+		SKUReader table = new SKUReader(new File("translation.csv"));
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
@@ -38,7 +38,7 @@ public class SKUReaderTest {
 
 	@Test
 	public void testSKUReaderGetSkuBadParameter() throws Exception{
-		SKUReader table = new SKUReader(new File("traversal_table.csv"));
+		SKUReader table = new SKUReader(new File("translation.csv"));
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
@@ -52,9 +52,9 @@ public class SKUReaderTest {
 
 	@Test
 	public void testSKUReaderGetModel() throws Exception{
-		SKUReader table = new SKUReader(new File("traversal_table.csv"));
-		ArrayList<String> model = new ArrayList<>();
-		ArrayList<Integer> realSku = new ArrayList<>();
+		SKUReader table = new SKUReader(new File("translation.csv"));
+		ArrayList<String> model = new ArrayList<String>();
+		ArrayList<Integer> realSku = new ArrayList<Integer>();
 		model.add("White");
 		model.add("SES");
 		realSku.add((Integer) 5);
@@ -64,7 +64,7 @@ public class SKUReaderTest {
 	
 	@Test
 	public void testSKUReaderGetModelInfo() throws Exception{
-		SKUReader table = new SKUReader(new File("traversal_table.csv"));
+		SKUReader table = new SKUReader(new File("translation.csv"));
 		ArrayList<String> model = new ArrayList<>();
 		ArrayList<Integer> realSku = new ArrayList<>();
 		model.add("White");
