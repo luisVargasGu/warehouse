@@ -10,13 +10,13 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "C:/Users/ASUS/Desktop/CSC207Workspace/";
+		String basic_path = "/Users/AnnaZelisko/Desktop";
 
 		// Creates all the files we will interact with
-		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
+		File fileWithSteps = new File(args[0]);
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
 		String fileWithWarehouseInfo = basic_path + "/group_0406/project/TestingFiles/initial.csv";
-		String fileWithSpecs = basic_path + "/group_0406/project/specifications.txt";
+		File fileWithSpecs = new File("specifications.txt");
 		File fileToWriteToOrders = new File("orders.csv");
 		// Orders that have been loaded into the truck
 		File fileToWriteToFinal = new File("final.csv");
@@ -68,7 +68,7 @@ public class Main {
 			}
 			spec.close();
 		} catch (IOException e2) {
-			log.warning("Location: Main, File: cant be read from or cant be found.");
+			e2.printStackTrace();
 			System.exit(0);
 		}
 
@@ -177,12 +177,14 @@ public class Main {
 		}
 
 		catch (IOException e) {
-			log.warning("Location: Main, File: cant be read from or cant be found.");
+			//log.warning("Location: Main, File: cant be read from or cant be found.");
+			e.printStackTrace();
 			System.exit(0);
 		}
 		// catch any file exception
 		catch (Exception e) {
-			log.warning("Location: Main, File: cant be read from or cant be found.");
+			//log.warning("Location: Main, File: cant be read from or cant be found.");
+			e.printStackTrace();
 			System.exit(0);
 		}
 	}

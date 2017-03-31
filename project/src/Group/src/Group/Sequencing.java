@@ -50,18 +50,8 @@ public class Sequencing {
 	 *            - filepath.
 	 */
 
-	protected void setPalletSize(String fileWithSpecs) throws IOException {
-		BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
-		// Read the first line b4 the while so we skip the instructions.
-		String line;
-		String[] lineParts;
-		while ((line = spec.readLine()) != null) {
-			lineParts = line.split(" ");
-			if (lineParts[0].equals("Palletsize:")) {
-				this.palletSize = Integer.parseInt(lineParts[1]);
-			}
-		}
-		spec.close();
+	public void setPalletSize(String size) throws IOException {
+		this.palletSize = Integer.parseInt(size);
 	}
 
 	/**
