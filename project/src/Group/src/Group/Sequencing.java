@@ -1,7 +1,7 @@
 package Group;
 
-//import java.io.BufferedReader;
-//import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -49,26 +49,19 @@ public class Sequencing {
 	 * @param fileWithSpecs
 	 *            - filepath.
 	 */
-	// protected void setPalletSize(String fileWithSpecs) {
-	// try {
-	// BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
-	// // Read the first line b4 the while so we skip the instructions.
-	// String line;
-	// String[] lineParts;
-	// while ((line = spec.readLine()) != null) {
-	// lineParts = line.split(" ");
-	// if (lineParts[0].equals("Palletsize:")) {
-	// this.palletSize = Integer.parseInt(lineParts[1]);
-	// }
-	// }
-	// spec.close();
-	// } catch (IOException e2) {
-	// log.warning("Location: Main, File: cant be read from or cant be found.");
-	// System.exit(0);
-	// }
-	// }
-	public void setPalletSize(String size) {
-		this.palletSize = Integer.parseInt(size);
+
+	protected void setPalletSize(String fileWithSpecs) throws IOException {
+		BufferedReader spec = new BufferedReader(new FileReader(fileWithSpecs));
+		// Read the first line b4 the while so we skip the instructions.
+		String line;
+		String[] lineParts;
+		while ((line = spec.readLine()) != null) {
+			lineParts = line.split(" ");
+			if (lineParts[0].equals("Palletsize:")) {
+				this.palletSize = Integer.parseInt(lineParts[1]);
+			}
+		}
+		spec.close();
 	}
 
 	/**
@@ -136,12 +129,10 @@ public class Sequencing {
 	/**
 	 * The sequencing process.
 	 */
-	public void sequence() {
+	public void sequence() throws Exception {
 		// try catch in case something fails
-		try {
-			log.info("Location: Sequencing, Event: " + this.getId() + " is sequencing" + " picking request "
-					+ (this.getPickingrequest().getId()).toString());
 
+<<<<<<< HEAD
 			for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
 				if (this.getFrontFasciaPallet().size() != palletSize
 						&& this.getBackFasciaPallet().size() != palletSize) {
@@ -160,30 +151,54 @@ public class Sequencing {
 							this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
 									this.getSkus().get(i));
 						}
+=======
+		log.info("Location: Sequencing, Event:" + this.getId() + " is sequencing" + " picking request "
+				+ (this.getPickingrequest().getId()).toString());
+
+		for (int j = 0; j < this.getPickingrequest().getOrders().size(); j++) {
+			if (this.getFrontFasciaPallet().size() != palletSize && this.getBackFasciaPallet().size() != palletSize) {
+				Order order = this.getPickingrequest().getOrders().get(j);
+				for (int i = j; i < palletSize * 2; i++) {
+					if (order.containsBackSKU(this.getSkus().get(i))) {
+
+						this.getBackFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
+								this.getSkus().get(i));
+					} else if (order.containsFrontSKU(this.getSkus().get(i))) {
+
+						this.getFrontFasciaPallet().add(this.getPickingrequest().getOrders().indexOf(order),
+								this.getSkus().get(i));
+>>>>>>> branch 'master' of https://markus.teach.cs.toronto.edu/git/csc207-2017-01/group_0406
 					}
 
+<<<<<<< HEAD
 				} else if (this.getFrontFasciaPallet().size() != palletSize) {
 					log.info(
-							"Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra/missing fasica. Go get new fasica.");
+							"Location: Sequencing, Event: Front Fasica SKU pallet provided has a missing fasica. Go get new fasica.");
 				} else if (this.getBackFasciaPallet().size() != palletSize) {
 					log.info(
-							"Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra/missing fasica. Go get new fasica.");
+							"Location: Sequencing, Event: Back Fasica SKU pallet provided has a missing fasica. Go get new fasica.");
+=======
+					else if (this.getFrontFasciaPallet().size() != palletSize) {
+						log.info(
+								"Location: Sequencing, Event: Front Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
+					} else if (this.getBackFasciaPallet().size() != palletSize) {
+						log.info(
+								"Location: Sequencing, Event: Back Fasica SKU pallet provided has a extra fasica. Go get new fasica.");
+					}
+>>>>>>> branch 'master' of https://markus.teach.cs.toronto.edu/git/csc207-2017-01/group_0406
 				}
+<<<<<<< HEAD
 			}
 			if (this.isSequenced() == true) {
 				log.info("Location: Sequencing, Event: All pallets are sequenced proceed to the loading area");
 			}
 			if (this.isSequenced() == false) {
 				throw new IOException();
+=======
+
+>>>>>>> branch 'master' of https://markus.teach.cs.toronto.edu/git/csc207-2017-01/group_0406
 			}
 
-		} catch (IOException e) {
-			log.warning(
-					"Location: Sequencing, Event: The picking request could not be sequenced, due to missing or incorect fascia");
-		} catch (IndexOutOfBoundsException e) {
-			log.warning("Location: Sequencing, Event:Not enoguh indexs.");
-		} catch (Exception e) {
-			log.warning("Location: Sequencing, Event:Wrong Imput type.");
 		}
 	}
 }

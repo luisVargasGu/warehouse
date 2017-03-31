@@ -16,7 +16,7 @@ public class QueueOfOrdersTest {
 	Order order2;
 	Order order3;
 	Order order4;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		modelInfo = new ArrayList<String>();
@@ -34,27 +34,31 @@ public class QueueOfOrdersTest {
 
 	@Test
 	public void test1Constructor() {
+		int size = queue1.size();
 		assertTrue(queue1.isEmpty());
-		assertTrue(queue1.size() == 0);
+		assertEquals(size, 0);
 	}
-	
+
 	@Test
 	public void test2Enque() {
 		queue1.enqueue(order1);
+		int size = queue1.size();
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 1);
+		assertEquals(size, 1);
 		assertEquals("colour:Blue model:SES ", queue1.toString());
 
 	}
+
 	@Test
 	public void test3toString() {
 		queue1.enqueue(order1);
 		queue1.enqueue(order2);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 2);
+		int size = queue1.size();
+		assertEquals(size, 2);
 		assertEquals("colour:Blue model:SES colour:Blue model:SES ", queue1.toString());
 	}
-	
+
 	@Test
 	public void test4Dequeue() {
 		queue1.enqueue(order1);
@@ -62,25 +66,28 @@ public class QueueOfOrdersTest {
 		queue1.enqueue(order3);
 		queue1.enqueue(order4);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 4);
+		int size = queue1.size();
+		assertEquals(size, 4);
 		queue1.dequeue();
 	}
-	
+
 	@Test
 	public void test5DequeueFail() {
 		queue1.enqueue(order1);
 		queue1.enqueue(order2);
 		queue1.enqueue(order3);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 3);
+		int size = queue1.size();
+		assertEquals(size, 3);
 		queue1.dequeue();
 	}
 
 	@Test
 	public void test6DequeueFail2() {
 		assertTrue(queue1.isEmpty());
-		assertTrue(queue1.size() == 0);
+		int size = queue1.size();
+		assertEquals(size, 0);
 		queue1.dequeue();
 	}
-	
+
 }

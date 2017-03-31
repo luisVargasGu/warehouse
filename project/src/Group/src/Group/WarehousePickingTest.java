@@ -16,7 +16,8 @@ public class WarehousePickingTest {
 		realSku.add((Integer) 6);
 		ArrayList<String> result;
 		result = wp.optimize(realSku);
-		assertTrue(result.size() == 2);
+		int n = result.size();
+		assertEquals(n, 2);
 		
 	}
 	
@@ -28,7 +29,8 @@ public class WarehousePickingTest {
 		realSku.add((Integer) 6);
 		realSku.add((Integer) 7);
 		ArrayList<String> result = wp.optimize(realSku);
-		assertTrue(result.size() == 3);
+		int n = result.size();
+		assertEquals(n, 3);
 		
 	}
 

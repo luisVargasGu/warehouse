@@ -23,15 +23,17 @@ public class QueueOfWorkersTest {
 
 	@Test
 	public void test1Constructor() {
+		int size = queue1.size();
 		assertTrue(queue1.isEmpty());
-		assertTrue(queue1.size() == 0);
+		assertEquals(size, 0);
 	}
 	
 	@Test
 	public void test2Enque() {
 		queue1.enqueue(worker1);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 1);
+		int size = queue1.size();
+		assertEquals(size, 1);
 		assertEquals("id:Sam ", queue1.toString());
 
 	}
@@ -40,7 +42,8 @@ public class QueueOfWorkersTest {
 		queue1.enqueue(worker1);
 		queue1.enqueue(worker2);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 2);
+		int size = queue1.size();
+		assertEquals(size, 2);
 		assertEquals("id:Sam id:Ben ", queue1.toString());
 	}
 	
@@ -51,7 +54,8 @@ public class QueueOfWorkersTest {
 		queue1.enqueue(worker3);
 		queue1.enqueue(worker4);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 4);
+		int size = queue1.size();
+		assertEquals(size, 4);
 		queue1.dequeue();
 	}
 	
@@ -61,14 +65,16 @@ public class QueueOfWorkersTest {
 		queue1.enqueue(worker2);
 		queue1.enqueue(worker3);
 		assertFalse(queue1.isEmpty());
-		assertTrue(queue1.size() == 3);
+		int size = queue1.size();
+		assertEquals(size, 3);
 		queue1.dequeue();
 	}
 
 	@Test
 	public void test6DequeueFail2() {
 		assertTrue(queue1.isEmpty());
-		assertTrue(queue1.size() == 0);
+		int size = queue1.size();
+		assertEquals(size, 0);
 		queue1.dequeue();
 	}
 

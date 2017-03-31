@@ -31,15 +31,17 @@ public class PickingRequestTest {
 	
 	@Test
 	public void test1Constructor() {
+		int num = picking.getId();
 		//assertTrue(picking.getId() == 0); // just Picking Request is run
-		assertTrue(picking.getId() == 2);// if u just run test suite, then other picking Requests are created before
+		assertEquals(num, 2);
 		assertEquals(picking.getOrders(), orders);
 	}
 
 	@Test
-	public void test2SettingID() throws Exception {
+	public void test2SettingID() throws Exception {	
 		picking.setId(3);
-		assertTrue(picking.getId() == 3);
+		int num = picking.getId();
+		assertEquals(num, 3);
 		
 	}
 	

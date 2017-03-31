@@ -10,7 +10,8 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "/Users/AnnaZelisko/Desktop";
+		String basic_path = "C:/Users/ASUS/Desktop/CSC207Workspace/";
+
 		// Creates all the files we will interact with
 		String fileWithSteps = basic_path + "/group_0406/project/16orders.txt";
 		String fileWithSKUs = basic_path + "/group_0406/project/translation.csv";
@@ -34,7 +35,7 @@ public class Main {
 		log.setLevel(Level.ALL);
 
 		// all instances that require interaction in main
-		SKUReader SKUFile = new SKUReader(fileWithSKUs);
+		SKUReader SKUFile;
 		// WarehouseFile = new Warehouse(fileWithWarehouseInfo);
 		Warehouse WarehouseFile = null;
 		QueueOfOrders orderQueue = new QueueOfOrders();
@@ -77,6 +78,8 @@ public class Main {
 			String line;
 			// this is to help figure and break down the read in line
 			String[] lineParts;
+			// Used a try catch in main due to throws in Class SKUReader.
+			SKUFile = new SKUReader(fileWithSKUs);
 
 			// line read in isn't empty
 			while ((line = br.readLine()) != null) {
