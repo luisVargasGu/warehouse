@@ -1,17 +1,16 @@
 package Group;
 
 import static org.junit.Assert.*;
-
+import java.util.NoSuchElementException;
 import org.junit.Before;
 import org.junit.Test;
 
 public class QueueOfWorkersTest {
 
 	QueueOfWorkers queue1;
-	
+
 	Worker worker1, worker2, worker3, worker4;
 
-	
 	@Before
 	public void setUp() throws Exception {
 		worker1 = new Worker("Sam");
@@ -27,7 +26,7 @@ public class QueueOfWorkersTest {
 		assertTrue(queue1.isEmpty());
 		assertEquals(size, 0);
 	}
-	
+
 	@Test
 	public void test2Enque() {
 		queue1.enqueue(worker1);
@@ -37,6 +36,7 @@ public class QueueOfWorkersTest {
 		assertEquals("id:Sam ", queue1.toString());
 
 	}
+
 	@Test
 	public void test3toString() {
 		queue1.enqueue(worker1);
@@ -46,7 +46,7 @@ public class QueueOfWorkersTest {
 		assertEquals(size, 2);
 		assertEquals("id:Sam id:Ben ", queue1.toString());
 	}
-	
+
 	@Test
 	public void test4Dequeue() {
 		queue1.enqueue(worker1);
@@ -58,7 +58,7 @@ public class QueueOfWorkersTest {
 		assertEquals(size, 4);
 		queue1.dequeue();
 	}
-	
+
 	@Test
 	public void test5DequeueFail() {
 		queue1.enqueue(worker1);
@@ -78,4 +78,23 @@ public class QueueOfWorkersTest {
 		queue1.dequeue();
 	}
 
+	@Test
+	public void test7SearchWorker() throws Exception {
+		queue1.enqueue(worker1);
+		assertTrue(queue1.searchWorker("Sam"));
+		assertFalse(queue1.searchWorker("jill"));
+	}
+	
+	@Test
+	public void test8getWorker() throws Exception {
+		queue1.enqueue(worker1);
+		assertEquals(queue1.getWorker("Sam"), worker1);
+		assertFalse(queue1.searchWorker("jill"));
+	}
+	
+	@Test (expected = NoSuchElementException.class)
+	public void test8getWorkerNotFound() throws Exception {
+		queue1.enqueue(worker1);
+		queue1.getWorker("jill");
+	}
 }

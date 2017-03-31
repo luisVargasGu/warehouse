@@ -73,6 +73,7 @@ public class LoadingTest {
 		loder.loadOrders(pickingRequest, first, sec);
 		assertEquals(loder.getTotalFront(), first_equal);
 		assertEquals(loder.getTotalBack(), sec_equal);
+		assertEquals(loder.getOrdersLoaded(), orders);
 
 	}
 
