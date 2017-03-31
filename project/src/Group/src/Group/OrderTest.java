@@ -66,9 +66,9 @@ public class OrderTest {
 		// assertTrue(o2.getOrderNum() == 6);//if u just run order test
 		// its created 4 new order
 		int num = o1.getOrderNum();
-		assertEquals(num, 1);// if u just run test suite, as there
+		assertEquals(num, 11);// if u just run test suite, as there
 		int num2 = o2.getOrderNum(); // are orders created in other tests
-		assertEquals(num2, 2);// if u just run test suite, as there
+		assertEquals(num2 ,12);// if u just run test suite, as there
 								// are orders created in other tests
 	}
 

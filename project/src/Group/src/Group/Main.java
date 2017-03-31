@@ -10,7 +10,7 @@ import java.util.logging.*;
 public class Main {
 
 	public static void main(String[] args) {
-		String basic_path = "/Users/donaldkajo/Desktop/csc207project/project/";
+		String basic_path = "C:/Users/ASUS/Desktop/CSC207Workspace";
 
 		// Creates all the files we will interact with
 		File fileWithSteps = new File(args[0]);
